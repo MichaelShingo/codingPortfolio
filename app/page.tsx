@@ -1,5 +1,9 @@
-import TestComponent from './components/TestComponent';
+import Intro from './components/intro/Intro';
 
 export default function Home() {
-	return <h1 className="text-3xl font-bold underline">Hello world</h1>;
+	return (
+		<>
+			<Intro />
+		</>
+	);
 }
