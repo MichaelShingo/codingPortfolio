@@ -18,7 +18,7 @@ const TypedText = () => {
 			'const data = {',
 			`occupations: [‘Software Developer’, 'Musician'],`,
 			`specializations: [‘frontend web dev', ‘audio apps’],`,
-			`location: ‘Rotterdam, Netherlands’,`,
+			`location: ‘Rotterdam, the Netherlands’,`,
 			`};`,
 		];
 
@@ -60,7 +60,7 @@ const TypedText = () => {
 			const loopIteration = () => {
 				if (i < iterations) {
 					lineSettersList[i](true);
-					const delay: number = typingSpeed * textList[i].length;
+					const delay: number = typingSpeed * textList[i].length + 500;
 					typeText(textList[i], 0, textStateSettersList[i]);
 					i++;
 					setTimeout(loopIteration, delay);
@@ -77,11 +77,11 @@ const TypedText = () => {
 	};
 
 	return (
-		<div className="h-2/8 flex-rowtext-sm flex w-fit min-w-[350px] leading-[10.7px]">
+		<div className="h-2/8 sm:text-md flex w-fit min-w-[350px] flex-row text-sm leading-[10.7px] md:text-lg md:leading-[14px] lg:text-xl lg:leading-[16px]">
 			<div className="mr-4 text-right text-gray-400 [&>*]:transition duration-400">
 				<h5 className={isLineNumberVisible(line1)}>1</h5>
 				<br></br>
-				<h5 className={`${isLineNumberVisible(line2)}`}>2</h5>
+				<h5 className={isLineNumberVisible(line2)}>2</h5>
 				<br></br>
 				<h5 className={isLineNumberVisible(line3)}>3</h5>
 				<br></br>

@@ -1,7 +1,13 @@
-const MainButton = () => {
+interface MainButtonProps {
+	onClick: () => void;
+}
+const MainButton: React.FC<MainButtonProps> = ({ onClick }) => {
 	return (
 		<>
-			<button className="group peer z-10 flex h-[70px] w-[282px] items-center justify-center overflow-hidden bg-black transition duration-1000 ease-in-out hover:translate-x-[4px] hover:translate-y-[6px] hover:bg-black-trans">
+			<button
+				onClick={onClick}
+				className="group peer z-10 flex h-[70px] w-[282px] items-center justify-center overflow-hidden bg-black transition duration-1000 ease-in-out hover:translate-x-[4px] hover:translate-y-[6px] hover:bg-black-trans"
+			>
 				<img
 					src="/sibeliusViolinConcerto.svg"
 					className="translate-y-36 opacity-0 group-hover:animate-scroll-music"
