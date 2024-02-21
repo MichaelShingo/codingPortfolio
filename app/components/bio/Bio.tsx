@@ -2,8 +2,8 @@
 
 const Bio: React.FC = () => {
 	return (
-		<div className="flex h-screen w-screen justify-center">
-			<div className="flex h-fit w-[90%] translate-y-[35%] flex-col items-center justify-center space-y-3 border-[3px] border-solid border-black bg-paper-white p-5 text-justify text-sm font-light sm:w-[80%] md:w-[55%] md:text-lg lg:text-2xl">
+		<div className="flex h-screen w-screen justify-center overflow-auto">
+			<div className="flex h-fit w-[80%] translate-y-[100px] flex-col items-center justify-center space-y-3 border-[3px] border-solid border-black bg-paper-white p-5 text-justify text-lg font-light sm:w-[55%] sm:translate-y-[125px] md:translate-y-[150px] md:text-lg lg:text-2xl 2xl:w-[55%] 2xl:text-3xl 2xl:leading-10">
 				<div className="">
 					<p className="">
 						I am a software developer and musician with a passion for exploring the
@@ -24,8 +24,7 @@ const Bio: React.FC = () => {
 						through my dual roles as a developer and creative professional.
 					</p>
 				</div>
-				<div></div>
-				<button className="absolute bottom-0 h-[30%] w-[3px] translate-y-[100%] bg-black transition-all duration-700 hover:h-[35%]">
+				<button className="absolute bottom-0 h-[10%] w-[3px] translate-y-[100%] bg-black transition-all duration-700 hover:h-[15%] md:h-[30%] md:hover:h-[35%]">
 					<div className="absolute h-[120%] w-5 translate-x-[-50%] translate-y-[-50%] bg-transparent"></div>
 					<img
 						src="/arrowHead.svg"

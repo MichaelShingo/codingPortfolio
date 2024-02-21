@@ -35,7 +35,7 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ title }) => {
 		<button
 			ref={ref}
 			onClick={handleOnClick}
-			className="p-1 text-center text-xl font-light transition duration-300 hover:scale-[95%] sm:text-3xl md:text-5xl"
+			className="p-1 text-center text-xl font-normal uppercase transition duration-300 hover:scale-[95%] sm:text-3xl md:text-5xl"
 		>
 			{title}
 		</button>
@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
 	return (
 		<div
 			ref={ref}
-			className="fixed mt-4 flex h-fit w-screen flex-row items-center justify-center space-x-9 sm:space-x-11 md:space-x-20"
+			className="fixed z-40 flex h-fit w-screen flex-row items-center justify-center space-x-9 bg-paper-white py-4 sm:space-x-11 md:space-x-20"
 		>
 			<NavbarItem title="Bio" />
 			<NavbarItem title="Portfolio" />
