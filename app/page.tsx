@@ -9,9 +9,9 @@ import SelectionRect from './components/selectionRect/SelectionRect';
 export default function Home() {
 	return (
 		<div className="">
-			{/* <SelectionRect /> */}
+			<SelectionRect />
 			<Intro />
-			{/* <Navbar /> */}
+			<Navbar />
 			<Bio />
 			<Portfolio />
 			<Contact />

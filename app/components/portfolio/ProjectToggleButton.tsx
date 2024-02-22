@@ -15,12 +15,12 @@ const ProjectToggleButton: React.FC<ProjectToggleButtonProps> = ({
 			className="group h-fit w-fit transition-all duration-300 ease-linear"
 		>
 			<div
-				className={`flex transition-all duration-300 h-[60px] w-[240px] items-center justify-center border-[3px]  px-5 pt-4     ${
+				className={`flex transition-all duration-300 h-[60px] w-[240px] items-center justify-center border-[3px] px-5 pt-4 ${
 					active ? 'bg-black border-black' : 'bg-transparent border-none'
 				}`}
 			>
 				<h2
-					className={`translate-y-[-35%] text-4xl font-thin text-paper-white transition-all duration-700 group-active:scale-[50%]  ${
+					className={`translate-y-[-35%] text-4xl font-thin transition-all duration-700 group-active:scale-[50%]  ${
 						active ? 'text-paper-white' : 'text-black'
 					}`}
 				>
