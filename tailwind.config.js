@@ -6,6 +6,7 @@ module.exports = {
 			colors: {
 				'paper-white': '#fffdf5',
 				'black-trans': 'rgba(0,0,0,0.15)',
+				'paper-grey': '#e5e1d8',
 			},
 			animation: {
 				'scroll-music': 'scroll-music 17s infinite linear',

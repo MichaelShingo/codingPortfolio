@@ -1,5 +1,10 @@
 'use client';
-import { setPage, setBoundingBox, BoundingBox } from '@/redux/features/locationSlice';
+import {
+	setPage,
+	setBoundingBox,
+	BoundingBox,
+	boundingClientRectToBoundingBox,
+} from '@/redux/features/locationSlice';
 import { AppDispatch, useAppSelector } from '@/redux/store';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
@@ -19,12 +24,7 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ title }) => {
 	useEffect(() => {
 		if (currentPage === title && ref.current) {
 			const rect: DOMRect = ref.current?.getBoundingClientRect();
-			const newBoundingBox: BoundingBox = {
-				topLeft: { x: rect.left, y: rect.top },
-				topRight: { x: rect.right, y: rect.top },
-				bottomRight: { x: rect.right, y: rect.bottom },
-				bottomLeft: { x: rect.left, y: rect.bottom },
-			};
+			const newBoundingBox: BoundingBox = boundingClientRectToBoundingBox(rect);
 			dispatch(setBoundingBox(newBoundingBox));
 		}
 	}, [currentPage, windowWidth, title, dispatch]);

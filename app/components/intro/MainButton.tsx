@@ -1,7 +1,8 @@
 interface MainButtonProps {
 	onClick: () => void;
+	label: string;
 }
-const MainButton: React.FC<MainButtonProps> = ({ onClick }) => {
+const MainButton: React.FC<MainButtonProps> = ({ onClick, label }) => {
 	return (
 		<>
 			<button
@@ -14,7 +15,7 @@ const MainButton: React.FC<MainButtonProps> = ({ onClick }) => {
 				/>
 			</button>
 			<p className="pointer-events-none absolute z-20 flex translate-y-[-6px] justify-center bg-none text-5xl font-thin text-paper-white opacity-100 transition duration-1000 ease-in-out peer-hover:-translate-y-12 peer-hover:scale-50 peer-hover:text-black">
-				enter
+				{label}
 			</p>
 			<div className="absolute z-0 flex h-[69px] w-[285px] translate-x-[4px] translate-y-[6px] items-center justify-center border-[3px] border-solid border-black bg-transparent transition ease-in-out"></div>
 		</>

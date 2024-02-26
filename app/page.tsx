@@ -4,12 +4,14 @@ import WindowEvents from './components/eventHandlers/windowEvents';
 import Intro from './components/intro/Intro';
 import Navbar from './components/navbar/Navbar';
 import Portfolio from './components/portfolio/Portfolio';
-import SelectionRect from './components/selectionRect/SelectionRect';
+import ContactSelectionContainer from './components/selectionRect/ContactSelectionContainer copy';
+import NavbarSelectionContainer from './components/selectionRect/NavbarSelectionContainer';
 
 export default function Home() {
 	return (
 		<div className="">
-			<SelectionRect />
+			<NavbarSelectionContainer />
+			{/* <ContactSelectionContainer /> */}
 			<Intro />
 			<Navbar />
 			<Bio />

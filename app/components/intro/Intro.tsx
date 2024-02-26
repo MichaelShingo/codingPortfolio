@@ -21,8 +21,8 @@ const Intro = () => {
 				Michael Shingo Crawford
 			</h1>
 			<TypedText />
-			<div className="h-2/8 flex h-[200px] w-screen flex-row items-center justify-center overflow-x-hidden">
-				<MainButton onClick={handleEnterClick} />
+			<div className="flex h-[200px] w-screen flex-row items-center justify-center overflow-x-hidden">
+				<MainButton onClick={handleEnterClick} label="enter" />
 			</div>
 		</div>
 	);

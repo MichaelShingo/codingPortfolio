@@ -1,6 +1,7 @@
 'use client';
 import { BoundingBox, Coordinate } from '@/redux/features/locationSlice';
 import { useAppSelector } from '@/redux/store';
+import React from 'react';
 
 interface SelectionCornerProps {
 	position: Coordinate;
@@ -35,7 +36,7 @@ const SelectionCorner: React.FC<SelectionCornerProps> = ({
 	return (
 		<img
 			src={svgLink}
-			className={`sm-scale-150 pointer-events-none absolute left-0 top-0 z-10 h-[7px] w-[7px] origin-center transition duration-1000`}
+			className={`sm-scale-150 pointer-events-none absolute left-0 top-0 z-50 h-[7px] w-[7px] origin-center transition duration-1000`}
 			style={{
 				transform: `translateX(${position.x + offset}px) translateY(${
 					position.y
@@ -45,11 +46,11 @@ const SelectionCorner: React.FC<SelectionCornerProps> = ({
 	);
 };
 
-const SelectionRect = () => {
-	const boundingBox: BoundingBox = useAppSelector(
-		(state) => state.locationReducer.value.boundingBox
-	);
+interface SelectionRectProps {
+	boundingBox: BoundingBox;
+}
 
+const SelectionRect: React.FC<SelectionRectProps> = ({ boundingBox }) => {
 	return (
 		<div className="pointer-events-none fixed z-50 h-screen w-screen overflow-hidden">
 			<SelectionCorner
