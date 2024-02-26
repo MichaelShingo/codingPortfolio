@@ -4,6 +4,8 @@ import { ReactNode, useEffect, useRef, useState } from 'react';
 import ProjectToggleButton from './ProjectToggleButton';
 import { useAppSelector } from '@/redux/store';
 import { sampleJSON } from '@/app/utils/sampleData';
+import { useDispatch } from 'react-redux';
+import { setScrollToPortfolio } from '@/redux/features/locationSlice';
 
 type PortfolioItem = {
 	title: string;
@@ -14,6 +16,7 @@ type PortfolioItem = {
 };
 
 const Portfolio = () => {
+	const dispatch = useDispatch();
 	const [isShowcase, setIsShowcase] = useState<boolean>(true);
 	const [portfolioData, setPortfolioData] = useState<PortfolioItem[]>([]);
 	const [filteredPortfolioData, setFilteredPortfolioData] = useState<PortfolioItem[]>(
@@ -23,9 +26,19 @@ const Portfolio = () => {
 		(state) => state.windowReducer.value.windowWidth
 	);
 	const verticalScrollRef = useRef<HTMLDivElement | null>(null);
-
+	const portfolioSectionRef = useRef<HTMLElement | null>(null);
 	const { scrollYProgress } = useScroll({ target: verticalScrollRef });
-	const xScroll = useTransform(scrollYProgress, [0, 1], ['0%', '-230%']);
+	const xScroll = useTransform(scrollYProgress, [0, 1], ['80%', '-210%']);
+
+	const scrollToSection = () => {
+		if (portfolioSectionRef.current) {
+			portfolioSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+		}
+	};
+
+	useEffect(() => {
+		dispatch(setScrollToPortfolio(scrollToSection));
+	}, []);
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -113,7 +126,7 @@ const Portfolio = () => {
 	}, [windowWidth]);
 
 	return (
-		<section className="">
+		<section ref={portfolioSectionRef} className="">
 			{windowWidth > 640 ? (
 				<div ref={verticalScrollRef} className="relative h-[400vh]">
 					<div className="sticky top-[12vh] flex h-[100px] w-screen scale-[65%] flex-row items-center justify-center space-x-14 sm:scale-100 sm:space-x-32">

@@ -1,5 +1,5 @@
 'use client';
-import React, { ReactNode, useRef } from 'react';
+import React, { ReactNode, useEffect, useRef } from 'react';
 import AltoClef from './AltoClef';
 import BassClef from './BassClef';
 import TrebleClef from './TrebleClef';
@@ -10,6 +10,7 @@ import {
 	BoundingBox,
 	boundingClientRectToBoundingBox,
 	setContactBoundingBox,
+	setScrollToContact,
 } from '@/redux/features/locationSlice';
 import SelectionRect from '../selectionRect/SelectionRect';
 
@@ -26,7 +27,6 @@ const clefContainerClasses: string =
 
 const InputField: React.FC<InputFieldProps> = ({ type, label, clef }) => {
 	const dispatch = useDispatch<AppDispatch>();
-
 	const ref = useRef<HTMLInputElement | null>(null);
 
 	const handleFocus = () => {
@@ -54,9 +54,11 @@ const InputField: React.FC<InputFieldProps> = ({ type, label, clef }) => {
 };
 
 const Contact: React.FC = () => {
+	const dispatch = useDispatch();
 	const contactBoundingBox: BoundingBox = useAppSelector(
 		(state) => state.locationReducer.value.contactFieldBoundingBox
 	);
+	const contactSectionRef = useRef<HTMLElement | null>(null);
 
 	const handleSubmit = () => {
 		console.log('submit');
@@ -65,8 +67,22 @@ const Contact: React.FC = () => {
 	const currentDate = new Date();
 	const currentYear = currentDate.getFullYear();
 
+	const scrollToSection = () => {
+		if (contactSectionRef.current) {
+			contactSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+		}
+	};
+
+	useEffect(() => {
+		dispatch(setScrollToContact(scrollToSection));
+	}, []);
+
 	return (
-		<div className="flex h-[100vh] w-screen flex-col items-center justify-between pt-32 2xl:pt-44">
+		<section
+			ref={contactSectionRef}
+			id="contact"
+			className="flex h-[100vh] w-screen flex-col items-center justify-between pt-32 2xl:pt-44"
+		>
 			<SelectionRect boundingBox={contactBoundingBox} />
 			<div className="flex h-fit w-[100%] flex-col justify-center">
 				<InputField type="text" label="Name" clef={<TrebleClef />} />
@@ -89,13 +105,13 @@ const Contact: React.FC = () => {
 					<MainButton onClick={handleSubmit} label="submit" />
 				</div>
 			</div>
-			<div className="pb-3 text-center text-sm font-thin">
+			<div className="pb-3 text-center text-sm font-thin md:text-base">
 				<p>Copyright © {currentYear} Michael Shingo Crawford</p>
 				<p>
 					Built with <strong>Next.js | Typescript | Tailwind CSS | Redux</strong>
 				</p>
 			</div>
-		</div>
+		</section>
 	);
 };
 

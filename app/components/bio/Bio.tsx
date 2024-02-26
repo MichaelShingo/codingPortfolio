@@ -1,8 +1,29 @@
 'use client';
 
+import { setScrollToBio } from '@/redux/features/locationSlice';
+import { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+
 const Bio: React.FC = () => {
+	const dispatch = useDispatch();
+
+	const bioSectionRef = useRef<HTMLElement | null>(null);
+
+	const scrollToSection = () => {
+		if (bioSectionRef.current) {
+			bioSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+		}
+	};
+
+	useEffect(() => {
+		dispatch(setScrollToBio(scrollToSection));
+	}, []);
+
 	return (
-		<div className="z-50 flex h-screen w-screen justify-center overflow-hidden">
+		<section
+			ref={bioSectionRef}
+			className="z-50 flex h-fit min-h-screen w-screen justify-center overflow-hidden"
+		>
 			<div className="flex h-fit w-[80%] translate-y-[100px] flex-col items-center justify-center space-y-3 border-[3px] border-solid border-black bg-paper-white p-5 text-justify text-sm font-light sm:w-[55%] sm:translate-y-[125px] sm:text-base md:w-[70%] md:translate-y-[150px] md:text-lg lg:text-2xl 2xl:w-[55%] 2xl:text-3xl 2xl:leading-10">
 				<div className="">
 					<p className="">
@@ -32,7 +53,7 @@ const Bio: React.FC = () => {
 					/>
 				</button>
 			</div>
-		</div>
+		</section>
 	);
 };
 

@@ -11,13 +11,15 @@ import { useDispatch } from 'react-redux';
 
 interface NavbarItemProps {
 	title: string;
+	scrollFunction: () => void;
 }
 
-const NavbarItem: React.FC<NavbarItemProps> = ({ title }) => {
+const NavbarItem: React.FC<NavbarItemProps> = ({ title, scrollFunction }) => {
 	const currentPage: string = useAppSelector((state) => state.locationReducer.value.page);
 	const windowWidth: number = useAppSelector(
 		(state) => state.windowReducer.value.windowWidth
 	);
+
 	const ref = useRef<HTMLButtonElement>(null);
 	const dispatch = useDispatch<AppDispatch>();
 
@@ -30,6 +32,7 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ title }) => {
 	}, [currentPage, windowWidth, title, dispatch]);
 	const handleOnClick = () => {
 		dispatch(setPage(title));
+		scrollFunction();
 	};
 	return (
 		<button
@@ -44,15 +47,21 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ title }) => {
 
 const Navbar: React.FC = () => {
 	const ref = useRef<HTMLDivElement>(null);
-
+	const scrollToContact = useAppSelector(
+		(state) => state.locationReducer.value.scrollToContact
+	);
+	const scrollToBio = useAppSelector((state) => state.locationReducer.value.scrollToBio);
+	const scrollToPortfolio = useAppSelector(
+		(state) => state.locationReducer.value.scrollToPortfolio
+	);
 	return (
 		<div
 			ref={ref}
 			className="fixed z-40 flex h-fit w-screen flex-row items-center justify-center space-x-9 bg-paper-white py-4 sm:space-x-11 md:space-x-20"
 		>
-			<NavbarItem title="Bio" />
-			<NavbarItem title="Portfolio" />
-			<NavbarItem title="Contact" />
+			<NavbarItem scrollFunction={scrollToBio} title="Bio" />
+			<NavbarItem scrollFunction={scrollToPortfolio} title="Portfolio" />
+			<NavbarItem scrollFunction={scrollToContact} title="Contact" />
 		</div>
 	);
 };
