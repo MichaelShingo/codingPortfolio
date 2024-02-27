@@ -5,32 +5,41 @@ type VoidFunction = () => void;
 
 interface GlobalState {
 	scrollToContact: VoidFunction;
+	scrollToBio: VoidFunction;
+	scrollToPortfolio: VoidFunction;
 }
 
 const nullFunction = (): void => {
-	console.log('null');
+	return;
 };
 
 const initialState: GlobalState = {
 	scrollToContact: nullFunction,
+	scrollToBio: nullFunction,
+	scrollToPortfolio: nullFunction,
 };
 
 export type AppAction = { type: string; payload?: string | number | VoidFunction };
 
 interface AppStateContextType {
 	state: GlobalState;
-	dispatch: Dispatch<AppAction>;
+	dispatchContext: Dispatch<AppAction>;
 }
 
 export const actions: Record<string, string> = {
 	SET_SCROLL_TO_CONTACT: 'SCROLL_TO_CONTACT',
+	SET_SCROLL_TO_BIO: 'SCROLL_TO_BIO',
+	SET_SCROLL_TO_PORTFOLIO: 'SCROLL_TO_PORTFOLIO',
 };
 
 const appReducer = (state: GlobalState, action: AppAction): GlobalState => {
 	switch (action.type) {
-		case actions.TOGGLE_TEMPO_DIALOG:
+		case actions.SET_SCROLL_TO_CONTACT:
 			return { ...state, scrollToContact: action.payload as VoidFunction };
-
+		case actions.SET_SCROLL_TO_BIO:
+			return { ...state, scrollToBio: action.payload as VoidFunction };
+		case actions.SET_SCROLL_TO_PORTFOLIO:
+			return { ...state, scrollToPortfolio: action.payload as VoidFunction };
 		default:
 			return state;
 	}
@@ -43,11 +52,10 @@ interface Props {
 }
 
 const AppStateProvider: React.FC<Props> = ({ children }) => {
-	// useReducer returns the current state and a dispatch function
-	const [state, dispatch] = useReducer(appReducer, initialState);
+	const [state, dispatchContext] = useReducer(appReducer, initialState);
 
 	return (
-		<AppStateContext.Provider value={{ state, dispatch }}>
+		<AppStateContext.Provider value={{ state, dispatchContext: dispatchContext }}>
 			{children}
 		</AppStateContext.Provider>
 	);

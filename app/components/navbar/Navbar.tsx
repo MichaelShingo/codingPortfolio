@@ -8,6 +8,7 @@ import {
 import { AppDispatch, useAppSelector } from '@/redux/store';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import { actions, useAppState } from '../../context/AppStateContext';
 
 interface NavbarItemProps {
 	title: string;
@@ -49,14 +50,11 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ title, scrollFunction }) => {
 
 const Navbar: React.FC = () => {
 	const ref = useRef<HTMLDivElement>(null);
+	const { state, dispatchContext } = useAppState();
 
-	const scrollToContact = useAppSelector(
-		(state) => state.locationReducer.value.scrollToContact
-	);
-	const scrollToBio = useAppSelector((state) => state.locationReducer.value.scrollToBio);
-	const scrollToPortfolio = useAppSelector(
-		(state) => state.locationReducer.value.scrollToPortfolio
-	);
+	const scrollToContact = state.scrollToContact;
+	const scrollToBio = state.scrollToBio;
+	const scrollToPortfolio = state.scrollToPortfolio;
 
 	return (
 		<div

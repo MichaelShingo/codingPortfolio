@@ -5,8 +5,10 @@ import ProjectToggleButton from './ProjectToggleButton';
 import { useAppSelector } from '@/redux/store';
 import { sampleJSON } from '@/app/utils/sampleData';
 import { useDispatch } from 'react-redux';
-import { setPage, setScrollToPortfolio } from '@/redux/features/locationSlice';
+import { setPage } from '@/redux/features/locationSlice';
 import useOnScreen from '../navbar/useOnScreen';
+
+import { actions, useAppState } from '../../context/AppStateContext';
 
 type PortfolioItem = {
 	title: string;
@@ -18,6 +20,24 @@ type PortfolioItem = {
 
 const Portfolio = () => {
 	const dispatch = useDispatch();
+	const { dispatchContext } = useAppState();
+	const portfolioSectionRef = useRef<HTMLElement | null>(null);
+
+	const scrollToSection = () => {
+		setTimeout(() => {
+			portfolioSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+		}, 200);
+	};
+
+	useEffect(() => {
+		if (portfolioSectionRef.current) {
+			dispatchContext({
+				type: actions.SET_SCROLL_TO_PORTFOLIO,
+				payload: scrollToSection,
+			});
+		}
+	}, [portfolioSectionRef]);
+
 	const [isShowcase, setIsShowcase] = useState<boolean>(true);
 	const [portfolioData, setPortfolioData] = useState<PortfolioItem[]>([]);
 	const [filteredPortfolioData, setFilteredPortfolioData] = useState<PortfolioItem[]>(
@@ -27,26 +47,15 @@ const Portfolio = () => {
 		(state) => state.windowReducer.value.windowWidth
 	);
 	const verticalScrollRef = useRef<HTMLDivElement | null>(null);
-	const portfolioSectionRef = useRef<HTMLElement | null>(null);
 	const { scrollYProgress } = useScroll({ target: verticalScrollRef });
 	const xScroll = useTransform(scrollYProgress, [0, 1], ['80%', '-210%']);
 
 	const isVisible = useOnScreen(portfolioSectionRef);
-	useEffect(() => {
-		if (isVisible) {
-			dispatch(setPage('Portfolio'));
-		}
-	}, [isVisible]);
-
-	const scrollToSection = () => {
-		if (portfolioSectionRef.current) {
-			portfolioSectionRef.current.scrollIntoView({ behavior: 'smooth' });
-		}
-	};
-
-	useEffect(() => {
-		dispatch(setScrollToPortfolio(scrollToSection));
-	}, []);
+	// useEffect(() => {
+	// 	if (isVisible) {
+	// 		dispatch(setPage('Portfolio'));
+	// 	}
+	// }, [isVisible]);
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -80,13 +89,13 @@ const Portfolio = () => {
 
 			const generateTags = (): ReactNode[] => {
 				const res: ReactNode[] = [];
-				for (const tag of currentItem.tags) {
+				for (let j = 0; j < currentItem.tags.length; j++) {
 					res.push(
 						<p
-							id={tag}
+							key={j}
 							className="m-1 w-fit rounded-sm bg-black px-1 py-[1px] text-paper-white"
 						>
-							{tag}
+							{currentItem.tags[j]}
 						</p>
 					);
 				}
@@ -131,10 +140,6 @@ const Portfolio = () => {
 		}
 		return res;
 	};
-
-	useEffect(() => {
-		console.log(windowWidth);
-	}, [windowWidth]);
 
 	return (
 		<section ref={portfolioSectionRef} className="">

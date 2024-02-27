@@ -1,32 +1,33 @@
 'use client';
-
 import { setPage, setScrollToBio } from '@/redux/features/locationSlice';
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import useOnScreen from '../navbar/useOnScreen';
 
+import { actions, useAppState } from '../../context/AppStateContext';
+
 const Bio: React.FC = () => {
 	const dispatch = useDispatch();
-
+	const { dispatchContext } = useAppState();
 	const bioSectionRef = useRef<HTMLElement | null>(null);
 
-	const isVisible = useOnScreen(bioSectionRef);
-	useEffect(() => {
-		if (isVisible) {
-			dispatch(setPage('Bio'));
-		}
-	}, [isVisible]);
-
 	const scrollToSection = () => {
-		if (bioSectionRef.current) {
-			console.log('scrolling bio into vio');
-			bioSectionRef.current.scrollIntoView({ behavior: 'smooth' });
-		}
+		setTimeout(() => {
+			bioSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+		}, 200);
 	};
-
 	useEffect(() => {
-		dispatch(setScrollToBio(scrollToSection));
-	}, []);
+		if (bioSectionRef.current) {
+			dispatchContext({ type: actions.SET_SCROLL_TO_BIO, payload: scrollToSection });
+		}
+	}, [bioSectionRef]);
+
+	const isVisible = useOnScreen(bioSectionRef);
+	// useEffect(() => {
+	// 	if (isVisible) {
+	// 		dispatch(setPage('Bio'));
+	// 	}
+	// }, [isVisible]);
 
 	return (
 		<section

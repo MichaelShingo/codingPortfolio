@@ -9,10 +9,6 @@ export type Coordinate = {
 	y: number;
 };
 
-const nullFunction = (): void => {
-	console.log('null');
-};
-
 export type BoundingBox = {
 	topLeft: Coordinate;
 	topRight: Coordinate;
@@ -24,9 +20,6 @@ type LocationState = {
 	page: string;
 	boundingBox: BoundingBox;
 	contactFieldBoundingBox: BoundingBox;
-	scrollToBio: () => void;
-	scrollToPortfolio: () => void;
-	scrollToContact: () => void;
 };
 
 const boundingBoxInitialState: BoundingBox = {
@@ -41,9 +34,6 @@ const initialState = {
 		page: 'Bio',
 		boundingBox: boundingBoxInitialState,
 		contactFieldBoundingBox: boundingBoxInitialState,
-		scrollToBio: nullFunction,
-		scrollToPortfolio: nullFunction,
-		scrollToContact: nullFunction,
 	} as LocationState,
 } as InitialState;
 
@@ -69,29 +59,8 @@ export const location = createSlice({
 		setContactBoundingBox: (state, action: PayloadAction<BoundingBox>) => {
 			state.value.contactFieldBoundingBox = action.payload;
 		},
-		setScrollToContact: (state, action: PayloadAction<() => void>) => {
-			console.log('setscroll to contact');
-			state.value.scrollToContact = action.payload;
-		},
-		setScrollToPortfolio: (state, action: PayloadAction<() => void>) => {
-			console.log('setscroll to portfolio');
-
-			state.value.scrollToPortfolio = action.payload;
-		},
-		setScrollToBio: (state, action: PayloadAction<() => void>) => {
-			console.log('set scroll to contact');
-
-			state.value.scrollToBio = action.payload;
-		},
 	},
 });
 
-export const {
-	setPage,
-	setBoundingBox,
-	setContactBoundingBox,
-	setScrollToContact,
-	setScrollToPortfolio,
-	setScrollToBio,
-} = location.actions;
+export const { setPage, setBoundingBox, setContactBoundingBox } = location.actions;
 export default location.reducer;

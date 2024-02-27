@@ -11,10 +11,10 @@ import {
 	boundingClientRectToBoundingBox,
 	setContactBoundingBox,
 	setPage,
-	setScrollToContact,
 } from '@/redux/features/locationSlice';
 import SelectionRect from '../selectionRect/SelectionRect';
 import useOnScreen from '../navbar/useOnScreen';
+import { actions, useAppState } from '../../context/AppStateContext';
 
 interface InputFieldProps {
 	type: string;
@@ -57,17 +57,31 @@ const InputField: React.FC<InputFieldProps> = ({ type, label, clef }) => {
 
 const Contact: React.FC = () => {
 	const dispatch = useDispatch();
+	const { dispatchContext } = useAppState();
+	const contactSectionRef = useRef<HTMLElement | null>(null);
+
+	const scrollToSection = () => {
+		setTimeout(() => {
+			contactSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+		}, 200);
+	};
+
+	useEffect(() => {
+		if (contactSectionRef.current) {
+			dispatchContext({ type: actions.SET_SCROLL_TO_CONTACT, payload: scrollToSection });
+		}
+	}, [contactSectionRef]);
+
 	const contactBoundingBox: BoundingBox = useAppSelector(
 		(state) => state.locationReducer.value.contactFieldBoundingBox
 	);
-	const contactSectionRef = useRef<HTMLElement | null>(null);
 
 	const isVisible = useOnScreen(contactSectionRef);
-	useEffect(() => {
-		if (isVisible) {
-			dispatch(setPage('Contact'));
-		}
-	}, [isVisible]);
+	// useEffect(() => {
+	// 	if (isVisible) {
+	// 		dispatch(setPage('Contact'));
+	// 	}
+	// }, [isVisible]);
 
 	const handleSubmit = () => {
 		console.log('submit');
@@ -75,16 +89,6 @@ const Contact: React.FC = () => {
 
 	const currentDate = new Date();
 	const currentYear = currentDate.getFullYear();
-
-	const scrollToSection = () => {
-		if (contactSectionRef.current) {
-			contactSectionRef.current.scrollIntoView({ behavior: 'smooth' });
-		}
-	};
-
-	useEffect(() => {
-		dispatch(setScrollToContact(scrollToSection));
-	}, []);
 
 	return (
 		<section
