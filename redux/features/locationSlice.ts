@@ -70,12 +70,17 @@ export const location = createSlice({
 			state.value.contactFieldBoundingBox = action.payload;
 		},
 		setScrollToContact: (state, action: PayloadAction<() => void>) => {
+			console.log('setscroll to contact');
 			state.value.scrollToContact = action.payload;
 		},
 		setScrollToPortfolio: (state, action: PayloadAction<() => void>) => {
+			console.log('setscroll to portfolio');
+
 			state.value.scrollToPortfolio = action.payload;
 		},
 		setScrollToBio: (state, action: PayloadAction<() => void>) => {
+			console.log('set scroll to contact');
+
 			state.value.scrollToBio = action.payload;
 		},
 	},

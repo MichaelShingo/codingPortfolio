@@ -30,10 +30,12 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ title, scrollFunction }) => {
 			dispatch(setBoundingBox(newBoundingBox));
 		}
 	}, [currentPage, windowWidth, title, dispatch]);
+
 	const handleOnClick = () => {
 		dispatch(setPage(title));
 		scrollFunction();
 	};
+
 	return (
 		<button
 			ref={ref}
@@ -47,6 +49,7 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ title, scrollFunction }) => {
 
 const Navbar: React.FC = () => {
 	const ref = useRef<HTMLDivElement>(null);
+
 	const scrollToContact = useAppSelector(
 		(state) => state.locationReducer.value.scrollToContact
 	);
@@ -54,6 +57,7 @@ const Navbar: React.FC = () => {
 	const scrollToPortfolio = useAppSelector(
 		(state) => state.locationReducer.value.scrollToPortfolio
 	);
+
 	return (
 		<div
 			ref={ref}

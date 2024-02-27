@@ -10,9 +10,11 @@ import {
 	BoundingBox,
 	boundingClientRectToBoundingBox,
 	setContactBoundingBox,
+	setPage,
 	setScrollToContact,
 } from '@/redux/features/locationSlice';
 import SelectionRect from '../selectionRect/SelectionRect';
+import useOnScreen from '../navbar/useOnScreen';
 
 interface InputFieldProps {
 	type: string;
@@ -59,6 +61,13 @@ const Contact: React.FC = () => {
 		(state) => state.locationReducer.value.contactFieldBoundingBox
 	);
 	const contactSectionRef = useRef<HTMLElement | null>(null);
+
+	const isVisible = useOnScreen(contactSectionRef);
+	useEffect(() => {
+		if (isVisible) {
+			dispatch(setPage('Contact'));
+		}
+	}, [isVisible]);
 
 	const handleSubmit = () => {
 		console.log('submit');

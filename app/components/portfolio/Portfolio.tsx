@@ -5,7 +5,8 @@ import ProjectToggleButton from './ProjectToggleButton';
 import { useAppSelector } from '@/redux/store';
 import { sampleJSON } from '@/app/utils/sampleData';
 import { useDispatch } from 'react-redux';
-import { setScrollToPortfolio } from '@/redux/features/locationSlice';
+import { setPage, setScrollToPortfolio } from '@/redux/features/locationSlice';
+import useOnScreen from '../navbar/useOnScreen';
 
 type PortfolioItem = {
 	title: string;
@@ -29,6 +30,13 @@ const Portfolio = () => {
 	const portfolioSectionRef = useRef<HTMLElement | null>(null);
 	const { scrollYProgress } = useScroll({ target: verticalScrollRef });
 	const xScroll = useTransform(scrollYProgress, [0, 1], ['80%', '-210%']);
+
+	const isVisible = useOnScreen(portfolioSectionRef);
+	useEffect(() => {
+		if (isVisible) {
+			dispatch(setPage('Portfolio'));
+		}
+	}, [isVisible]);
 
 	const scrollToSection = () => {
 		if (portfolioSectionRef.current) {
@@ -74,7 +82,10 @@ const Portfolio = () => {
 				const res: ReactNode[] = [];
 				for (const tag of currentItem.tags) {
 					res.push(
-						<p className="m-1 w-fit rounded-sm bg-black px-1 py-[1px] text-paper-white">
+						<p
+							id={tag}
+							className="m-1 w-fit rounded-sm bg-black px-1 py-[1px] text-paper-white"
+						>
 							{tag}
 						</p>
 					);
