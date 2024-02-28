@@ -8,6 +8,9 @@ module.exports = {
 				'black-trans': 'rgba(0,0,0,0.15)',
 				'paper-grey': '#e5e1d8',
 			},
+			backgroundImage: {
+				imageIcon: 'url("/imageIcon.svg")',
+			},
 			animation: {
 				'scroll-music': 'scroll-music 17s infinite linear',
 			},

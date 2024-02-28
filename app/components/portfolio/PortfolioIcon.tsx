@@ -1,5 +1,7 @@
 import { PortfolioItem } from '@/app/utils/sampleData';
+import { setSelectedPortfolioId } from '@/redux/features/locationSlice';
 import React, { ReactNode } from 'react';
+import { useDispatch } from 'react-redux';
 
 interface PortfolioIconProps {
 	key: number;
@@ -14,6 +16,7 @@ const PortfolioIcon: React.FC<PortfolioIconProps> = ({
 	verticalPosition,
 	currentItem,
 }) => {
+	const dispatch = useDispatch();
 	const generateTags = (): ReactNode[] => {
 		const res: ReactNode[] = [];
 		for (let j = 0; j < currentItem.tags.length; j++) {
@@ -30,7 +33,7 @@ const PortfolioIcon: React.FC<PortfolioIconProps> = ({
 	};
 
 	const handleClick = (): void => {
-		console.log('set key', key);
+		dispatch(setSelectedPortfolioId(key));
 	};
 
 	return (

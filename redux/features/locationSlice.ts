@@ -40,6 +40,7 @@ type LocationState = {
 	portfolioDimensions: BoundingBox;
 	contactDimensions: BoundingBox;
 	scrollY: number;
+	selectedPortfolioId: number;
 };
 
 const initialState = {
@@ -51,6 +52,7 @@ const initialState = {
 		portfolioDimensions: boundingBoxInitialState,
 		contactDimensions: boundingBoxInitialState,
 		scrollY: 0,
+		selectedPortfolioId: 0,
 	} as LocationState,
 } as InitialState;
 
@@ -69,7 +71,6 @@ export const location = createSlice({
 		},
 		setBioDimensions: (state, action: PayloadAction<BoundingBox>) => {
 			action.payload.bottomLeft.y += state.value.scrollY;
-			console.log(state.value.scrollY, action.payload.bottomLeft.y);
 			state.value.bioDimensions = action.payload;
 		},
 		setPortfolioDimensions: (state, action: PayloadAction<BoundingBox>) => {
@@ -83,6 +84,9 @@ export const location = createSlice({
 		setScrollY: (state, action: PayloadAction<number>) => {
 			state.value.scrollY = action.payload;
 		},
+		setSelectedPortfolioId: (state, action: PayloadAction<number>) => {
+			state.value.selectedPortfolioId = action.payload;
+		},
 	},
 });
 
@@ -94,5 +98,6 @@ export const {
 	setPortfolioDimensions,
 	setContactDimensions,
 	setScrollY,
+	setSelectedPortfolioId,
 } = location.actions;
 export default location.reducer;
