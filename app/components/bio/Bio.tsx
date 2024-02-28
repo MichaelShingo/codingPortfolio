@@ -1,16 +1,26 @@
 'use client';
-import { setPage, setScrollToBio } from '@/redux/features/locationSlice';
+import {
+	boundingClientRectToBoundingBox,
+	setBioDimensions,
+	setPage,
+} from '@/redux/features/locationSlice';
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import useOnScreen from '../navbar/useOnScreen';
 
 import { actions, useAppState } from '../../context/AppStateContext';
+import { useAppSelector } from '@/redux/store';
 
 const Bio: React.FC = () => {
 	const dispatch = useDispatch();
 	const { dispatchContext } = useAppState();
 	const bioSectionRef = useRef<HTMLElement | null>(null);
 	const bioTextboxRef = useRef<HTMLDivElement | null>(null);
+	const windowHeight: number = useAppSelector(
+		(state) => state.windowReducer.value.windowHeight
+	);
+	const windowWidth: number = useAppSelector(
+		(state) => state.windowReducer.value.windowWidth
+	);
 
 	const scrollToSection = () => {
 		setTimeout(() => {
@@ -23,17 +33,15 @@ const Bio: React.FC = () => {
 		}
 	}, [bioSectionRef]);
 
-	const isVisible = useOnScreen(bioTextboxRef);
 	useEffect(() => {
-		console.log('bio is visible', isVisible);
-		if (isVisible) {
-			dispatch(setPage('Bio'));
+		if (bioSectionRef.current) {
+			const sectionBoundingBox: DOMRect = bioSectionRef.current.getBoundingClientRect();
+			dispatch(setBioDimensions(boundingClientRectToBoundingBox(sectionBoundingBox)));
 		}
-	}, [isVisible]);
+	}, [windowHeight, windowWidth]);
 
 	useEffect(() => {
 		setTimeout(() => {
-			console.log('setting page to bio');
 			dispatch(setPage('Bio'));
 		}, 200);
 	}, []);

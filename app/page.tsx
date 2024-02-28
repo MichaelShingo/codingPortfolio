@@ -1,5 +1,6 @@
 import Bio from './components/bio/Bio';
 import Contact from './components/contact/Contact';
+import ScrollEvents from './components/eventHandlers/scrollEvents';
 import WindowEvents from './components/eventHandlers/windowEvents';
 import Intro from './components/intro/Intro';
 import Navbar from './components/navbar/Navbar';
@@ -18,6 +19,7 @@ export default function Home() {
 				<Portfolio />
 				<Contact />
 				<WindowEvents />
+				<ScrollEvents />
 			</AppStateProvider>
 		</div>
 	);

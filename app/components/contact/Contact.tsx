@@ -10,10 +10,9 @@ import {
 	BoundingBox,
 	boundingClientRectToBoundingBox,
 	setContactBoundingBox,
-	setPage,
+	setContactDimensions,
 } from '@/redux/features/locationSlice';
 import SelectionRect from '../selectionRect/SelectionRect';
-import useOnScreen from '../navbar/useOnScreen';
 import { actions, useAppState } from '../../context/AppStateContext';
 
 interface InputFieldProps {
@@ -59,6 +58,12 @@ const Contact: React.FC = () => {
 	const dispatch = useDispatch();
 	const { dispatchContext } = useAppState();
 	const contactSectionRef = useRef<HTMLElement | null>(null);
+	const windowHeight: number = useAppSelector(
+		(state) => state.windowReducer.value.windowHeight
+	);
+	const windowWidth: number = useAppSelector(
+		(state) => state.windowReducer.value.windowWidth
+	);
 
 	const scrollToSection = () => {
 		setTimeout(() => {
@@ -72,19 +77,17 @@ const Contact: React.FC = () => {
 		}
 	}, [contactSectionRef]);
 
+	useEffect(() => {
+		if (contactSectionRef.current) {
+			const sectionBoundingBox: DOMRect =
+				contactSectionRef.current.getBoundingClientRect();
+			dispatch(setContactDimensions(boundingClientRectToBoundingBox(sectionBoundingBox)));
+		}
+	}, [windowHeight, windowWidth]);
+
 	const contactBoundingBox: BoundingBox = useAppSelector(
 		(state) => state.locationReducer.value.contactFieldBoundingBox
 	);
-
-	const isVisible = useOnScreen(contactSectionRef);
-	useEffect(() => {
-		console.log('contact is visible', isVisible);
-
-		if (isVisible) {
-			console.log('set page to contact');
-			dispatch(setPage('Contact'));
-		}
-	}, [isVisible]);
 
 	const handleSubmit = () => {
 		console.log('submit');

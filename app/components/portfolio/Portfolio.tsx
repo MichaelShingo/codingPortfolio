@@ -5,8 +5,10 @@ import ProjectToggleButton from './ProjectToggleButton';
 import { useAppSelector } from '@/redux/store';
 import { sampleJSON } from '@/app/utils/sampleData';
 import { useDispatch } from 'react-redux';
-import { setPage } from '@/redux/features/locationSlice';
-import useOnScreen from '../navbar/useOnScreen';
+import {
+	boundingClientRectToBoundingBox,
+	setPortfolioDimensions,
+} from '@/redux/features/locationSlice';
 
 import { actions, useAppState } from '../../context/AppStateContext';
 
@@ -46,19 +48,12 @@ const Portfolio = () => {
 	const windowWidth: number = useAppSelector(
 		(state) => state.windowReducer.value.windowWidth
 	);
+	const windowHeight: number = useAppSelector(
+		(state) => state.windowReducer.value.windowHeight
+	);
 	const verticalScrollRef = useRef<HTMLDivElement | null>(null);
 	const { scrollYProgress } = useScroll({ target: verticalScrollRef });
 	const xScroll = useTransform(scrollYProgress, [0, 1], ['80%', '-210%']);
-
-	const isVisible = useOnScreen(portfolioSectionRef);
-	useEffect(() => {
-		console.log('portfolio is visible', isVisible);
-
-		if (isVisible) {
-			console.log('setting page to portfolio');
-			dispatch(setPage('Portfolio'));
-		}
-	}, [isVisible]);
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -77,6 +72,16 @@ const Portfolio = () => {
 	const handleOnClick = () => {
 		setIsShowcase((prev) => !prev);
 	};
+
+	useEffect(() => {
+		if (portfolioSectionRef.current) {
+			const sectionBoundingBox: DOMRect =
+				portfolioSectionRef.current.getBoundingClientRect();
+			dispatch(
+				setPortfolioDimensions(boundingClientRectToBoundingBox(sectionBoundingBox))
+			);
+		}
+	}, [windowHeight, windowWidth]);
 
 	const generatePortfolioItems = (containerWidth: number): ReactNode[] => {
 		const res: ReactNode[] = [];
@@ -145,9 +150,9 @@ const Portfolio = () => {
 	};
 
 	return (
-		<section ref={portfolioSectionRef} className="z-0 h-fit min-h-screen bg-red-200">
+		<section ref={portfolioSectionRef} className="z-0 h-[400vh] min-h-screen">
 			{windowWidth > 640 ? (
-				<div ref={verticalScrollRef} className="relative h-[400vh] bg-blue-500">
+				<div ref={verticalScrollRef} className="relative h-[400vh]">
 					<div className="sticky top-[12vh] flex h-[100px] w-screen scale-[65%] flex-row items-center justify-center space-x-14 sm:scale-100 sm:space-x-32">
 						<ProjectToggleButton
 							title="showcase"
