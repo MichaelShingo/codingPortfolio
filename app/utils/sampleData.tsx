@@ -1,4 +1,12 @@
-export const sampleJSON = [
+export type PortfolioItem = {
+	title: string;
+	preview: string;
+	tags: string[];
+	logo: string;
+	showcase: boolean;
+};
+
+export const sampleJSON: PortfolioItem[] = [
 	{
 		title: 'Miitronome',
 		preview: 'Miitronome is a metronome app build with Typescript.',

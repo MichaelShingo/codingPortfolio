@@ -11,6 +11,7 @@ import {
 } from '@/redux/features/locationSlice';
 
 import { actions, useAppState } from '../../context/AppStateContext';
+import PortfolioIcon from './PortfolioIcon';
 
 type PortfolioItem = {
 	title: string;
@@ -69,7 +70,7 @@ const Portfolio = () => {
 		}
 	}, [isShowcase, portfolioData]);
 
-	const handleOnClick = () => {
+	const handleClick = () => {
 		setIsShowcase((prev) => !prev);
 	};
 
@@ -97,39 +98,13 @@ const Portfolio = () => {
 			const isAbove: number = i % 2 === 0 ? -1 : 1;
 			const verticalPosition = isAbove * 250 + positionVariance;
 
-			const generateTags = (): ReactNode[] => {
-				const res: ReactNode[] = [];
-				for (let j = 0; j < currentItem.tags.length; j++) {
-					res.push(
-						<p
-							key={j}
-							className="m-1 w-fit rounded-sm bg-black px-1 py-[1px] text-paper-white"
-						>
-							{currentItem.tags[j]}
-						</p>
-					);
-				}
-				return res;
-			};
-
 			res.push(
-				<button
+				<PortfolioIcon
 					key={i}
-					className={`group absolute z-10 flex aspect-square w-[65px] flex-row items-center justify-center rounded-full border-[2px] border-black bg-paper-white transition duration-700`}
-					style={{
-						left: `${horizontalPosition}px`,
-						transform: `translateY(${verticalPosition}%) scale(100%)`,
-					}}
-				>
-					<div className="absolute -z-10 h-[2px] w-[65%] translate-x-[0%] translate-y-[100%] bg-black opacity-0 transition duration-700 group-hover:translate-x-[100%] group-hover:opacity-100"></div>
-					<img className="" src={filteredPortfolioData[i].logo}></img>
-					<div className="pointer-events-none absolute max-h-[150px] min-w-[200px] translate-x-[50%] border-[2px] border-black bg-paper-white p-2 opacity-0 transition duration-700 group-hover:translate-x-[80%] group-hover:opacity-100">
-						<p className="font-thin">
-							{currentItem.title} - {currentItem.preview}
-						</p>
-						<div className="flex flex-row justify-center">{generateTags()}</div>
-					</div>
-				</button>
+					horizontalPosition={horizontalPosition}
+					verticalPosition={verticalPosition}
+					currentItem={currentItem}
+				/>
 			);
 		}
 		return res;
@@ -159,12 +134,12 @@ const Portfolio = () => {
 						<ProjectToggleButton
 							title="showcase"
 							active={isShowcase}
-							onClick={handleOnClick}
+							onClick={handleClick}
 						/>
 						<ProjectToggleButton
 							title="all projects"
 							active={!isShowcase}
-							onClick={handleOnClick}
+							onClick={handleClick}
 						/>
 					</div>
 					<motion.div
@@ -186,12 +161,12 @@ const Portfolio = () => {
 						<ProjectToggleButton
 							title="showcase"
 							active={isShowcase}
-							onClick={handleOnClick}
+							onClick={handleClick}
 						/>
 						<ProjectToggleButton
 							title="all projects"
 							active={!isShowcase}
-							onClick={handleOnClick}
+							onClick={handleClick}
 						/>
 					</div>
 					<div className="grid h-fit w-screen grid-cols-2 gap-y-20">
