@@ -81,7 +81,11 @@ const Contact: React.FC = () => {
 		if (contactSectionRef.current) {
 			const sectionBoundingBox: DOMRect =
 				contactSectionRef.current.getBoundingClientRect();
-			dispatch(setContactDimensions(boundingClientRectToBoundingBox(sectionBoundingBox)));
+			setTimeout(() => {
+				dispatch(
+					setContactDimensions(boundingClientRectToBoundingBox(sectionBoundingBox))
+				);
+			});
 		}
 	}, [windowHeight, windowWidth]);
 

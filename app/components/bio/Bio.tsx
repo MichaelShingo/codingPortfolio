@@ -35,6 +35,7 @@ const Bio: React.FC = () => {
 
 	useEffect(() => {
 		if (bioSectionRef.current) {
+			console.log('updating bio bounding box');
 			const sectionBoundingBox: DOMRect = bioSectionRef.current.getBoundingClientRect();
 			dispatch(setBioDimensions(boundingClientRectToBoundingBox(sectionBoundingBox)));
 		}

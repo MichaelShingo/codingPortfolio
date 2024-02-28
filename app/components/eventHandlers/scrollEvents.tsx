@@ -1,5 +1,5 @@
 'use client';
-import { BoundingBox, setPage } from '@/redux/features/locationSlice';
+import { BoundingBox, setPage, setScrollY } from '@/redux/features/locationSlice';
 import { useAppSelector } from '@/redux/store';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -17,15 +17,23 @@ const ScrollEvents = () => {
 		(state) => state.locationReducer.value.contactDimensions
 	);
 
+	const windowHeight: number = useAppSelector(
+		(state) => state.windowReducer.value.windowHeight
+	);
+	const windowWidth: number = useAppSelector(
+		(state) => state.windowReducer.value.windowWidth
+	);
+
 	useEffect(() => {
 		const detectSection = debounce((): void => {
 			const scrollY: number = window.scrollY;
-			// console.log(
-			// 	scrollY,
-			// 	bioDimensions.bottomLeft.y,
-			// 	portfolioDimensions.bottomLeft.y,
-			// 	contactDimensions.bottomLeft.y
-			// );
+			dispatch(setScrollY(scrollY));
+			console.log(
+				scrollY,
+				bioDimensions.bottomLeft.y,
+				portfolioDimensions.bottomLeft.y,
+				contactDimensions.bottomLeft.y
+			);
 			if (scrollY < bioDimensions.bottomLeft.y) {
 				dispatch(setPage('Bio'));
 			} else if (scrollY < portfolioDimensions.bottomLeft.y - 100) {
@@ -36,10 +44,12 @@ const ScrollEvents = () => {
 		}, 200);
 		window.addEventListener('scroll', detectSection);
 
+		detectSection();
+
 		return () => {
 			window.removeEventListener('scroll', detectSection);
 		};
-	}, [bioDimensions, portfolioDimensions, contactDimensions]);
+	}, [bioDimensions, portfolioDimensions, contactDimensions, windowHeight, windowWidth]);
 
 	return <></>;
 };

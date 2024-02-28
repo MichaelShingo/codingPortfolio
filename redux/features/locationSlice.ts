@@ -36,12 +36,10 @@ type LocationState = {
 	page: string;
 	boundingBox: BoundingBox;
 	contactFieldBoundingBox: BoundingBox;
-	isVisibleBio: boolean;
-	isVisiblePortfolio: boolean;
-	isVisibleContact: boolean;
 	bioDimensions: BoundingBox;
 	portfolioDimensions: BoundingBox;
 	contactDimensions: BoundingBox;
+	scrollY: number;
 };
 
 const initialState = {
@@ -49,12 +47,10 @@ const initialState = {
 		page: 'Bio',
 		boundingBox: boundingBoxInitialState,
 		contactFieldBoundingBox: boundingBoxInitialState,
-		isVisibleBio: true,
-		isVisiblePortfolio: false,
-		isVisibleContact: false,
 		bioDimensions: boundingBoxInitialState,
 		portfolioDimensions: boundingBoxInitialState,
 		contactDimensions: boundingBoxInitialState,
+		scrollY: 0,
 	} as LocationState,
 } as InitialState;
 
@@ -72,31 +68,20 @@ export const location = createSlice({
 			state.value.contactFieldBoundingBox = action.payload;
 		},
 		setBioDimensions: (state, action: PayloadAction<BoundingBox>) => {
+			action.payload.bottomLeft.y += state.value.scrollY;
+			console.log(state.value.scrollY, action.payload.bottomLeft.y);
 			state.value.bioDimensions = action.payload;
 		},
 		setPortfolioDimensions: (state, action: PayloadAction<BoundingBox>) => {
+			action.payload.bottomLeft.y += state.value.scrollY;
 			state.value.portfolioDimensions = action.payload;
 		},
 		setContactDimensions: (state, action: PayloadAction<BoundingBox>) => {
+			action.payload.bottomLeft.y += state.value.scrollY;
 			state.value.contactDimensions = action.payload;
 		},
-		setIsVisibleBio: (state, action: PayloadAction<boolean>) => {
-			state.value.isVisibleBio = action.payload;
-			state.value.isVisiblePortfolio = false;
-			state.value.isVisibleContact = false;
-			state.value.page = 'Bio';
-		},
-		setIsVisiblePortfolio: (state, action: PayloadAction<boolean>) => {
-			state.value.isVisiblePortfolio = action.payload;
-			state.value.isVisibleContact = false;
-			state.value.isVisibleBio = false;
-			state.value.page = 'Portfolio';
-		},
-		setIsVisibleContact: (state, action: PayloadAction<boolean>) => {
-			state.value.isVisibleContact = action.payload;
-			state.value.isVisibleBio = false;
-			state.value.isVisiblePortfolio = false;
-			state.value.page = 'Contact';
+		setScrollY: (state, action: PayloadAction<number>) => {
+			state.value.scrollY = action.payload;
 		},
 	},
 });
@@ -105,11 +90,9 @@ export const {
 	setPage,
 	setBoundingBox,
 	setContactBoundingBox,
-	setIsVisibleBio,
-	setIsVisibleContact,
-	setIsVisiblePortfolio,
 	setBioDimensions,
 	setPortfolioDimensions,
 	setContactDimensions,
+	setScrollY,
 } = location.actions;
 export default location.reducer;

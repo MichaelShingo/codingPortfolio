@@ -77,9 +77,11 @@ const Portfolio = () => {
 		if (portfolioSectionRef.current) {
 			const sectionBoundingBox: DOMRect =
 				portfolioSectionRef.current.getBoundingClientRect();
-			dispatch(
-				setPortfolioDimensions(boundingClientRectToBoundingBox(sectionBoundingBox))
-			);
+			setTimeout(() => {
+				dispatch(
+					setPortfolioDimensions(boundingClientRectToBoundingBox(sectionBoundingBox))
+				);
+			});
 		}
 	}, [windowHeight, windowWidth]);
 
