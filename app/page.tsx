@@ -12,7 +12,7 @@ export default function Home() {
 		<div className="">
 			<AppStateProvider>
 				<NavbarSelectionContainer />
-				<Intro />
+				{/* <Intro /> */}
 				<Navbar />
 				<Bio />
 				<Portfolio />

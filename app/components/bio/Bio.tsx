@@ -10,6 +10,7 @@ const Bio: React.FC = () => {
 	const dispatch = useDispatch();
 	const { dispatchContext } = useAppState();
 	const bioSectionRef = useRef<HTMLElement | null>(null);
+	const bioTextboxRef = useRef<HTMLDivElement | null>(null);
 
 	const scrollToSection = () => {
 		setTimeout(() => {
@@ -22,21 +23,29 @@ const Bio: React.FC = () => {
 		}
 	}, [bioSectionRef]);
 
-	const isVisible = useOnScreen(bioSectionRef);
-	// useEffect(() => {
-	// 	if (isVisible) {
-	// 		dispatch(setPage('Bio'));
-	// 	}
-	// }, [isVisible]);
+	const isVisible = useOnScreen(bioTextboxRef);
+	useEffect(() => {
+		console.log('bio is visible', isVisible);
+		if (isVisible) {
+			dispatch(setPage('Bio'));
+		}
+	}, [isVisible]);
+
+	useEffect(() => {
+		setTimeout(() => {
+			console.log('setting page to bio');
+			dispatch(setPage('Bio'));
+		}, 200);
+	}, []);
 
 	return (
 		<section
 			ref={bioSectionRef}
-			className="z-50 flex h-fit min-h-screen w-screen justify-center overflow-hidden"
+			className="-z-10 flex h-fit min-h-screen w-screen justify-center overflow-hidden"
 		>
 			<div className="flex h-fit w-[80%] translate-y-[100px] flex-col items-center justify-center space-y-3 border-[3px] border-solid border-black bg-paper-white p-5 text-justify text-sm font-light sm:w-[55%] sm:translate-y-[125px] sm:text-base md:w-[70%] md:translate-y-[150px] md:text-lg lg:text-2xl 2xl:w-[55%] 2xl:text-3xl 2xl:leading-10">
 				<div className="">
-					<p className="">
+					<p ref={bioTextboxRef} className="">
 						I am a software developer and musician with a passion for exploring the
 						intersections between tech and the arts, helping creative professionals
 						advance their skills and careers. As a web developer proficient in React,

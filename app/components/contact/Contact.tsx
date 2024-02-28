@@ -77,18 +77,18 @@ const Contact: React.FC = () => {
 	);
 
 	const isVisible = useOnScreen(contactSectionRef);
-	// useEffect(() => {
-	// 	if (isVisible) {
-	// 		dispatch(setPage('Contact'));
-	// 	}
-	// }, [isVisible]);
+	useEffect(() => {
+		console.log('contact is visible', isVisible);
+
+		if (isVisible) {
+			console.log('set page to contact');
+			dispatch(setPage('Contact'));
+		}
+	}, [isVisible]);
 
 	const handleSubmit = () => {
 		console.log('submit');
 	};
-
-	const currentDate = new Date();
-	const currentYear = currentDate.getFullYear();
 
 	return (
 		<section
@@ -119,7 +119,7 @@ const Contact: React.FC = () => {
 				</div>
 			</div>
 			<div className="pb-3 text-center text-sm font-thin md:text-base">
-				<p>Copyright © {currentYear} Michael Shingo Crawford</p>
+				<p>Copyright © {new Date().getFullYear()} Michael Shingo Crawford</p>
 				<p>
 					Built with <strong>Next.js | Typescript | Tailwind CSS | Redux</strong>
 				</p>

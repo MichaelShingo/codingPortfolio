@@ -51,11 +51,14 @@ const Portfolio = () => {
 	const xScroll = useTransform(scrollYProgress, [0, 1], ['80%', '-210%']);
 
 	const isVisible = useOnScreen(portfolioSectionRef);
-	// useEffect(() => {
-	// 	if (isVisible) {
-	// 		dispatch(setPage('Portfolio'));
-	// 	}
-	// }, [isVisible]);
+	useEffect(() => {
+		console.log('portfolio is visible', isVisible);
+
+		if (isVisible) {
+			console.log('setting page to portfolio');
+			dispatch(setPage('Portfolio'));
+		}
+	}, [isVisible]);
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -142,9 +145,9 @@ const Portfolio = () => {
 	};
 
 	return (
-		<section ref={portfolioSectionRef} className="">
+		<section ref={portfolioSectionRef} className="z-0 h-fit min-h-screen bg-red-200">
 			{windowWidth > 640 ? (
-				<div ref={verticalScrollRef} className="relative h-[400vh]">
+				<div ref={verticalScrollRef} className="relative h-[400vh] bg-blue-500">
 					<div className="sticky top-[12vh] flex h-[100px] w-screen scale-[65%] flex-row items-center justify-center space-x-14 sm:scale-100 sm:space-x-32">
 						<ProjectToggleButton
 							title="showcase"
@@ -171,7 +174,7 @@ const Portfolio = () => {
 					</motion.div>
 				</div>
 			) : (
-				<section className="flex min-h-screen flex-col items-center">
+				<section className="flex min-h-[150vh] flex-col items-center">
 					<div className="mb-8 flex h-fit w-screen scale-[65%] flex-col items-center justify-center space-y-10 sm:scale-100">
 						<ProjectToggleButton
 							title="showcase"
