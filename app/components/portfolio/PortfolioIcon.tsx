@@ -1,21 +1,25 @@
 import { PortfolioItem } from '@/app/utils/sampleData';
-import { setSelectedPortfolioId } from '@/redux/features/locationSlice';
+import {
+	setIsPortfolioDetailOpen,
+	setSelectedPortfolioId,
+} from '@/redux/features/locationSlice';
 import React, { ReactNode } from 'react';
 import { useDispatch } from 'react-redux';
 
 interface PortfolioIconProps {
-	key: number;
+	itemId: number;
 	horizontalPosition: number;
 	verticalPosition: number;
 	currentItem: PortfolioItem;
 }
 
 const PortfolioIcon: React.FC<PortfolioIconProps> = ({
-	key,
+	itemId,
 	horizontalPosition,
 	verticalPosition,
 	currentItem,
 }) => {
+	console.log('portfolio item key is', itemId);
 	const dispatch = useDispatch();
 	const generateTags = (): ReactNode[] => {
 		const res: ReactNode[] = [];
@@ -33,12 +37,13 @@ const PortfolioIcon: React.FC<PortfolioIconProps> = ({
 	};
 
 	const handleClick = (): void => {
-		dispatch(setSelectedPortfolioId(key));
+		dispatch(setSelectedPortfolioId(itemId));
+		dispatch(setIsPortfolioDetailOpen(true));
 	};
 
 	return (
 		<button
-			key={key}
+			key={itemId}
 			onClick={handleClick}
 			className={`group absolute z-10 flex aspect-square w-[65px] flex-row items-center justify-center rounded-full border-[2px] border-black bg-paper-white transition duration-700`}
 			style={{

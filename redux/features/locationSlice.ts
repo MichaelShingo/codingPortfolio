@@ -41,6 +41,8 @@ type LocationState = {
 	contactDimensions: BoundingBox;
 	scrollY: number;
 	selectedPortfolioId: number;
+	isPortfolioDetailOpen: boolean;
+	isGalleryOpen: boolean;
 };
 
 const initialState = {
@@ -53,6 +55,8 @@ const initialState = {
 		contactDimensions: boundingBoxInitialState,
 		scrollY: 0,
 		selectedPortfolioId: 0,
+		isPortfolioDetailOpen: false,
+		isGalleryOpen: false,
 	} as LocationState,
 } as InitialState;
 
@@ -87,6 +91,12 @@ export const location = createSlice({
 		setSelectedPortfolioId: (state, action: PayloadAction<number>) => {
 			state.value.selectedPortfolioId = action.payload;
 		},
+		setIsPortfolioDetailOpen: (state, action: PayloadAction<boolean>) => {
+			state.value.isPortfolioDetailOpen = action.payload;
+		},
+		setIsGalleryOpen: (state, action: PayloadAction<boolean>) => {
+			state.value.isGalleryOpen = action.payload;
+		},
 	},
 });
 
@@ -99,5 +109,7 @@ export const {
 	setContactDimensions,
 	setScrollY,
 	setSelectedPortfolioId,
+	setIsPortfolioDetailOpen,
+	setIsGalleryOpen,
 } = location.actions;
 export default location.reducer;

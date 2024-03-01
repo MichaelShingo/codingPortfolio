@@ -3,7 +3,7 @@ import { motion, useTransform, useScroll } from 'framer-motion';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import ProjectToggleButton from './ProjectToggleButton';
 import { useAppSelector } from '@/redux/store';
-import { sampleJSON } from '@/app/utils/sampleData';
+import { PortfolioItem, sampleJSON } from '@/app/utils/sampleData';
 import { useDispatch } from 'react-redux';
 import {
 	boundingClientRectToBoundingBox,
@@ -12,14 +12,6 @@ import {
 
 import { actions, useAppState } from '../../context/AppStateContext';
 import PortfolioIcon from './PortfolioIcon';
-
-type PortfolioItem = {
-	title: string;
-	preview: string;
-	tags: string[];
-	logo: string;
-	showcase: boolean;
-};
 
 const Portfolio = () => {
 	const dispatch = useDispatch();
@@ -100,7 +92,7 @@ const Portfolio = () => {
 
 			res.push(
 				<PortfolioIcon
-					key={i}
+					itemId={i}
 					horizontalPosition={horizontalPosition}
 					verticalPosition={verticalPosition}
 					currentItem={currentItem}
