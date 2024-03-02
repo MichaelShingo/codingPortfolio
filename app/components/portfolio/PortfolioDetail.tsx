@@ -27,7 +27,7 @@ const PortfolioDetail: React.FC = () => {
 	const generateStaffLines = (): ReactNode => {
 		const res: ReactNode[] = [];
 		for (let i = 0; i < 5; i++) {
-			res.push(<div className="h-[3px] w-[100vw] bg-black"></div>);
+			res.push(<div key={i} className="h-[3px] w-[100vw] bg-black"></div>);
 		}
 		return res;
 	};
@@ -36,7 +36,10 @@ const PortfolioDetail: React.FC = () => {
 		const res: ReactNode[] = [];
 		for (const tag of item.tags) {
 			res.push(
-				<div className="flex h-[40px] w-fit min-w-[100px] items-center justify-center rounded-sm bg-black px-8">
+				<div
+					key={tag}
+					className="flex h-[40px] w-fit min-w-[100px] items-center justify-center rounded-sm bg-black px-8"
+				>
 					<p className="text-center text-3xl font-thin uppercase text-paper-white">
 						{tag}
 					</p>
@@ -117,14 +120,14 @@ const PortfolioDetail: React.FC = () => {
 					>
 						<div className="absolute h-[60px] w-[60px] origin-[100%_100%] translate-x-[-28px] translate-y-[-8px] rotate-[-20deg] scale-[42%] bg-[url('/githubArm.svg')] bg-contain bg-no-repeat transition-all duration-700 group-hover:rotate-[-7deg]"></div>
 					</div>
-					<button className="group h-[60px] w-[60px] translate-x-[-50px] translate-y-[-8%] flex justify-center items-center scale-[115%] transition duration-700">
+					<button className="group flex h-[60px] w-[60px] translate-x-[-50px] translate-y-[-8%] scale-[115%] items-center justify-center transition duration-700">
 						<div
 							id="top-link"
-							className="absolute h-1/2 w-1/2 translate-x-[27%] translate-y-[5%] rotate-180 bg-[url('/linkIcon.svg')] bg-contain bg-no-repeat group-hover:translate-y-[2%] group-hover:translate-x-[30%]"
+							className="absolute h-1/2 w-1/2 translate-x-[27%] translate-y-[5%] rotate-180 bg-[url('/linkIcon.svg')] bg-contain bg-no-repeat group-hover:translate-x-[30%] group-hover:translate-y-[2%]"
 						></div>
 						<div
 							id="bottom-link"
-							className="absolute h-1/2 w-1/2 translate-x-[-20%] translate-y-[20%]  bg-[url('/linkIcon.svg')] bg-contain bg-no-repeat group-hover:translate-y-[23%] group-hover:translate-x-[-23%]"
+							className="absolute h-1/2 w-1/2 translate-x-[-20%] translate-y-[20%] bg-[url('/linkIcon.svg')] bg-contain bg-no-repeat group-hover:translate-x-[-23%] group-hover:translate-y-[23%]"
 						></div>
 					</button>
 				</div>

@@ -19,7 +19,6 @@ const PortfolioIcon: React.FC<PortfolioIconProps> = ({
 	verticalPosition,
 	currentItem,
 }) => {
-	console.log('portfolio item key is', itemId);
 	const dispatch = useDispatch();
 	const generateTags = (): ReactNode[] => {
 		const res: ReactNode[] = [];

@@ -7,10 +7,9 @@ import { sampleJSON } from '@/app/utils/sampleData';
 
 const DRAG_BUFFER = 50;
 const SPRING_OPTIONS = {
-	type: 'spring',
-	mass: 3,
-	stiffness: 400,
-	damping: 50,
+	type: 'tween',
+	ease: 'easeOut',
+	duration: 0.5,
 };
 
 const Gallery: React.FC = () => {
@@ -56,17 +55,34 @@ const Gallery: React.FC = () => {
 		}
 	};
 
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === 'ArrowLeft' && imgIndex > 0) {
+				setImgIndex((prev) => prev - 1);
+			} else if (e.key === 'ArrowRight' && imgIndex < images.length - 1) {
+				setImgIndex((prev) => prev + 1);
+			} else if (e.key === 'Escape') {
+				dispatch(setIsGalleryOpen(false));
+			}
+		};
+		window.addEventListener('keydown', handleKeyDown);
+
+		return () => {
+			window.removeEventListener('keydown', handleKeyDown);
+		};
+	});
+
 	return (
 		<div
-			className="bg-paper-white-trans-0 w-screen h-screen fixed z-10 transition duration-700 backdrop-blur-sm overflow-hidden"
+			className="fixed z-10 h-screen w-screen overflow-hidden bg-paper-white-trans-0 backdrop-blur-sm transition duration-700"
 			style={{ opacity: isOpen ? '1' : '0', pointerEvents: isOpen ? 'all' : 'none' }}
 		>
 			<button
-				className="h-[2.5%] w-[2.5%] m-3 absolute right-3 group z-10"
+				className="group absolute right-3 z-10 m-3 h-[2.5%] w-[2.5%] opacity-50 transition duration-300 hover:opacity-100"
 				onClick={(e) => handleClose(e)}
 			>
 				<img
-					className="group-hover:rotate-[360deg] group-active:scale-[0%]  duration-1000"
+					className="duration-1000 group-hover:rotate-[180deg] group-active:scale-[0%]"
 					src="/doubleSharp.svg"
 				/>
 			</button>
@@ -81,7 +97,7 @@ const Gallery: React.FC = () => {
 				animate={{
 					translateX: `-${imgIndex * 100}%`,
 				}}
-				className="flex items-center cursor-grab active:cursor-grabbing"
+				className="flex cursor-grab items-center active:cursor-grabbing"
 				transition={SPRING_OPTIONS}
 			>
 				<Images imgIndex={imgIndex} />
@@ -110,7 +126,9 @@ const Images: React.FC<ImagesProps> = ({ imgIndex }) => {
 						backgroundImage: `url(${images[i]})`,
 					}}
 					animate={{
-						scale: i === imgIndex ? 0.95 : 0.65,
+						scale: i === imgIndex ? 0.93 : 0.3,
+						translateY: '-2%',
+						opacity: i === imgIndex ? 1 : 0,
 					}}
 					transition={SPRING_OPTIONS}
 				></motion.div>
@@ -132,16 +150,33 @@ const Dots: React.FC<DotsProps> = ({ imgIndex, setImgIndex }) => {
 	);
 	const images: string[] = sampleJSON[id].images;
 	return (
-		<div className="absolute bottom-0 flex h-[50px]  w-full  justify-center gap-2 items-center">
+		<div className="absolute bottom-0 flex h-[50px] w-full items-center justify-center gap-4">
 			{images.map((img, index) => {
+				const isSelected: boolean = index === imgIndex;
 				return (
 					<button
 						key={index}
 						onClick={() => setImgIndex(index)}
-						className={`h-3 w-3 rounded-full transition-colors ${
-							index === imgIndex ? 'bg-paper-white' : 'bg-red-500'
+						style={{ transform: isSelected ? '' : 'skew(-10deg, -8deg)' }}
+						className={`flex items-center justify-center h-4 w-4 rounded-full transition duration-300 hover:scale-[120%] ${
+							isSelected
+								? 'bg-none border-black border-[2px] scale-[108%]'
+								: 'bg-paper-grey border-none scale-[90%]'
 						}`}
-					/>
+					>
+						<div
+							className={`absolute translate-y-[-50%] w-[2px] ${
+								isSelected ? 'bg-black' : 'bg-paper-grey'
+							} transition duration-300`}
+							style={{
+								width: isSelected ? '2px' : '1.5px',
+								height: isSelected ? '100%' : '200%',
+								transform: isSelected
+									? 'translateY(-50%) skew(0deg, 0deg)'
+									: 'translateY(50%) translateX(-350%) skew(8deg, 8deg)',
+							}}
+						></div>
+					</button>
 				);
 			})}
 		</div>

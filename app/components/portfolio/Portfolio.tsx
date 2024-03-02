@@ -49,9 +49,7 @@ const Portfolio = () => {
 	const xScroll = useTransform(scrollYProgress, [0, 1], ['80%', '-210%']);
 
 	useEffect(() => {
-		setTimeout(() => {
-			setPortfolioData(sampleJSON);
-		}, 1000);
+		setPortfolioData(sampleJSON);
 	}, []);
 
 	useEffect(() => {
