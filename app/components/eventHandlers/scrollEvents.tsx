@@ -5,8 +5,15 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { debounce } from 'lodash';
 
+let lastY = 0;
+
 const ScrollEvents = () => {
 	const dispatch = useDispatch();
+	const isScrollDisabled: boolean = useAppSelector(
+		(state) =>
+			state.locationReducer.value.isPortfolioDetailOpen ||
+			state.locationReducer.value.isIntroOpen
+	);
 	const bioDimensions: BoundingBox = useAppSelector(
 		(state) => state.locationReducer.value.bioDimensions
 	);
@@ -25,15 +32,12 @@ const ScrollEvents = () => {
 	);
 
 	useEffect(() => {
+		const htmlElement: HTMLCollection = document.getElementsByTagName('html');
+
 		const detectSection = debounce((): void => {
 			const scrollY: number = window.scrollY;
 			dispatch(setScrollY(scrollY));
-			console.log(
-				scrollY,
-				bioDimensions.bottomLeft.y,
-				portfolioDimensions.bottomLeft.y,
-				contactDimensions.bottomLeft.y
-			);
+
 			if (scrollY < bioDimensions.bottomLeft.y) {
 				dispatch(setPage('Bio'));
 			} else if (scrollY < portfolioDimensions.bottomLeft.y - 100) {
@@ -42,14 +46,34 @@ const ScrollEvents = () => {
 				dispatch(setPage('Contact'));
 			}
 		}, 200);
-		window.addEventListener('scroll', detectSection);
 
+		const preventScroll = (): void => {
+			if (isScrollDisabled) {
+				htmlElement[0].scrollTop = lastY;
+				return;
+			}
+			lastY = htmlElement[0].scrollTop;
+		};
+
+		const runScrollFunctions = () => {
+			detectSection();
+			preventScroll();
+		};
+
+		window.addEventListener('scroll', runScrollFunctions);
 		detectSection();
 
 		return () => {
-			window.removeEventListener('scroll', detectSection);
+			window.removeEventListener('scroll', runScrollFunctions);
 		};
-	}, [bioDimensions, portfolioDimensions, contactDimensions, windowHeight, windowWidth]);
+	}, [
+		bioDimensions,
+		portfolioDimensions,
+		contactDimensions,
+		windowHeight,
+		windowWidth,
+		isScrollDisabled,
+	]);
 
 	return <></>;
 };

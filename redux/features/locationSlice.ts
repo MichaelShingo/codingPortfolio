@@ -33,6 +33,7 @@ export const boundingClientRectToBoundingBox = (rect: DOMRect): BoundingBox => {
 };
 
 type LocationState = {
+	isIntroOpen: boolean;
 	page: string;
 	boundingBox: BoundingBox;
 	contactFieldBoundingBox: BoundingBox;
@@ -47,6 +48,7 @@ type LocationState = {
 
 const initialState = {
 	value: {
+		isIntroOpen: true,
 		page: 'Bio',
 		boundingBox: boundingBoxInitialState,
 		contactFieldBoundingBox: boundingBoxInitialState,
@@ -64,6 +66,9 @@ export const location = createSlice({
 	name: 'location',
 	initialState: initialState,
 	reducers: {
+		setIsIntroOpen: (state, action: PayloadAction<boolean>) => {
+			state.value.isIntroOpen = action.payload;
+		},
 		setPage: (state, action: PayloadAction<string>) => {
 			state.value.page = action.payload;
 		},
@@ -101,6 +106,7 @@ export const location = createSlice({
 });
 
 export const {
+	setIsIntroOpen,
 	setPage,
 	setBoundingBox,
 	setContactBoundingBox,
