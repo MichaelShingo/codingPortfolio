@@ -7,7 +7,9 @@ import { PortfolioItem, sampleJSON } from '@/app/utils/sampleData';
 import { useDispatch } from 'react-redux';
 import {
 	boundingClientRectToBoundingBox,
+	setIsPortfolioDetailOpen,
 	setPortfolioDimensions,
+	setSelectedPortfolioId,
 } from '@/redux/features/locationSlice';
 
 import { actions, useAppState } from '../../context/AppStateContext';
@@ -103,10 +105,16 @@ const Portfolio = () => {
 	const generateMobilePortfolioItems = (): ReactNode[] => {
 		const res: ReactNode[] = [];
 
+		const handleClick = (itemId: number): void => {
+			dispatch(setSelectedPortfolioId(itemId));
+			dispatch(setIsPortfolioDetailOpen(true));
+		};
+
 		for (let i = 0; i < filteredPortfolioData.length; i++) {
 			res.push(
 				<button
 					key={i}
+					onClick={() => handleClick(i)}
 					className={`z-10 aspect-square w-[45%] translate-x-[50%] flex-row rounded-full border-[2px] border-black bg-paper-white transition duration-700`}
 				>
 					<img className="" src={filteredPortfolioData[i].logo}></img>
@@ -117,7 +125,7 @@ const Portfolio = () => {
 	};
 
 	return (
-		<section ref={portfolioSectionRef} className="z-0 h-[400vh] min-h-screen">
+		<section ref={portfolioSectionRef} className="z-0 min-h-screen sm:h-[400vh]">
 			{windowWidth > 640 ? (
 				<div ref={verticalScrollRef} className="relative h-[400vh]">
 					<div className="sticky top-[12vh] flex h-[100px] w-screen scale-[65%] flex-row items-center justify-center space-x-14 sm:scale-100 sm:space-x-32">
@@ -146,7 +154,7 @@ const Portfolio = () => {
 					</motion.div>
 				</div>
 			) : (
-				<section className="flex min-h-[150vh] flex-col items-center">
+				<section className="flex h-fit min-h-[100vh] flex-col items-center pt-[65px]">
 					<div className="mb-8 flex h-fit w-screen scale-[65%] flex-col items-center justify-center space-y-10 sm:scale-100">
 						<ProjectToggleButton
 							title="showcase"

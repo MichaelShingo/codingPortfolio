@@ -32,7 +32,7 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ title, scrollFunction }) => {
 		}
 	}, [currentPage, windowWidth, title, dispatch]);
 
-	const handleOnClick = () => {
+	const handleClick = () => {
 		dispatch(setPage(title));
 		scrollFunction();
 	};
@@ -40,7 +40,7 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ title, scrollFunction }) => {
 	return (
 		<button
 			ref={ref}
-			onClick={handleOnClick}
+			onClick={handleClick}
 			className="p-1 text-center text-xl font-normal uppercase transition duration-300 hover:scale-[95%] sm:text-3xl md:text-5xl"
 		>
 			{title}

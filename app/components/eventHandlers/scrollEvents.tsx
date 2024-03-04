@@ -23,7 +23,6 @@ const ScrollEvents = () => {
 	const contactDimensions: BoundingBox = useAppSelector(
 		(state) => state.locationReducer.value.contactDimensions
 	);
-
 	const windowHeight: number = useAppSelector(
 		(state) => state.windowReducer.value.windowHeight
 	);
@@ -38,7 +37,7 @@ const ScrollEvents = () => {
 			const scrollY: number = window.scrollY;
 			dispatch(setScrollY(scrollY));
 
-			if (scrollY < bioDimensions.bottomLeft.y) {
+			if (scrollY < bioDimensions.bottomLeft.y - 325) {
 				dispatch(setPage('Bio'));
 			} else if (scrollY < portfolioDimensions.bottomLeft.y - 100) {
 				dispatch(setPage('Portfolio'));

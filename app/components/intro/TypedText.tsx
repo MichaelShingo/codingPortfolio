@@ -77,7 +77,7 @@ const TypedText = () => {
 	};
 
 	return (
-		<div className="h-2/8 sm:text-md flex w-fit min-w-[350px] flex-row text-sm leading-[10.7px] md:text-lg md:leading-[14px] lg:text-xl lg:leading-[16px]">
+		<div className="h-2/8 sm:text-md flex w-fit min-w-[350px] flex-row text-sm leading-[10.7px] md:text-2xl md:leading-[18px] lg:text-2xl lg:leading-[18px]">
 			<div className="mr-4 text-right text-gray-400 [&>*]:transition duration-400">
 				<h5 className={isLineNumberVisible(line1)}>1</h5>
 				<br></br>
