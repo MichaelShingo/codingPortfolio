@@ -14,11 +14,13 @@ import {
 
 import { actions, useAppState } from '../../context/AppStateContext';
 import PortfolioIcon from './PortfolioIcon';
+import useIsMobile from '@/app/customHooks/useIsMobile';
 
 const Portfolio = () => {
 	const dispatch = useDispatch();
 	const { dispatchContext } = useAppState();
 	const portfolioSectionRef = useRef<HTMLElement | null>(null);
+	const isMobile = useIsMobile();
 
 	const scrollToSection = () => {
 		setTimeout(() => {
@@ -125,8 +127,11 @@ const Portfolio = () => {
 	};
 
 	return (
-		<section ref={portfolioSectionRef} className="z-0 min-h-screen sm:h-[400vh]">
-			{windowWidth > 640 ? (
+		<section
+			ref={portfolioSectionRef}
+			className={`z-0 pt-10 min-h-screen ${isMobile ? 'h-fit' : 'h-[400vh]'}`}
+		>
+			{windowWidth > 1024 && !isMobile ? (
 				<div ref={verticalScrollRef} className="relative h-[400vh]">
 					<div className="sticky top-[12vh] flex h-[100px] w-screen scale-[65%] flex-row items-center justify-center space-x-14 sm:scale-100 sm:space-x-32">
 						<ProjectToggleButton

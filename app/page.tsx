@@ -11,7 +11,7 @@ import AppStateProvider from './context/AppStateContext';
 
 export default function Home() {
 	return (
-		<div className="">
+		<div>
 			<AppStateProvider>
 				<NavbarSelectionContainer />
 				<Intro />

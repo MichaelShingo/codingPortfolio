@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			lang="en"
 			className="overflow-x-hidden bg-paper-white selection:bg-black selection:text-paper-white"
 		>
-			<body className={oswald.className}>
+			<body className={`${oswald.className}`}>
 				<ReduxProvider>{children}</ReduxProvider>
 			</body>
 		</html>
