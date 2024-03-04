@@ -16,6 +16,8 @@ module.exports = {
 			animation: {
 				'scroll-music': 'scroll-music 17s infinite linear',
 				'wave-github': 'wave-github 1s infinite linear alternate',
+				'fade-in-portfolio': 'fade-in-portfolio 0.5s ease-in-out',
+				'fade-in-portfolio-desktop': 'fade-in-portfolio-desktop 1s ease-in-out',
 			},
 			keyframes: {
 				'scroll-music': {
@@ -27,6 +29,14 @@ module.exports = {
 				'wave-github': {
 					'0%': { rotate: '0deg' },
 					'100%': { rotate: '8deg' },
+				},
+				'fade-in-portfolio': {
+					'0%': { opacity: '0%', transform: 'translateY(-25%)' },
+					'100%': { opacity: '100%', transform: 'translateY(0%)' },
+				},
+				'fade-in-portfolio-desktop': {
+					'0%': { opacity: '0%' },
+					'100%': { opacity: '100%' },
 				},
 			},
 		},

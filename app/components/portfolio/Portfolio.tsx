@@ -117,7 +117,7 @@ const Portfolio = () => {
 				<button
 					key={i}
 					onClick={() => handleClick(i)}
-					className={`z-10 aspect-square w-[45%] translate-x-[50%] flex-row rounded-full border-[2px] border-black bg-paper-white transition duration-700`}
+					className={`animate-fade-in-portfolio z-10 aspect-square w-[45%] rounded-full border-[2px] border-black bg-paper-white p-3 transition duration-700 sm:border-[4px]`}
 				>
 					<img className="" src={filteredPortfolioData[i].logo}></img>
 				</button>
@@ -172,7 +172,7 @@ const Portfolio = () => {
 							onClick={handleClick}
 						/>
 					</div>
-					<div className="grid h-fit w-screen grid-cols-2 gap-y-20">
+					<div className="mt-0 grid h-fit w-screen grid-cols-2 items-center justify-items-center gap-y-12 sm:mt-10 sm:gap-y-32">
 						{generateMobilePortfolioItems()}
 					</div>
 				</section>
@@ -182,6 +182,3 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
-
-// root of the problem is, on mobile, the svg causes page to overflow-x and become scrollable. How do you prevent scroll?
-// and the browser doesn't recognize that the outer container is scrolling vertically until half way down
