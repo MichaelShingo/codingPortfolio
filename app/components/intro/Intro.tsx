@@ -16,10 +16,11 @@ const Intro = () => {
 	};
 
 	return (
-		<div
+		<section
+			id="intro"
 			className={`${
 				isIntroOpen ? 'opacity-1 pointer-events-auto' : 'opacity-0 pointer-events-none'
-			} transition duration-1000 scroll flex h-screen w-screen flex-col items-center justify-evenly space-y-10 overflow-x-hidden overflow-y-hidden absolute bg-paper-white z-50`}
+			} fixed transition duration-1000 scroll flex h-screen w-screen flex-col items-center justify-evenly space-y-10 overflow-x-hidden overflow-y-hidden bg-paper-white z-50`}
 		>
 			<div className="h-2/8 w-screen"></div>
 			<h1 className="h-2/8 px-2 text-center text-6xl font-light sm:text-7xl md:text-8xl 2xl:text-9xl">
@@ -29,7 +30,7 @@ const Intro = () => {
 			<div className="flex h-[200px] w-screen flex-row items-center justify-center overflow-x-hidden">
 				<MainButton onClick={handleEnterClick} label="enter" />
 			</div>
-		</div>
+		</section>
 	);
 };
 

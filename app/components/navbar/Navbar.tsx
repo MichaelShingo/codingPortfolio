@@ -57,14 +57,14 @@ const Navbar: React.FC = () => {
 	const scrollToPortfolio = state.scrollToPortfolio;
 
 	return (
-		<div
+		<nav
 			ref={ref}
-			className="fixed z-40 flex h-fit w-screen flex-row items-center justify-center space-x-9 bg-paper-white py-4 sm:space-x-11 md:space-x-20"
+			className="fixed z-30 flex h-fit w-screen flex-row items-center justify-center space-x-9 bg-paper-white py-4 sm:space-x-11 md:space-x-20"
 		>
 			<NavbarItem scrollFunction={scrollToBio} title="Bio" />
 			<NavbarItem scrollFunction={scrollToPortfolio} title="Portfolio" />
 			<NavbarItem scrollFunction={scrollToContact} title="Contact" />
-		</div>
+		</nav>
 	);
 };
 

@@ -9,12 +9,12 @@ let lastY = 0;
 
 const ScrollEvents = () => {
 	const dispatch = useDispatch();
-	// const isScrollDisabled: boolean = useAppSelector(
-	// 	(state) =>
-	// 		state.locationReducer.value.isPortfolioDetailOpen ||
-	// 		state.locationReducer.value.isIntroOpen
-	// );
-	const isScrollDisabled = false;
+	const isScrollDisabled: boolean = useAppSelector(
+		(state) =>
+			state.locationReducer.value.isPortfolioDetailOpen ||
+			state.locationReducer.value.isIntroOpen
+	);
+	// const isScrollDisabled = false;
 	const bioDimensions: BoundingBox = useAppSelector(
 		(state) => state.locationReducer.value.bioDimensions
 	);

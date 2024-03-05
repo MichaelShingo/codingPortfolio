@@ -1,3 +1,4 @@
+'use client';
 import { setIsGalleryOpen } from '@/redux/features/locationSlice';
 import { useAppSelector } from '@/redux/store';
 import { Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react';
@@ -73,16 +74,17 @@ const Gallery: React.FC = () => {
 	});
 
 	return (
-		<div
-			className="fixed z-10 h-full w-screen overflow-hidden bg-paper-white-trans-0 backdrop-blur-sm transition duration-700"
+		<section
+			id="gallery"
+			className="fixed z-50 h-full w-screen overflow-hidden bg-paper-white-trans-0 backdrop-blur-sm transition duration-700"
 			style={{ opacity: isOpen ? '1' : '0', pointerEvents: isOpen ? 'all' : 'none' }}
 		>
 			<button
-				className="group absolute right-3 z-10 m-3 h-[2.5%] w-[2.5%] opacity-50 transition duration-300 hover:opacity-100"
+				className="group absolute right-1 z-10 m-1 aspect-square h-[6%] rounded-full bg-paper-white-trans-0 p-2 opacity-100 transition duration-300 hover:opacity-100 sm:right-2 sm:m-3 sm:h-[6%] sm:w-[6%] sm:bg-none sm:p-1 sm:opacity-75"
 				onClick={(e) => handleClose(e)}
 			>
 				<img
-					className="duration-1000 group-hover:rotate-[180deg] group-active:scale-[0%]"
+					className="h-full w-full duration-1000 group-hover:rotate-[180deg] group-active:scale-[0%]"
 					src="/doubleSharp.svg"
 				/>
 			</button>
@@ -103,7 +105,7 @@ const Gallery: React.FC = () => {
 				<Images imgIndex={imgIndex} />
 			</motion.div>
 			<Dots imgIndex={imgIndex} setImgIndex={setImgIndex} />
-		</div>
+		</section>
 	);
 };
 

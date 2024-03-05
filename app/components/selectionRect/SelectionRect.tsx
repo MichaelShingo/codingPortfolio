@@ -52,7 +52,7 @@ interface SelectionRectProps {
 
 const SelectionRect: React.FC<SelectionRectProps> = ({ boundingBox }) => {
 	return (
-		<div className="pointer-events-none fixed z-50 h-screen w-screen overflow-hidden">
+		<div className="pointer-events-none fixed z-40 h-screen w-screen overflow-hidden">
 			<SelectionCorner
 				position={boundingBox.topRight}
 				xOffset={9}

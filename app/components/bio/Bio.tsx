@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux';
 
 import { actions, useAppState } from '../../context/AppStateContext';
 import { useAppSelector } from '@/redux/store';
+export const paragraphStyles =
+	' 2xl:text-3xl 2xl:leading-[45px] lg:text-2xl lg:leading-[40px] md:text-2xl md:leading-9 sm:text-base text-lg';
 
 const Bio: React.FC = () => {
 	const dispatch = useDispatch();
@@ -55,7 +57,10 @@ const Bio: React.FC = () => {
 		>
 			<div
 				id="p-container"
-				className="top-5 flex h-fit w-[80%] flex-col items-center justify-center space-y-3 border-[3px] border-solid border-black bg-paper-white p-5 text-justify text-lg font-light sm:w-[55%] sm:text-base md:w-[70%] md:text-2xl md:leading-9 lg:p-8 lg:text-2xl lg:leading-[40px] 2xl:w-[55%] 2xl:text-3xl 2xl:leading-[45px]"
+				className={
+					`top-5 flex h-fit w-[80%] flex-col items-center justify-center space-y-3 border-[3px] border-solid border-black bg-paper-white p-5 text-justify font-light sm:w-[55%] md:w-[70%] lg:p-8 2xl:w-[55%]` +
+					paragraphStyles
+				}
 			>
 				<p ref={bioTextboxRef}>
 					I am a software developer and musician with a passion for exploring the

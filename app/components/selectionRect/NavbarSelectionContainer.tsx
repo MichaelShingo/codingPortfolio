@@ -8,7 +8,7 @@ const NavbarSelectionContainer = () => {
 		(state) => state.locationReducer.value.boundingBox
 	);
 	return (
-		<div className="absolute h-screen w-screen">
+		<div id="navbar-selector" className="pointer-events-none absolute h-screen w-screen">
 			<SelectionRect boundingBox={boundingBox} />
 		</div>
 	);

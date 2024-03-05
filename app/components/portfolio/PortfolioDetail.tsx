@@ -8,7 +8,7 @@ import {
 	setIsGalleryOpen,
 	setIsPortfolioDetailOpen,
 } from '@/redux/features/locationSlice';
-import Gallery from './Gallery';
+import { paragraphStyles } from '../bio/Bio';
 
 const PortfolioDetail: React.FC = () => {
 	const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const PortfolioDetail: React.FC = () => {
 		const res: ReactNode[] = [];
 		for (let i = 0; i < 5; i++) {
 			res.push(
-				<div key={i} className="hidden h-[3px] w-[100vw] bg-black sm:block"></div>
+				<div key={i} className="hidden h-[3px] w-[100vw] bg-black lg:block"></div>
 			);
 		}
 		return res;
@@ -56,40 +56,42 @@ const PortfolioDetail: React.FC = () => {
 	};
 	return (
 		<section
-			className="fixed z-50 flex h-[100vh] min-h-screen w-screen flex-col items-center overflow-x-hidden bg-paper-white px-4 transition duration-700 sm:overflow-y-hidden sm:px-16"
+			id="portfolio-detail"
+			className="fixed z-40 flex h-[100vh] min-h-screen w-screen flex-col items-center overflow-x-hidden bg-paper-white px-4 transition duration-700 lg:px-16"
 			style={{
 				pointerEvents: isOpen ? 'all' : 'none',
 				transform: isOpen ? 'translateX(0%)' : 'translateX(-100%)',
 			}}
 		>
-			<Gallery />
 			<div
 				id="header-container"
-				className="flex w-full flex-col-reverse items-center justify-start sm:h-[100px] sm:flex-row sm:space-x-5"
+				className="mt-3 flex w-full flex-col-reverse items-center justify-start lg:flex-row lg:space-x-5"
 			>
 				<button
 					onClick={handleBackClick}
-					className="group mt-5 h-[78%] w-[100px] border-[2px] border-black bg-paper-white py-1 sm:mt-0 sm:w-[125px]"
+					className="group mt-5 h-[78%] max-h-[100px] w-[100px] border-[2px] border-black bg-paper-white py-1 lg:mt-0 lg:w-[125px]"
 				>
-					<div className="h-full min-h-[60px] bg-[url('/repeatSign.svg')] bg-contain bg-center bg-no-repeat transition duration-700 sm:w-full"></div>
+					<div className="h-full min-h-[60px] bg-[url('/repeatSign.svg')] bg-contain bg-center bg-no-repeat transition duration-700 lg:w-full"></div>
 					<img
 						src="/arrowLeft.svg"
-						className="absolute -z-10 translate-x-[-75%] translate-y-[-115%] scale-[75%] transition duration-700 group-hover:translate-x-[-75%] sm:translate-x-[-10%]"
+						className="absolute -z-10 translate-x-[-75%] translate-y-[-115%] scale-[75%] transition duration-700 group-hover:translate-x-[-75%] lg:translate-x-[-10%]"
 					/>
 				</button>
-				<div className="flex w-full flex-row items-center justify-center sm:justify-start">
-					<h1 className="h-full w-fit text-center text-6xl font-extrabold uppercase sm:translate-y-[-5%] sm:text-left sm:text-8xl">
+				<div className="flex w-full flex-row items-center justify-center lg:justify-start">
+					<h1 className="h-full w-fit text-center text-6xl font-extrabold uppercase lg:translate-y-[-5%] lg:text-left lg:text-8xl">
 						{item.title}
 					</h1>
 				</div>
 			</div>
-			<div className="my-7 flex w-full flex-col items-center justify-center space-y-5 sm:flex-row sm:space-x-5 sm:space-y-0">
-				<div className="h-fit min-h-[32vh] w-full border-[2px] border-black p-5 sm:w-[70%]">
-					<p className="text-lg font-thin normal-case sm:text-2xl">{item.description}</p>
+			<div className="my-7 flex w-full flex-col items-center justify-center space-y-5 lg:flex-row lg:space-x-5 lg:space-y-0">
+				<div className="h-fit min-h-[32vh] w-full border-[2px] border-black p-5 lg:w-[70%]">
+					<p className={`text-lg font-thin normal-case lg:text-2xl` + paragraphStyles}>
+						{item.description}
+					</p>
 				</div>
 				<button
 					onClick={handleImageClick}
-					className="group flex min-h-[32vh] w-full items-center justify-center border-[2px] border-black sm:w-[30%]"
+					className="group flex min-h-[32vh] w-full items-center justify-center border-[2px] border-black lg:h-full lg:w-[30%]"
 				>
 					<div
 						id="background-image"
@@ -97,37 +99,37 @@ const PortfolioDetail: React.FC = () => {
 					>
 						<div
 							id="sun"
-							className="relative hidden aspect-square h-[15%] translate-x-[-175%] translate-y-[150%] rounded-full bg-paper-white opacity-100 transition duration-[2000ms] group-hover:translate-y-[-130%] group-hover:opacity-100 sm:block"
+							className="relative hidden aspect-square h-[15%] translate-x-[-175%] translate-y-[150%] rounded-full bg-paper-white opacity-100 transition duration-[2000ms] group-hover:translate-y-[-130%] group-hover:opacity-100 lg:block"
 						></div>
 					</div>
 				</button>
 			</div>
-			<div className="mt-5 flex min-h-[30vh] w-[100vw] flex-col items-center justify-start sm:space-y-14">
+			<div className="mb-10 mt-5 flex min-h-[30vh] w-[100vw] flex-col items-center justify-start lg:space-y-14">
 				{generateStaffLines()}
-				<div className="relative flex flex-col items-center justify-center space-y-5 sm:absolute sm:translate-y-[4px] sm:flex-row sm:space-x-20 sm:space-y-0">
+				<div className="relative flex flex-col items-center justify-center space-y-5 lg:absolute lg:translate-y-[4px] lg:flex-row lg:space-x-20 lg:space-y-0">
 					{generateTags()}
 				</div>
 				<div
 					id="barline-2"
-					className="absolute right-1 hidden h-[235px] w-[50px] translate-y-[-54px] bg-black sm:block"
+					className="absolute right-1 hidden h-[235px] w-[50px] translate-y-[-54px] bg-black lg:block"
 				></div>
 				<div
 					id="barline-1"
-					className="absolute right-[80px] hidden h-[235px] w-[15px] translate-y-[-54px] bg-black sm:block"
+					className="absolute right-[80px] hidden h-[235px] w-[15px] translate-y-[-54px] bg-black lg:block"
 				></div>
 				<div
 					id="link-container"
-					className="mt-16 flex h-[60px] w-[50vw] flex-row items-center justify-center pb-10 sm:absolute sm:mt-0 sm:translate-y-[125px] sm:space-x-[200px] sm:pb-0"
+					className="mt-16 flex h-[60px] w-[50vw] flex-row items-center justify-center pb-10 lg:absolute lg:mt-0 lg:translate-y-[125px] lg:space-x-[200px] lg:pb-0"
 				>
 					<div
 						id="github-button"
-						className="group h-[60px] w-[60px] cursor-pointer bg-[url('/githubBody.svg')] bg-contain bg-no-repeat sm:absolute sm:translate-x-[-50px]"
+						className="group h-[60px] w-[60px] cursor-pointer bg-[url('/githubBody.svg')] bg-contain bg-no-repeat lg:absolute lg:translate-x-[-50px]"
 					>
-						<div className="h-[60px] w-[60px] origin-[100%_100%] translate-x-[-28px] translate-y-[-8px] rotate-[-20deg] scale-[42%] bg-[url('/githubArm.svg')] bg-contain bg-no-repeat transition-all duration-700 group-hover:rotate-[-7deg] sm:absolute"></div>
+						<div className="h-[60px] w-[60px] origin-[100%_100%] translate-x-[-28px] translate-y-[-8px] rotate-[-20deg] scale-[42%] bg-[url('/githubArm.svg')] bg-contain bg-no-repeat transition-all duration-700 group-hover:rotate-[-7deg] lg:absolute"></div>
 					</div>
 					<button
 						id="link-button"
-						className="group flex h-[60px] w-[60px] translate-y-[-8%] scale-[115%] items-center justify-center transition duration-700 sm:translate-x-[-50px]"
+						className="group flex h-[60px] w-[60px] translate-y-[-8%] scale-[115%] items-center justify-center transition duration-700 lg:translate-x-[-50px]"
 					>
 						<div
 							id="top-link"

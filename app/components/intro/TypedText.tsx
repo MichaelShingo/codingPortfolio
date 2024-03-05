@@ -38,7 +38,7 @@ const TypedText = () => {
 			setLine5,
 		];
 
-		const typingSpeed: number = 70;
+		const typingSpeed: number = 50;
 
 		const typeText = (
 			text: string,
