@@ -40,9 +40,9 @@ const PortfolioDetail: React.FC = () => {
 			res.push(
 				<div
 					key={tag}
-					className="flex h-[40px] w-fit min-w-[100px] items-center justify-center rounded-sm bg-black px-8"
+					className="flex h-[40px] w-fit min-w-[100px] items-center justify-center rounded-md bg-black px-8"
 				>
-					<p className="text-center text-3xl font-thin uppercase text-paper-white">
+					<p className="pb-3 pt-2 text-center text-3xl font-light text-paper-white">
 						{tag}
 					</p>
 				</div>
@@ -57,7 +57,7 @@ const PortfolioDetail: React.FC = () => {
 	return (
 		<section
 			id="portfolio-detail"
-			className="fixed z-40 flex h-[100vh] min-h-screen w-screen flex-col items-center overflow-x-hidden bg-paper-white px-4 transition duration-700 lg:px-16"
+			className="fixed z-40 flex h-[100vh] min-h-screen w-screen flex-col items-center justify-between overflow-x-hidden bg-paper-white px-4 transition duration-700 lg:px-16"
 			style={{
 				pointerEvents: isOpen ? 'all' : 'none',
 				transform: isOpen ? 'translateX(0%)' : 'translateX(-100%)',
@@ -69,7 +69,7 @@ const PortfolioDetail: React.FC = () => {
 			>
 				<button
 					onClick={handleBackClick}
-					className="group mt-5 h-[78%] max-h-[100px] w-[100px] border-[2px] border-black bg-paper-white py-1 lg:mt-0 lg:w-[125px]"
+					className="group mt-5 h-[78%] max-h-[200px] min-w-[100px] border-[2px] border-black bg-paper-white py-1 lg:mt-0 lg:w-[125px]"
 				>
 					<div className="h-full min-h-[60px] bg-[url('/repeatSign.svg')] bg-contain bg-center bg-no-repeat transition duration-700 lg:w-full"></div>
 					<img
@@ -78,7 +78,7 @@ const PortfolioDetail: React.FC = () => {
 					/>
 				</button>
 				<div className="flex w-full flex-row items-center justify-center lg:justify-start">
-					<h1 className="h-full w-fit text-center text-6xl font-extrabold uppercase lg:translate-y-[-5%] lg:text-left lg:text-8xl">
+					<h1 className="h-full w-fit text-center text-6xl font-extrabold uppercase lg:translate-y-[-5%] lg:text-left xl:text-9xl">
 						{item.title}
 					</h1>
 				</div>
@@ -99,7 +99,7 @@ const PortfolioDetail: React.FC = () => {
 					>
 						<div
 							id="sun"
-							className="relative hidden aspect-square h-[15%] translate-x-[-175%] translate-y-[150%] rounded-full bg-paper-white opacity-100 transition duration-[2000ms] group-hover:translate-y-[-130%] group-hover:opacity-100 lg:block"
+							className="relative aspect-square h-[15%] translate-x-[-175%] translate-y-[150%] rounded-full bg-paper-white opacity-100 transition duration-[2000ms] group-hover:translate-y-[-130%] group-hover:opacity-100 lg:block"
 						></div>
 					</div>
 				</button>
