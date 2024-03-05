@@ -16,7 +16,7 @@ export const sampleJSON: PortfolioItem[] = [
 		logo: '/miitronomeLogoPortfolio.svg',
 		showcase: true,
 		description:
-			'Miitronome is a progressive web application which can be used online or installed on iOS or Android. The Metronome has robust features, including support for polyrhythms, subdivisions, and sound customization. This application is built with Next.js, React.js, Typescript, and Material UI.',
+			'Miitronome is a progressive web application which can be used online or installed on iOS or Android. The Metronome has robust features, including support for polyrhythms, subdivisions, and sound customization. This application is built with Next.js, React.js, Typescript, and Material UI. Miitronome is a progressive web application which can be used online or installed on iOS or Android. The Metronome has robust features, including support for polyrhythms, subdivisions, and sound customization. This application is built with Next.js, React.js, Typescript, and Material UI.',
 		images: [
 			'/miitronome/appMain.jpg',
 			'/miitronome/code.jpg',

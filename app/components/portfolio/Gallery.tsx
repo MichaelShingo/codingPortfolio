@@ -74,7 +74,7 @@ const Gallery: React.FC = () => {
 
 	return (
 		<div
-			className="fixed z-10 h-screen w-screen overflow-hidden bg-paper-white-trans-0 backdrop-blur-sm transition duration-700"
+			className="fixed z-10 h-full w-screen overflow-hidden bg-paper-white-trans-0 backdrop-blur-sm transition duration-700"
 			style={{ opacity: isOpen ? '1' : '0', pointerEvents: isOpen ? 'all' : 'none' }}
 		>
 			<button
