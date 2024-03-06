@@ -69,16 +69,16 @@ const PortfolioDetail: React.FC = () => {
 			>
 				<button
 					onClick={handleBackClick}
-					className="group mt-5 h-[78%] max-h-[200px] min-w-[100px] border-[2px] border-black bg-paper-white py-1 lg:mt-0 lg:w-[125px]"
+					className="group mt-5 h-[78%] min-h-[110px] min-w-[170px] border-[2px] border-black bg-paper-white px-2 py-1 lg:mt-0 lg:min-w-[90px]"
 				>
-					<div className="h-full min-h-[60px] bg-[url('/repeatSign.svg')] bg-contain bg-center bg-no-repeat transition duration-700 lg:w-full"></div>
+					<div className="h-full min-h-[20px] bg-[url('/repeatSign.svg')] bg-contain bg-center bg-no-repeat transition duration-700 lg:w-full"></div>
 					<img
 						src="/arrowLeft.svg"
 						className="absolute -z-10 translate-x-[-75%] translate-y-[-115%] scale-[75%] transition duration-700 group-hover:translate-x-[-75%] lg:translate-x-[-10%]"
 					/>
 				</button>
 				<div className="flex w-full flex-row items-center justify-center lg:justify-start">
-					<h1 className="h-full w-fit text-center text-6xl font-extrabold uppercase lg:translate-y-[-5%] lg:text-left xl:text-9xl">
+					<h1 className="h-full w-fit text-center text-6xl font-extrabold uppercase sm:text-8xl lg:translate-y-[-5%] lg:text-left xl:text-9xl">
 						{item.title}
 					</h1>
 				</div>
@@ -99,7 +99,7 @@ const PortfolioDetail: React.FC = () => {
 					>
 						<div
 							id="sun"
-							className="relative aspect-square h-[15%] translate-x-[-175%] translate-y-[150%] rounded-full bg-paper-white opacity-100 transition duration-[2000ms] group-hover:translate-y-[-130%] group-hover:opacity-100 lg:block"
+							className="relative aspect-square h-[15%] max-h-[35px] translate-x-[-175%] translate-y-[150%] rounded-full bg-paper-white transition duration-[2000ms] group-hover:translate-y-[-130%] xl:max-h-[50px]"
 						></div>
 					</div>
 				</button>
@@ -111,7 +111,7 @@ const PortfolioDetail: React.FC = () => {
 				</div>
 				<div
 					id="barline-2"
-					className="absolute right-1 hidden h-[235px] w-[50px] translate-y-[-54px] bg-black lg:block"
+					className="absolute right-0 hidden h-[235px] w-[60px] translate-y-[-54px] bg-black lg:block"
 				></div>
 				<div
 					id="barline-1"

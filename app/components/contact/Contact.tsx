@@ -101,7 +101,7 @@ const Contact: React.FC = () => {
 		<section
 			ref={contactSectionRef}
 			id="contact"
-			className="flex h-[100vh] w-screen flex-col items-center justify-between pt-32 2xl:pt-44"
+			className="flex h-screen w-screen flex-col items-center justify-between pt-32 2xl:pt-44"
 		>
 			<SelectionRect boundingBox={contactBoundingBox} />
 			<div className="flex h-fit w-[100%] flex-col justify-center">
