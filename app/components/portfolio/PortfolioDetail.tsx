@@ -28,7 +28,7 @@ const PortfolioDetail: React.FC = () => {
 		const res: ReactNode[] = [];
 		for (let i = 0; i < 5; i++) {
 			res.push(
-				<div key={i} className="hidden h-[3px] w-[100vw] bg-black lg:block"></div>
+				<div key={i} className="none h-[2.5px] w-[100vw] bg-black lg:block"></div>
 			);
 		}
 		return res;
