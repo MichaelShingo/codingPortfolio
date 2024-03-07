@@ -3,7 +3,6 @@ import { mailOptions, transporter } from './nodemailerFunctions';
 
 export async function POST(req: Request) {
 	const body: ContactFormData = await req.json();
-	console.log(body);
 	if (!body.email || !body.name || !body.message) {
 		return new Response('Bad request.', { status: 400 });
 	}
@@ -16,8 +15,8 @@ export async function POST(req: Request) {
 			subject: 'Contact Form Submission',
 			text: emailBody,
 		});
-	} catch (error) {
-		return new Response(error.message, { status: 400 });
+	} catch (e) {
+		return new Response(e.message, { status: 400 });
 	}
 	return new Response('OK', { status: 200 });
 }

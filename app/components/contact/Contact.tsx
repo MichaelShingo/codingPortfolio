@@ -11,7 +11,7 @@ import AltoClef from './AltoClef';
 import BassClef from './BassClef';
 import TrebleClef from './TrebleClef';
 import MainButton from '../intro/MainButton';
-import { AppDispatch, useAppSelector } from '@/redux/store';
+import { useAppSelector } from '@/redux/store';
 import { useDispatch } from 'react-redux';
 import {
 	BoundingBox,
@@ -37,7 +37,7 @@ const clefContainerClasses: string =
 	'absolute aspect-square h-[70px] translate-x-[-75%] translate-y-[-30%] transition duration-700 peer-focus:translate-x-[-90%] 2xl:peer-focus:translate-x-[-95%] sm:translate-x-[-80%] sm:scale-[110%] 2xl:scale-[125%] ';
 
 const InputField: React.FC<InputFieldProps> = ({ type, label, clef, val, setVal }) => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useDispatch();
 	const ref = useRef<HTMLInputElement | null>(null);
 
 	const handleFocus = () => {
@@ -71,6 +71,7 @@ const Contact: React.FC = () => {
 	const [name, setName] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
 	const [message, setMessage] = useState<string>('');
+	const [status, setStatus] = useState<boolean | null>(null);
 
 	const { dispatchContext } = useAppState();
 	const contactSectionRef = useRef<HTMLElement | null>(null);
@@ -109,14 +110,31 @@ const Contact: React.FC = () => {
 		(state) => state.locationReducer.value.contactFieldBoundingBox
 	);
 
-	const handleSubmit = async () => {
-		console.log('sent');
+	const handleSubmit = async (e): Promise<void> => {
+		e.preventDefault();
 		const status: number = await sendContactForm({
 			name: name,
 			email: email,
 			message: message,
 		});
-		console.log(status);
+		if (status === 200) {
+			setStatus(true);
+			setMessage('');
+			setEmail('');
+			setName('');
+		} else {
+			setStatus(false);
+		}
+	};
+
+	const getButtonLabel = (): string => {
+		if (status === null) {
+			return 'submit';
+		} else if (status === true) {
+			return 'message sent';
+		} else {
+			return 'send failed';
+		}
 	};
 
 	return (
@@ -158,7 +176,7 @@ const Contact: React.FC = () => {
 					</div>
 				</div>
 				<div className="flex h-[200px] w-[100%] scale-[70%] flex-row items-center justify-center overflow-x-hidden sm:scale-[80%]">
-					<MainButton onClick={handleSubmit} label="submit" />
+					<MainButton onClick={(e) => handleSubmit(e)} label={getButtonLabel()} />
 				</div>
 			</div>
 			<div className="pb-3 text-center text-sm font-thin md:text-base">
