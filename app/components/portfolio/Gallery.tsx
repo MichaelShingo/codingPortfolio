@@ -39,6 +39,7 @@ const Gallery: React.FC = () => {
 
 	const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.stopPropagation();
+		setImgIndex(0);
 		dispatch(setIsGalleryOpen(false));
 	};
 
@@ -46,22 +47,33 @@ const Gallery: React.FC = () => {
 		setDragging(true);
 	};
 
+	const toNextImage = () => {
+		if (imgIndex < images.length - 1) {
+			setImgIndex((prev) => prev + 1);
+		}
+	};
+	const toPrevImage = () => {
+		if (imgIndex > 0) {
+			setImgIndex((prev) => prev - 1);
+		}
+	};
+
 	const onDragEnd = () => {
 		setDragging(false);
 		const x = dragX.get();
-		if (x <= -DRAG_BUFFER && imgIndex < images.length - 1) {
-			setImgIndex((prev) => prev + 1);
-		} else if (x >= DRAG_BUFFER && imgIndex > 0) {
-			setImgIndex((prev) => prev - 1);
+		if (x <= -DRAG_BUFFER) {
+			toNextImage();
+		} else if (x >= DRAG_BUFFER) {
+			toPrevImage();
 		}
 	};
 
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === 'ArrowLeft' && imgIndex > 0) {
-				setImgIndex((prev) => prev - 1);
-			} else if (e.key === 'ArrowRight' && imgIndex < images.length - 1) {
-				setImgIndex((prev) => prev + 1);
+			if (e.key === 'ArrowLeft') {
+				toPrevImage();
+			} else if (e.key === 'ArrowRight') {
+				toNextImage();
 			} else if (e.key === 'Escape') {
 				dispatch(setIsGalleryOpen(false));
 			}
@@ -73,14 +85,38 @@ const Gallery: React.FC = () => {
 		};
 	});
 
+	const Arrow: React.FC<{ rotation: string; position: string; onClick: () => void }> = ({
+		rotation,
+		position,
+		onClick: handleClick,
+	}) => {
+		return (
+			<div
+				className={`absolute z-10 flex h-full w-[4vw] ${position} bottom-2 lg:bottom-0 items-end lg:items-center justify-center`}
+			>
+				<button
+					className="group aspect-square w-[3vw] min-w-[40px] rounded-full border-[2px] border-none transition duration-300 hover:scale-[110%]"
+					onClick={handleClick}
+				>
+					<img
+						className={`h-full w-full duration-1000 rotate-${rotation}`}
+						src="/quarterToneDown.svg"
+					/>
+				</button>
+			</div>
+		);
+	};
+
 	return (
 		<section
 			id="gallery"
 			className="fixed z-50 h-full w-screen overflow-hidden bg-paper-white-trans-0 backdrop-blur-sm transition duration-700"
 			style={{ opacity: isOpen ? '1' : '0', pointerEvents: isOpen ? 'all' : 'none' }}
 		>
+			<Arrow rotation="180" position="right-4 lg:right-3" onClick={toNextImage} />
+			<Arrow rotation="0" position="left-4 lg:left-1" onClick={toPrevImage} />
 			<button
-				className="group absolute right-1 z-10 m-1 aspect-square h-[6%] rounded-full bg-paper-white-trans-0 p-2 opacity-100 transition duration-300 hover:opacity-100 sm:right-2 sm:m-3 sm:h-[6%] sm:w-[6%] sm:bg-none sm:p-1 sm:opacity-75"
+				className="group absolute right-1 z-50 m-1 aspect-square h-[6%] rounded-full bg-paper-white-trans-0 p-2 transition duration-300 sm:right-2 sm:m-3 sm:h-[6%] sm:bg-transparent sm:p-1"
 				onClick={(e) => handleClose(e)}
 			>
 				<img
@@ -163,12 +199,12 @@ const Dots: React.FC<DotsProps> = ({ imgIndex, setImgIndex }) => {
 						className={`flex items-center justify-center h-4 w-4 rounded-full transition duration-300 hover:scale-[120%] ${
 							isSelected
 								? 'bg-none border-black border-[2px] scale-[108%]'
-								: 'bg-paper-grey border-none scale-[90%]'
+								: 'bg-black border-none scale-[90%]'
 						}`}
 					>
 						<div
 							className={`absolute translate-y-[-50%] w-[2px] ${
-								isSelected ? 'bg-black' : 'bg-paper-grey'
+								isSelected ? 'bg-black' : 'bg-black'
 							} transition duration-300`}
 							style={{
 								width: isSelected ? '2px' : '1.5px',

@@ -19,7 +19,6 @@ export default function Home() {
 			state.locationReducer.value.isIntroOpen
 	);
 
-	console.log('is scroll diabled', isScrollDisabled);
 	return (
 		<div className="h-[100vh]">
 			<AppStateProvider>

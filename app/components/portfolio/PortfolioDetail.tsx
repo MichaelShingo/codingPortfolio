@@ -40,7 +40,7 @@ const PortfolioDetail: React.FC = () => {
 			res.push(
 				<div
 					key={tag}
-					className="flex h-[40px] w-fit min-w-[100px] items-center justify-center rounded-md bg-black px-8"
+					className="flex h-[40px] w-fit min-w-[100px] items-center justify-center rounded-sm bg-black px-8"
 				>
 					<p className="pb-3 pt-2 text-center text-3xl font-light text-paper-white">
 						{tag}
@@ -69,7 +69,7 @@ const PortfolioDetail: React.FC = () => {
 			>
 				<button
 					onClick={handleBackClick}
-					className="group mt-5 h-[78%] min-h-[110px] min-w-[170px] border-[2px] border-black bg-paper-white px-2 py-1 lg:mt-0 lg:min-w-[90px]"
+					className="group mt-5 h-[78%] min-h-[110px] min-w-[170px] border-[3px] border-black bg-paper-white px-2 py-1 lg:mt-0 lg:max-h-[115px] lg:min-w-[90px]"
 				>
 					<div className="h-full min-h-[20px] bg-[url('/repeatSign.svg')] bg-contain bg-center bg-no-repeat transition duration-700 lg:w-full"></div>
 					<img
@@ -84,14 +84,14 @@ const PortfolioDetail: React.FC = () => {
 				</div>
 			</div>
 			<div className="my-7 flex w-full flex-col items-center justify-center space-y-5 lg:flex-row lg:space-x-5 lg:space-y-0">
-				<div className="h-fit min-h-[32vh] w-full border-[2px] border-black p-5 lg:w-[70%]">
+				<div className="h-fit min-h-[32vh] w-full border-[3px] border-black p-5 lg:w-[70%]">
 					<p className={`text-lg font-thin normal-case lg:text-2xl` + paragraphStyles}>
 						{item.description}
 					</p>
 				</div>
 				<button
 					onClick={handleImageClick}
-					className="group flex min-h-[32vh] w-full items-center justify-center border-[2px] border-black lg:h-full lg:w-[30%]"
+					className="group flex min-h-[32vh] w-full items-center justify-center border-[3px] border-black px-2 lg:h-full lg:w-[30%]"
 				>
 					<div
 						id="background-image"
@@ -104,22 +104,25 @@ const PortfolioDetail: React.FC = () => {
 					</div>
 				</button>
 			</div>
-			<div className="mb-10 mt-5 flex min-h-[30vh] w-[100vw] flex-col items-center justify-start lg:space-y-14">
-				{generateStaffLines()}
+			<div className="mb-10 mt-5 flex h-[235px] w-[100vw] flex-col items-center justify-start lg:space-y-14">
+				<img
+					src="/staffLines.svg"
+					className="relative hidden h-[235px] w-[100%] min-w-[6000px] scale-x-[500%] lg:block"
+				/>
 				<div className="relative flex flex-col items-center justify-center space-y-5 lg:absolute lg:translate-y-[4px] lg:flex-row lg:space-x-20 lg:space-y-0">
 					{generateTags()}
 				</div>
 				<div
 					id="barline-2"
-					className="absolute right-0 hidden h-[235px] w-[60px] translate-y-[-54px] bg-black lg:block"
+					className="absolute right-0 hidden h-[235px] w-[60px] translate-y-[-56px] bg-black lg:block"
 				></div>
 				<div
 					id="barline-1"
-					className="absolute right-[80px] hidden h-[235px] w-[15px] translate-y-[-54px] bg-black lg:block"
+					className="absolute right-[80px] hidden h-[235px] w-[15px] translate-y-[-56px] bg-black lg:block"
 				></div>
 				<div
 					id="link-container"
-					className="mt-16 flex h-[60px] w-[50vw] flex-row items-center justify-center pb-10 lg:absolute lg:mt-0 lg:translate-y-[125px] lg:space-x-[200px] lg:pb-0"
+					className="mt-16 flex h-[60px] w-[50vw] flex-row items-center justify-center pb-10 lg:absolute lg:mt-0 lg:translate-y-[123px] lg:space-x-[200px] lg:pb-0"
 				>
 					<div
 						id="github-button"

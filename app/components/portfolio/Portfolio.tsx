@@ -86,11 +86,10 @@ const Portfolio = () => {
 
 		for (let i = 0; i < filteredPortfolioData.length; i++) {
 			const currentItem = filteredPortfolioData[i];
-			const positionVariance: number = (Math.random() - 0.5) * 50;
-			const offset: number = positionVariance + 400;
+			const offset: number = 400;
 			const horizontalPosition: number = Math.round(i * containerIncrements) + offset;
 			const isAbove: number = i % 2 === 0 ? -1 : 1;
-			const verticalPosition = isAbove * 250 + positionVariance;
+			const verticalPosition = isAbove * 250;
 
 			res.push(
 				<PortfolioIcon
@@ -117,7 +116,7 @@ const Portfolio = () => {
 				<button
 					key={i}
 					onClick={() => handleClick(i)}
-					className={`animate-fade-in-portfolio z-10 aspect-square w-[45%] rounded-full border-[2px] border-black bg-paper-white p-3 transition duration-700 sm:border-[4px]`}
+					className={`z-10 aspect-square w-[45%] animate-fade-in-portfolio rounded-full border-[2px] border-black bg-paper-white p-3 transition duration-700 sm:border-[4px]`}
 				>
 					<img className="" src={filteredPortfolioData[i].logo}></img>
 				</button>
