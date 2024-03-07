@@ -3,6 +3,8 @@ interface MainButtonProps {
 	label: string;
 }
 
+// comment
+
 const MainButton: React.FC<MainButtonProps> = ({ onClick, label }) => {
 	return (
 		<>
