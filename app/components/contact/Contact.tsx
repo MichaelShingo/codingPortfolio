@@ -252,9 +252,42 @@ const Contact: React.FC = () => {
 				</div>
 			</div>
 			<div className="pb-3 text-center text-sm font-thin md:text-base">
+				<div className="mb-[2vh] flex h-[5vh] w-screen flex-row justify-center space-x-7">
+					<a
+						className="aspect-square h-[100%]"
+						href="https://github.com/MichaelShingo"
+						target="_blank"
+						rel="noreferrer"
+					>
+						<img src="/github.svg" />
+					</a>
+					<a
+						className="aspect-square h-[100%]"
+						href="https://www.linkedin.com/in/software-engineer-shingo/"
+						target="_blank"
+						rel="noreferrer"
+					>
+						<img src="/linkedin.svg" />
+					</a>
+					<a
+						className="aspect-square h-[100%]"
+						href="https://www.youtube.com/channel/UCb46nljnneXaQCa5wKYsbWA"
+						target="_blank"
+						rel="noreferrer"
+					>
+						<img src="/youtube.svg" />
+					</a>
+				</div>
 				<p>Copyright © {new Date().getFullYear()} Michael Shingo Crawford</p>
 				<p>
 					Built with <strong>Next.js | Typescript | Tailwind CSS | Redux</strong>
+					<a
+						href="https://github.com/MichaelShingo/codingPortfolio"
+						target="_blank"
+						rel="noreferrer"
+					>
+						<img src="/github.svg" className="mb-1 ml-1 inline h-5 cursor-pointer" />
+					</a>
 				</p>
 			</div>
 		</section>

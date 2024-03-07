@@ -18,6 +18,7 @@ module.exports = {
 				'wave-github': 'wave-github 1s infinite linear alternate',
 				'fade-in-portfolio': 'fade-in-portfolio 0.5s ease-in-out',
 				'fade-in-portfolio-desktop': 'fade-in-portfolio-desktop 1s ease-in-out',
+				'animate-button-click-1': 'animate-button-click-1 2s ease-out',
 			},
 			keyframes: {
 				'scroll-music': {
@@ -37,6 +38,11 @@ module.exports = {
 				'fade-in-portfolio-desktop': {
 					'0%': { opacity: '0%' },
 					'100%': { opacity: '100%' },
+				},
+				'animate-button-click-1': {
+					'0%': { opacity: '1', transform: 'translateY(0px) translateX(0px)' },
+					'15%': { opacity: '1', transform: 'translateY(500px) translateX(500px)' },
+					'100%': { opacity: '0', transform: 'translateY(-500px)' },
 				},
 			},
 		},

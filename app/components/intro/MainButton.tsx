@@ -1,3 +1,6 @@
+'use client';
+import { useState } from 'react';
+
 interface MainButtonProps {
 	onClick:
 		| (() => void)
@@ -6,15 +9,29 @@ interface MainButtonProps {
 }
 
 const MainButton: React.FC<MainButtonProps> = ({ onClick, label }) => {
+	const [triggerAnimation, setTriggerAnimation] = useState<boolean>(false);
+	const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		onClick(e);
+		setTriggerAnimation(true);
+		setTimeout(() => {
+			setTriggerAnimation(false);
+		}, 2000);
+	};
 	return (
 		<>
 			<button
-				onClick={onClick}
+				onClick={(e) => handleClick(e)}
 				className="group peer z-10 flex h-[70px] w-[282px] items-center justify-center overflow-hidden bg-black transition duration-1000 ease-in-out hover:translate-x-[4px] hover:translate-y-[6px] hover:bg-black-trans"
 			>
 				<img
 					src="/sibeliusViolinConcerto.svg"
 					className="translate-y-36 opacity-0 group-hover:animate-scroll-music"
+				/>
+				<img
+					src="/quarterToneDown.svg"
+					className={`absolute aspect-square h-[50px] translate-x-[200%] ${
+						triggerAnimation ? 'animate-button-click-1' : ''
+					}`}
 				/>
 			</button>
 			<p className="pointer-events-none absolute z-20 flex translate-y-[-6px] justify-center bg-none text-5xl font-thin text-paper-white opacity-100 transition duration-1000 ease-in-out peer-hover:-translate-y-12 peer-hover:scale-50 peer-hover:text-black">
