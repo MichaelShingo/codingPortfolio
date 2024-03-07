@@ -29,6 +29,7 @@ interface InputFieldProps {
 	clef: ReactNode;
 	val: string;
 	setVal: Dispatch<SetStateAction<string>>;
+	handleBlur: () => void;
 }
 const inputFieldClasses: string = `w-[65vw] max-w-[575px] rounded-md focus:rounded-xs bg-paper-grey font-thin text-base p-2 peer transition duration-700 origin-top-right `;
 const labelClasses: string =
@@ -36,7 +37,14 @@ const labelClasses: string =
 const clefContainerClasses: string =
 	'absolute aspect-square h-[70px] translate-x-[-75%] translate-y-[-30%] transition duration-700 peer-focus:translate-x-[-90%] 2xl:peer-focus:translate-x-[-95%] sm:translate-x-[-80%] sm:scale-[110%] 2xl:scale-[125%] ';
 
-const InputField: React.FC<InputFieldProps> = ({ type, label, clef, val, setVal }) => {
+const InputField: React.FC<InputFieldProps> = ({
+	type,
+	label,
+	clef,
+	val,
+	setVal,
+	handleBlur,
+}) => {
 	const dispatch = useDispatch();
 	const ref = useRef<HTMLInputElement | null>(null);
 
@@ -53,6 +61,7 @@ const InputField: React.FC<InputFieldProps> = ({ type, label, clef, val, setVal 
 			<h3 className={labelClasses}>{label}</h3>
 			<div className="flex flex-row">
 				<input
+					onBlur={handleBlur}
 					value={val}
 					onChange={(e) => setVal(e.target.value)}
 					ref={ref}
@@ -66,12 +75,61 @@ const InputField: React.FC<InputFieldProps> = ({ type, label, clef, val, setVal 
 	);
 };
 
+type BlurredFields = {
+	name: boolean;
+	email: boolean;
+	message: boolean;
+};
+
 const Contact: React.FC = () => {
 	const dispatch = useDispatch();
 	const [name, setName] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
 	const [message, setMessage] = useState<string>('');
 	const [status, setStatus] = useState<boolean | null>(null);
+	const [isBlurred, setIsBlurred] = useState<BlurredFields>({
+		name: false,
+		email: false,
+		message: false,
+	});
+
+	const isEmailValid = (email: string): boolean => {
+		const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return emailRegex.test(email);
+	};
+
+	const getErrorMessage = (name: string, email: string, message: string): string => {
+		let res: string = 'Please enter ';
+		const errorList: string[] = [];
+		if (name === '' && isBlurred.name) {
+			errorList.push('your name');
+		}
+		if (!isEmailValid(email) && isBlurred.email) {
+			errorList.push('a valid email');
+		}
+		if (message === '' && isBlurred.message) {
+			errorList.push('a message');
+		}
+
+		if (errorList.length === 0) {
+			return '';
+		}
+		if (errorList.length === 1) {
+			res += errorList[0];
+		} else {
+			for (let i = 0; i < errorList.length; i++) {
+				if (i === errorList.length - 1) {
+					res += 'and ' + errorList[i];
+				} else {
+					res += errorList[i] + ', ';
+				}
+			}
+		}
+		if (errorList.length === 2) {
+			res = res.replace(',', '');
+		}
+		return res + '.';
+	};
 
 	const { dispatchContext } = useAppState();
 	const contactSectionRef = useRef<HTMLElement | null>(null);
@@ -110,7 +168,9 @@ const Contact: React.FC = () => {
 		(state) => state.locationReducer.value.contactFieldBoundingBox
 	);
 
-	const handleSubmit = async (e): Promise<void> => {
+	const handleSubmit = async (
+		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+	): Promise<void> => {
 		e.preventDefault();
 		const status: number = await sendContactForm({
 			name: name,
@@ -122,8 +182,14 @@ const Contact: React.FC = () => {
 			setMessage('');
 			setEmail('');
 			setName('');
+			setTimeout(() => {
+				setStatus(null);
+			}, 2500);
 		} else {
 			setStatus(false);
+			setTimeout(() => {
+				setStatus(null);
+			}, 2500);
 		}
 	};
 
@@ -149,21 +215,24 @@ const Contact: React.FC = () => {
 					val={name}
 					setVal={setName}
 					type="text"
-					label="Name"
+					label="Name*"
 					clef={<TrebleClef />}
+					handleBlur={() => setIsBlurred((prev) => ({ ...prev, name: true }))}
 				/>
 				<InputField
 					val={email}
 					setVal={setEmail}
 					type="email"
-					label="Email"
+					label="Email*"
 					clef={<AltoClef />}
+					handleBlur={() => setIsBlurred((prev) => ({ ...prev, email: true }))}
 				/>
 				<div className="flex w-[100%] flex-col items-center justify-center">
-					<h3 className={labelClasses}>Message</h3>
+					<h3 className={labelClasses}>Message*</h3>
 					<div className="flex flex-row">
 						<textarea
 							value={message}
+							onBlur={() => setIsBlurred((prev) => ({ ...prev, message: true }))}
 							onChange={(e) => setMessage(e.target.value)}
 							cols={50}
 							className={
@@ -175,7 +244,10 @@ const Contact: React.FC = () => {
 						</div>
 					</div>
 				</div>
-				<div className="flex h-[200px] w-[100%] scale-[70%] flex-row items-center justify-center overflow-x-hidden sm:scale-[80%]">
+				<p className="mt-3 h-5 min-h-1 w-full text-center">
+					{getErrorMessage(name, email, message)}
+				</p>
+				<div className="flex h-[120px] w-[100%] scale-[70%] flex-row items-center justify-center overflow-x-hidden sm:scale-[80%]">
 					<MainButton onClick={(e) => handleSubmit(e)} label={getButtonLabel()} />
 				</div>
 			</div>

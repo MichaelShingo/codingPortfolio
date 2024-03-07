@@ -1,9 +1,9 @@
 interface MainButtonProps {
-	onClick: (() => void) | ((e: MouseEvent) => Promise<void>);
+	onClick:
+		| (() => void)
+		| ((e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => Promise<void>);
 	label: string;
 }
-
-// comment
 
 const MainButton: React.FC<MainButtonProps> = ({ onClick, label }) => {
 	return (
