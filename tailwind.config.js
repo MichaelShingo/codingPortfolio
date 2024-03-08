@@ -18,7 +18,11 @@ module.exports = {
 				'wave-github': 'wave-github 1s infinite linear alternate',
 				'fade-in-portfolio': 'fade-in-portfolio 0.5s ease-in-out',
 				'fade-in-portfolio-desktop': 'fade-in-portfolio-desktop 1s ease-in-out',
-				'animate-button-click-1': 'animate-button-click-1 2s ease-out',
+				'main-button-click-0': 'main-button-click-0 1.2s ease-out',
+				'main-button-click-1': 'main-button-click-1 1.7s ease-out',
+				'main-button-click-2': 'main-button-click-2 0.8s ease-out',
+				'main-button-click-3': 'main-button-click-3 1s ease-out',
+				'main-button-click-4': 'main-button-click-4 1.4s ease-out',
 			},
 			keyframes: {
 				'scroll-music': {
@@ -39,10 +43,55 @@ module.exports = {
 					'0%': { opacity: '0%' },
 					'100%': { opacity: '100%' },
 				},
-				'animate-button-click-1': {
-					'0%': { opacity: '1', transform: 'translateY(0px) translateX(0px)' },
-					'15%': { opacity: '1', transform: 'translateY(500px) translateX(500px)' },
-					'100%': { opacity: '0', transform: 'translateY(-500px)' },
+				'main-button-click-0': {
+					'0%': {
+						opacity: '1',
+						transform: 'translateX(120px) translateY(0px) rotate(0deg)',
+					},
+					'100%': {
+						opacity: '0',
+						transform: 'translateX(250px) translateY(-15px) rotate(625deg) ',
+					},
+				},
+				'main-button-click-1': {
+					'0%': {
+						opacity: '1',
+						transform: 'translateX(-100px) translateY(0px) rotate(0deg)',
+					},
+					'100%': {
+						opacity: '0',
+						transform: 'translateX(-275px) translateY(-200px) rotate(325deg) ',
+					},
+				},
+				'main-button-click-2': {
+					'0%': {
+						opacity: '1',
+						transform: 'translateX(-100px) translateY(0px) rotate(0deg)',
+					},
+					'100%': {
+						opacity: '0',
+						transform: 'translateX(-220px) translateY(-10px) rotate(425deg) ',
+					},
+				},
+				'main-button-click-3': {
+					'0%': {
+						opacity: '1',
+						transform: 'translateX(-50px) translateY(0px) rotate(0deg)',
+					},
+					'100%': {
+						opacity: '0',
+						transform: 'translateX(-100px) translateY(-150px) rotate(525deg) ',
+					},
+				},
+				'main-button-click-4': {
+					'0%': {
+						opacity: '1',
+						transform: 'translateX(0px) translateY(0px) rotate(0deg)',
+					},
+					'100%': {
+						opacity: '0',
+						transform: 'translateX(100px) translateY(-175px) rotate(1000deg) ',
+					},
 				},
 			},
 		},

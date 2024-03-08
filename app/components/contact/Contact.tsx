@@ -182,15 +182,12 @@ const Contact: React.FC = () => {
 			setMessage('');
 			setEmail('');
 			setName('');
-			setTimeout(() => {
-				setStatus(null);
-			}, 2500);
 		} else {
 			setStatus(false);
-			setTimeout(() => {
-				setStatus(null);
-			}, 2500);
 		}
+		setTimeout(() => {
+			setStatus(null);
+		}, 4000);
 	};
 
 	const getButtonLabel = (): string => {
@@ -247,7 +244,7 @@ const Contact: React.FC = () => {
 				<p className="mt-3 h-5 min-h-1 w-full text-center">
 					{getErrorMessage(name, email, message)}
 				</p>
-				<div className="flex h-[120px] w-[100%] scale-[70%] flex-row items-center justify-center overflow-x-hidden sm:scale-[80%]">
+				<div className="flex h-[120px] w-[100%] scale-[70%] flex-row items-center justify-center sm:scale-[80%]">
 					<MainButton onClick={(e) => handleSubmit(e)} label={getButtonLabel()} />
 				</div>
 			</div>

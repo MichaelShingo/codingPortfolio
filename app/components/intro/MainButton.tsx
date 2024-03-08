@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 interface MainButtonProps {
 	onClick:
@@ -8,15 +8,47 @@ interface MainButtonProps {
 	label: string;
 }
 
+type LinkObj = { link: string; x: string; y: string };
+const icons: LinkObj[] = [
+	{ link: '/eighthNote.svg', x: '120px', y: '0%' },
+	{ link: '/eighthRest.svg', x: '-100px', y: '0%' },
+	{ link: '/segno.svg', x: '-100px', y: '0%' },
+	{ link: '/halfNote.svg', x: '-25px', y: '0%' },
+	{ link: '/sixteenthNote.svg', x: '100%', y: '0%' },
+];
+
 const MainButton: React.FC<MainButtonProps> = ({ onClick, label }) => {
 	const [triggerAnimation, setTriggerAnimation] = useState<boolean>(false);
+
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		onClick(e);
 		setTriggerAnimation(true);
 		setTimeout(() => {
 			setTriggerAnimation(false);
-		}, 2000);
+		}, 1700);
 	};
+
+	const generateIcons = (): ReactNode[] => {
+		const res: ReactNode[] = [];
+
+		for (let i = 0; i < icons.length; i++) {
+			const animationName: string = triggerAnimation
+				? `animate-main-button-click-${i}`
+				: '';
+			res.push(
+				<img
+					key={i}
+					src={icons[i].link}
+					className={`pointer-events-none absolute aspect-square h-[50px] opacity-0 ${animationName}`}
+					style={{
+						transform: `translateX(${icons[i].x})`,
+					}}
+				/>
+			);
+		}
+		return res;
+	};
+
 	return (
 		<>
 			<button
@@ -27,13 +59,8 @@ const MainButton: React.FC<MainButtonProps> = ({ onClick, label }) => {
 					src="/sibeliusViolinConcerto.svg"
 					className="translate-y-36 opacity-0 group-hover:animate-scroll-music"
 				/>
-				<img
-					src="/quarterToneDown.svg"
-					className={`absolute aspect-square h-[50px] translate-x-[200%] ${
-						triggerAnimation ? 'animate-button-click-1' : ''
-					}`}
-				/>
 			</button>
+			{generateIcons()}
 			<p className="pointer-events-none absolute z-20 flex translate-y-[-6px] justify-center bg-none text-5xl font-thin text-paper-white opacity-100 transition duration-1000 ease-in-out peer-hover:-translate-y-12 peer-hover:scale-50 peer-hover:text-black">
 				{label}
 			</p>

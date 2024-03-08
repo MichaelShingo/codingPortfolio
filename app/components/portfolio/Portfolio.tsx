@@ -93,6 +93,7 @@ const Portfolio = () => {
 
 			res.push(
 				<PortfolioIcon
+					key={i}
 					itemId={i}
 					horizontalPosition={horizontalPosition}
 					verticalPosition={verticalPosition}
