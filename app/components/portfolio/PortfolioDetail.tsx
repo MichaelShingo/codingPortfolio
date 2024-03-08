@@ -24,16 +24,6 @@ const PortfolioDetail: React.FC = () => {
 		dispatch(setIsPortfolioDetailOpen(false));
 	};
 
-	const generateStaffLines = (): ReactNode => {
-		const res: ReactNode[] = [];
-		for (let i = 0; i < 5; i++) {
-			res.push(
-				<div key={i} className="none h-[2.5px] w-[100vw] bg-black lg:block"></div>
-			);
-		}
-		return res;
-	};
-
 	const generateTags = (): ReactNode => {
 		const res: ReactNode[] = [];
 		for (const tag of item.tags) {
@@ -124,13 +114,19 @@ const PortfolioDetail: React.FC = () => {
 					id="link-container"
 					className="mt-16 flex h-[60px] w-[50vw] flex-row items-center justify-center pb-10 lg:absolute lg:mt-0 lg:translate-y-[123px] lg:space-x-[200px] lg:pb-0"
 				>
-					<div
+					<a
+						href={item.github}
+						target="_blank"
+						rel="noreferrer"
 						id="github-button"
 						className="group h-[60px] w-[60px] cursor-pointer bg-[url('/githubBody.svg')] bg-contain bg-no-repeat lg:absolute lg:translate-x-[-50px]"
 					>
 						<div className="h-[60px] w-[60px] origin-[100%_100%] translate-x-[-28px] translate-y-[-8px] rotate-[-20deg] scale-[42%] bg-[url('/githubArm.svg')] bg-contain bg-no-repeat transition-all duration-700 group-hover:rotate-[-7deg] lg:absolute"></div>
-					</div>
-					<button
+					</a>
+					<a
+						href={item.link}
+						target="_blank"
+						rel="noreferrer"
 						id="link-button"
 						className="group flex h-[60px] w-[60px] translate-y-[-8%] scale-[115%] items-center justify-center transition duration-700 lg:translate-x-[-50px]"
 					>
@@ -142,7 +138,7 @@ const PortfolioDetail: React.FC = () => {
 							id="bottom-link"
 							className="absolute h-1/2 w-1/2 translate-x-[-20%] translate-y-[20%] bg-[url('/linkIcon.svg')] bg-contain bg-no-repeat group-hover:translate-x-[-23%] group-hover:translate-y-[23%]"
 						></div>
-					</button>
+					</a>
 				</div>
 			</div>
 		</section>

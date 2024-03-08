@@ -81,17 +81,19 @@ type BlurredFields = {
 	message: boolean;
 };
 
+const initialBlurState: BlurredFields = {
+	name: false,
+	email: false,
+	message: false,
+};
+
 const Contact: React.FC = () => {
 	const dispatch = useDispatch();
 	const [name, setName] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
 	const [message, setMessage] = useState<string>('');
 	const [status, setStatus] = useState<boolean | null>(null);
-	const [isBlurred, setIsBlurred] = useState<BlurredFields>({
-		name: false,
-		email: false,
-		message: false,
-	});
+	const [isBlurred, setIsBlurred] = useState<BlurredFields>(initialBlurState);
 
 	const isEmailValid = (email: string): boolean => {
 		const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -172,12 +174,21 @@ const Contact: React.FC = () => {
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	): Promise<void> => {
 		e.preventDefault();
+		if (getErrorMessage(name, email, message) !== '') {
+			setStatus(false);
+			setTimeout(() => {
+				setStatus(null);
+			}, 4000);
+			return;
+		}
 		const status: number = await sendContactForm({
 			name: name,
 			email: email,
 			message: message,
 		});
+
 		if (status === 200) {
+			setIsBlurred(initialBlurState);
 			setStatus(true);
 			setMessage('');
 			setEmail('');
