@@ -129,7 +129,9 @@ const Portfolio = () => {
 	return (
 		<section
 			ref={portfolioSectionRef}
-			className={`z-0 pt-10 min-h-screen ${isMobile ? 'h-fit' : 'h-[400vh]'}`}
+			className={`z-0 pt-10 min-h-screen ${
+				isMobile || windowWidth < 1024 ? 'h-fit' : 'h-[400vh]'
+			}`}
 		>
 			{windowWidth > 1024 && !isMobile ? (
 				<div ref={verticalScrollRef} className="relative h-[400vh]">

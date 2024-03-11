@@ -101,7 +101,7 @@ const Gallery: React.FC = () => {
 					onClick={handleClick}
 				>
 					<img
-						className={`h-full w-full duration-1000 rotate-${rotation}`}
+						className={`h-full w-full max-w-[100%] max-h-auto duration-1000 rotate-${rotation}`}
 						src="/quarterToneDown.svg"
 					/>
 				</button>
@@ -112,7 +112,7 @@ const Gallery: React.FC = () => {
 	return (
 		<section
 			id="gallery"
-			className="fixed z-50 h-full w-screen overflow-hidden transition duration-700"
+			className="fixed z-[50] h-full w-screen overflow-hidden transition duration-700"
 			style={{ opacity: isOpen ? '1' : '0', pointerEvents: isOpen ? 'all' : 'none' }}
 		>
 			<Arrow rotation="180" position="right-4 lg:right-3" onClick={toNextImage} />
@@ -166,7 +166,7 @@ const Images: React.FC<ImagesProps> = ({ imgIndex }) => {
 			res.push(
 				<motion.div
 					key={i}
-					className="h-screen w-screen shrink-0 bg-contain bg-center bg-no-repeat"
+					className="z-[100] h-screen w-screen shrink-0 bg-contain bg-center bg-no-repeat"
 					style={{
 						backgroundImage: `url(${images[i]})`,
 					}}

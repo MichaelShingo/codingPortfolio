@@ -11,6 +11,7 @@ import Portfolio from './components/portfolio/Portfolio';
 import PortfolioDetail from './components/portfolio/PortfolioDetail';
 import NavbarSelectionContainer from './components/selectionRect/NavbarSelectionContainer';
 import AppStateProvider from './context/AppStateContext';
+import Inverter from './components/Inverter';
 
 export default function Home() {
 	const isScrollDisabled: boolean = useAppSelector(
@@ -22,6 +23,7 @@ export default function Home() {
 	return (
 		<div className="h-[100vh]">
 			<AppStateProvider>
+				<Inverter />
 				<NavbarSelectionContainer />
 				<Intro />
 				<Gallery />
