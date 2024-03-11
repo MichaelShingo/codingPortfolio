@@ -94,12 +94,12 @@ const PortfolioDetail: React.FC = () => {
 					</div>
 				</button>
 			</div>
-			<div className="mb-10 mt-5 flex h-[235px] w-[100vw] flex-col items-center justify-start lg:space-y-14">
+			<div className="mb-10 mt-5 flex h-[235px] w-[80vw] flex-col items-center justify-start lg:space-y-14">
 				<img
 					src="/staffLines.svg"
 					className="relative hidden h-[235px] w-[100%] min-w-[6000px] scale-x-[500%] lg:block"
 				/>
-				<div className="relative flex flex-col items-center justify-center space-y-5 lg:absolute lg:translate-y-[4px] lg:flex-row lg:space-x-20 lg:space-y-0">
+				<div className="relative flex h-fit w-[80vw] flex-col flex-wrap items-center justify-center gap-y-5 lg:absolute lg:translate-y-[3px] lg:flex-row lg:gap-y-[21px] lg:space-x-20 lg:space-y-[0px]">
 					{generateTags()}
 				</div>
 				<div
