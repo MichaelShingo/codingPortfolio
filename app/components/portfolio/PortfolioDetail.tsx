@@ -1,7 +1,7 @@
 'use client';
 import { PortfolioItem } from '@/app/utils/sampleData';
 import { useAppSelector } from '@/redux/store';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { sampleJSON } from '@/app/utils/sampleData';
 import { useDispatch } from 'react-redux';
 import {
@@ -15,9 +15,13 @@ const PortfolioDetail: React.FC = () => {
 	const isOpen: boolean = useAppSelector(
 		(state) => state.locationReducer.value.isPortfolioDetailOpen
 	);
+	const isGalleryOpen = useAppSelector(
+		(state) => state.locationReducer.value.isGalleryOpen
+	);
 	const id: number = useAppSelector(
 		(state) => state.locationReducer.value.selectedPortfolioId
 	);
+	const [isSunHoverable, setIsSunHoverable] = useState<boolean>(true);
 	const item: PortfolioItem = sampleJSON[id];
 
 	const handleBackClick = () => {
@@ -40,6 +44,16 @@ const PortfolioDetail: React.FC = () => {
 		}
 		return res;
 	};
+
+	useEffect(() => {
+		setTimeout(() => {
+			if (isGalleryOpen) {
+				setIsSunHoverable(false);
+			} else {
+				setIsSunHoverable(true);
+			}
+		}, 1600);
+	}, [isGalleryOpen]);
 
 	const handleImageClick = () => {
 		dispatch(setIsGalleryOpen(true));
@@ -81,7 +95,7 @@ const PortfolioDetail: React.FC = () => {
 				</div>
 				<button
 					onClick={handleImageClick}
-					className="group flex min-h-[32vh] w-full items-center justify-center border-[3px] border-black px-2 lg:h-full lg:w-[30%]"
+					className="group z-50 flex min-h-[32vh] w-full items-center justify-center border-[3px] border-black px-2 lg:h-full lg:w-[30%]"
 				>
 					<div
 						id="background-image"
@@ -89,17 +103,21 @@ const PortfolioDetail: React.FC = () => {
 					>
 						<div
 							id="sun"
-							className="relative aspect-square h-[15%] max-h-[35px] translate-x-[-175%] translate-y-[150%] rounded-full bg-paper-white transition duration-[2000ms] group-hover:translate-y-[-130%] xl:max-h-[50px]"
+							className={`relative aspect-square h-[15%] max-h-[35px] translate-x-[-175%] translate-y-[150%] pointer-events-none ${
+								isGalleryOpen ? 'scale-[10000%]' : 'scale-[100%] '
+							} rounded-full bg-paper-white transition duration-[1500ms] ${
+								isSunHoverable ? 'group-hover:translate-y-[-130%]' : ''
+							} xl:max-h-[50px]`}
 						></div>
 					</div>
 				</button>
 			</div>
-			<div className="mb-10 mt-5 flex h-[235px] w-[80vw] flex-col items-center justify-start lg:space-y-14">
+			<div className="mb-10 mt-5 flex h-[235px] w-[100vw] flex-col items-center justify-start lg:mx-auto lg:translate-x-[-70px] lg:space-y-14">
 				<img
 					src="/staffLines.svg"
 					className="relative hidden h-[235px] w-[100%] min-w-[6000px] scale-x-[500%] lg:block"
 				/>
-				<div className="relative flex h-fit w-[80vw] flex-col flex-wrap items-center justify-center gap-y-5 lg:absolute lg:translate-y-[3px] lg:flex-row lg:gap-y-[21px] lg:space-x-20 lg:space-y-[0px]">
+				<div className="relative flex h-fit w-[100vw] flex-col flex-wrap items-center justify-center gap-y-5 lg:absolute lg:translate-y-[3px] lg:flex-row lg:gap-y-[21px] lg:space-x-20 lg:space-y-[0px]">
 					{generateTags()}
 				</div>
 				<div
@@ -110,7 +128,7 @@ const PortfolioDetail: React.FC = () => {
 					id="barline-1"
 					className="absolute right-[80px] hidden h-[235px] w-[15px] translate-y-[-56px] bg-black lg:block"
 				></div>
-				<div
+				{/* <div
 					id="link-container"
 					className="mt-16 flex h-[60px] w-[50vw] flex-row items-center justify-center pb-10 lg:absolute lg:mt-0 lg:translate-y-[123px] lg:space-x-[200px] lg:pb-0"
 				>
@@ -139,7 +157,7 @@ const PortfolioDetail: React.FC = () => {
 							className="absolute h-1/2 w-1/2 translate-x-[-20%] translate-y-[20%] bg-[url('/linkIcon.svg')] bg-contain bg-no-repeat group-hover:translate-x-[-23%] group-hover:translate-y-[23%]"
 						></div>
 					</a>
-				</div>
+				</div> */}
 			</div>
 		</section>
 	);

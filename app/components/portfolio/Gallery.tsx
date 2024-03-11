@@ -112,7 +112,7 @@ const Gallery: React.FC = () => {
 	return (
 		<section
 			id="gallery"
-			className="fixed z-50 h-full w-screen overflow-hidden bg-paper-white-trans-0 backdrop-blur-sm transition duration-700"
+			className="fixed z-50 h-full w-screen overflow-hidden transition duration-700"
 			style={{ opacity: isOpen ? '1' : '0', pointerEvents: isOpen ? 'all' : 'none' }}
 		>
 			<Arrow rotation="180" position="right-4 lg:right-3" onClick={toNextImage} />
@@ -126,22 +126,27 @@ const Gallery: React.FC = () => {
 					src="/doubleSharp.svg"
 				/>
 			</button>
-			<motion.div
-				onDragStart={onDragStart}
-				onDragEnd={onDragEnd}
-				drag="x"
-				dragConstraints={{ left: 0, right: 0 }}
-				style={{
-					x: dragX,
-				}}
-				animate={{
-					translateX: `-${imgIndex * 100}%`,
-				}}
-				className="flex cursor-grab items-center active:cursor-grabbing"
-				transition={SPRING_OPTIONS}
+			<div
+				className="transition delay-700 duration-700"
+				style={{ opacity: isOpen ? '1' : '0' }}
 			>
-				<Images imgIndex={imgIndex} />
-			</motion.div>
+				<motion.div
+					onDragStart={onDragStart}
+					onDragEnd={onDragEnd}
+					drag="x"
+					dragConstraints={{ left: 0, right: 0 }}
+					style={{
+						x: dragX,
+					}}
+					animate={{
+						translateX: `-${imgIndex * 100}%`,
+					}}
+					className="flex cursor-grab items-center active:cursor-grabbing"
+					transition={SPRING_OPTIONS}
+				>
+					<Images imgIndex={imgIndex} />
+				</motion.div>
+			</div>
 			<Dots imgIndex={imgIndex} setImgIndex={setImgIndex} />
 		</section>
 	);
