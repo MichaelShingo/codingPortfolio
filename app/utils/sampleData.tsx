@@ -100,7 +100,7 @@ export const sampleJSON: PortfolioItem[] = [
 		logo: '/trivialLogo.svg',
 		showcase: false,
 		description:
-			'Trivial Conspiracies is a collaboration with Philadelphia-based filmmaker, Sam Dellert, that showcases his film in an interactive way. The website makes heavy use of CSS animations and emphasizes responsive design in the context of an unconventional layout.',
+			'This website is a collaboration with Philadelphia-based filmmaker, Sam Dellert, that functions as an interactive showcase of his short film, "Trivial Conspiracies." It makes heavy use of CSS animations and emphasizes responsive design in the context of an unconventional layout.',
 		github: 'https://github.com/MichaelShingo/trivial-conspiracies',
 		link: 'https://trivialconspiracies.com',
 		images: [

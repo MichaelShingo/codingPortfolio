@@ -39,8 +39,10 @@ const Gallery: React.FC = () => {
 
 	const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.stopPropagation();
-		setImgIndex(0);
 		dispatch(setIsGalleryOpen(false));
+		setTimeout(() => {
+			setImgIndex(0);
+		}, 500);
 	};
 
 	const onDragStart = () => {
