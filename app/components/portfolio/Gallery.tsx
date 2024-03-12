@@ -166,9 +166,9 @@ const Images: React.FC<ImagesProps> = ({ imgIndex }) => {
 	const generateImages = (): ReactNode => {
 		const res: ReactNode[] = [];
 		for (let i = 0; i < images.length; i++) {
-			let maxHeight: string = '';
+			let maxHeight: string = 'max-h-[1080px]';
 			if (images[i].toLowerCase().includes('mobile')) {
-				maxHeight += 'max-h-[600px]';
+				maxHeight = 'max-h-[600px]';
 			}
 			res.push(
 				<motion.div
