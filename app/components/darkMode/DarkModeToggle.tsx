@@ -1,6 +1,6 @@
 import { setIsDarkMode } from '@/redux/features/locationSlice';
 import { useAppSelector } from '@/redux/store';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 const DarkModeToggle = () => {
@@ -16,9 +16,25 @@ const DarkModeToggle = () => {
 	const generateTriangles = (): ReactNode[] => {
 		const res: ReactNode[] = [];
 		for (let i = 0; i < 8; i++) {
-			res.push(<Triangle rotation={i * 45} />);
+			res.push(<Triangle key={i} rotation={i * 45} />);
 		}
 		return res;
+	};
+
+	useEffect(() => {
+		const localStorageDarkMode: string | null = localStorage.getItem('darkMode');
+		if (localStorageDarkMode) {
+			if (localStorageDarkMode === 'true') {
+				dispatch(setIsDarkMode(true));
+			} else {
+				dispatch(setIsDarkMode(false));
+			}
+		}
+	}, []);
+
+	const handleClick = () => {
+		dispatch(setIsDarkMode(!isDarkMode));
+		localStorage.setItem('darkMode', (!isDarkMode).toString());
 	};
 
 	return (
@@ -28,7 +44,7 @@ const DarkModeToggle = () => {
 					? 'pointer-events-none opacity-0'
 					: 'pointer-events-auto opacity-100'
 			}`}
-			onClick={() => dispatch(setIsDarkMode(!isDarkMode))}
+			onClick={handleClick}
 		>
 			{/* <div className="absolute z-20 h-full w-[100%] border-[2px] border-black"></div> */}
 			<div

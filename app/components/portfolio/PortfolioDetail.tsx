@@ -125,14 +125,14 @@ const PortfolioDetail: React.FC = () => {
 				<div className="relative flex h-fit w-[80vw] flex-col flex-wrap items-center justify-center gap-y-5 lg:absolute lg:translate-y-[3px] lg:flex-row lg:gap-x-20 lg:gap-y-[21px] lg:space-y-[0px]">
 					{generateTags()}
 				</div>
-				{/* <div
+				<div
 					id="barline-2"
 					className="absolute right-0 hidden h-[235px] w-[60px] translate-y-[-56px] bg-black lg:block"
 				></div>
 				<div
 					id="barline-1"
 					className="absolute right-[80px] hidden h-[235px] w-[15px] translate-y-[-56px] bg-black lg:block"
-				></div> */}
+				></div>
 				<div
 					id="link-container"
 					className="mt-16 flex h-[60px] w-[50vw] flex-row items-center justify-center pb-10 lg:absolute lg:mt-0 lg:translate-y-[123px] lg:space-x-[200px] lg:pb-0"
