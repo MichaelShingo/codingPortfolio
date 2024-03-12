@@ -11,7 +11,8 @@ import Portfolio from './components/portfolio/Portfolio';
 import PortfolioDetail from './components/portfolio/PortfolioDetail';
 import NavbarSelectionContainer from './components/selectionRect/NavbarSelectionContainer';
 import AppStateProvider from './context/AppStateContext';
-import Inverter from './components/Inverter';
+import Inverter from './components/darkMode/Inverter';
+import DarkModeToggle from './components/darkMode/DarkModeToggle';
 
 export default function Home() {
 	const isScrollDisabled: boolean = useAppSelector(
@@ -19,9 +20,12 @@ export default function Home() {
 			state.locationReducer.value.isPortfolioDetailOpen ||
 			state.locationReducer.value.isIntroOpen
 	);
+	const isDarkMode: boolean = useAppSelector(
+		(state) => state.locationReducer.value.isDarkMode
+	);
 
 	return (
-		<div className="h-[100vh]">
+		<div className={`${isDarkMode ? 'dark' : ''} h-[100vh]`}>
 			<AppStateProvider>
 				<Inverter />
 				<NavbarSelectionContainer />
@@ -32,6 +36,7 @@ export default function Home() {
 				<Bio />
 				<Portfolio />
 				<Contact />
+				<DarkModeToggle />
 				<WindowEvents />
 				<ScrollEvents />
 			</AppStateProvider>

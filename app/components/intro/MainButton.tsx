@@ -53,7 +53,7 @@ const MainButton: React.FC<MainButtonProps> = ({ onClick, label }) => {
 		<>
 			<button
 				onClick={(e) => handleClick(e)}
-				className="group peer z-10 flex h-[70px] w-[282px] items-center justify-center overflow-hidden bg-black transition duration-1000 ease-in-out hover:translate-x-[4px] hover:translate-y-[6px] hover:bg-black-trans"
+				className="group peer z-10 flex h-[70px] w-[282px] items-center justify-center overflow-hidden bg-black transition duration-1000 ease-in-out hover:translate-x-[4px] hover:translate-y-[6px] hover:bg-transparent"
 			>
 				<img
 					src="/sibeliusViolinConcerto.svg"

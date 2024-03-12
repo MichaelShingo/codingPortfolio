@@ -56,7 +56,7 @@ const PortfolioIcon: React.FC<PortfolioIconProps> = ({
 				src={currentItem.logo}
 			></img>
 			<div className="pointer-events-none absolute h-fit min-w-[200px] translate-x-[50%] border-[2px] border-black bg-paper-white p-2 opacity-0 transition duration-700 group-hover:translate-x-[80%] group-hover:opacity-100">
-				<p className="font-thin">
+				<p className="font-thin dark:font-normal">
 					{currentItem.title} - {currentItem.preview}
 				</p>
 				<div className="flex flex-row flex-wrap justify-center">{generateTags()}</div>

@@ -259,7 +259,7 @@ const Contact: React.FC = () => {
 					<MainButton onClick={(e) => handleSubmit(e)} label={getButtonLabel()} />
 				</div>
 			</div>
-			<div className="pb-3 text-center text-sm font-thin md:text-base">
+			<div className="pb-3 text-center text-sm font-thin md:text-base dark:font-normal">
 				<div className="mb-[2vh] flex h-[5vh] w-screen flex-row justify-center space-x-7">
 					<a
 						className="aspect-square h-[100%]"

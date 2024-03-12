@@ -44,6 +44,7 @@ type LocationState = {
 	selectedPortfolioId: number;
 	isPortfolioDetailOpen: boolean;
 	isGalleryOpen: boolean;
+	isDarkMode: boolean;
 };
 
 const initialState = {
@@ -59,6 +60,7 @@ const initialState = {
 		selectedPortfolioId: 0,
 		isPortfolioDetailOpen: false,
 		isGalleryOpen: false,
+		isDarkMode: false,
 	} as LocationState,
 } as InitialState;
 
@@ -102,6 +104,9 @@ export const location = createSlice({
 		setIsGalleryOpen: (state, action: PayloadAction<boolean>) => {
 			state.value.isGalleryOpen = action.payload;
 		},
+		setIsDarkMode: (state, action: PayloadAction<boolean>) => {
+			state.value.isDarkMode = action.payload;
+		},
 	},
 });
 
@@ -117,5 +122,6 @@ export const {
 	setSelectedPortfolioId,
 	setIsPortfolioDetailOpen,
 	setIsGalleryOpen,
+	setIsDarkMode,
 } = location.actions;
 export default location.reducer;

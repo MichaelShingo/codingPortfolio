@@ -159,24 +159,40 @@ const Images: React.FC<ImagesProps> = ({ imgIndex }) => {
 	const id: number = useAppSelector(
 		(state) => state.locationReducer.value.selectedPortfolioId
 	);
+	const isDarkMode: boolean = useAppSelector(
+		(state) => state.locationReducer.value.isDarkMode
+	);
 	const images: string[] = sampleJSON[id].images;
 	const generateImages = (): ReactNode => {
 		const res: ReactNode[] = [];
 		for (let i = 0; i < images.length; i++) {
+			let maxHeight: string = '';
+			if (images[i].toLowerCase().includes('mobile')) {
+				maxHeight += 'max-h-[600px]';
+			}
 			res.push(
 				<motion.div
 					key={i}
-					className="z-[100] h-screen w-screen shrink-0 bg-contain bg-center bg-no-repeat"
-					style={{
-						backgroundImage: `url(${images[i]})`,
-					}}
+					className="z-[100] flex h-screen w-screen items-center justify-center"
 					animate={{
 						scale: i === imgIndex ? 0.93 : 0.3,
 						translateY: '-2%',
 						opacity: i === imgIndex ? 1 : 0,
 					}}
 					transition={SPRING_OPTIONS}
-				></motion.div>
+				>
+					<div
+						className={`absolute z-10 mix-blend-difference h-screen w-screen bg-white transition duration-700 ${
+							isDarkMode ? 'opacity-100' : 'opacity-0'
+						}`}
+					></div>
+					<div
+						className={`z-0 h-screen w-screen shrink-0 bg-contain bg-center bg-no-repeat ${maxHeight}`}
+						style={{
+							backgroundImage: `url(${images[i]})`,
+						}}
+					></div>
+				</motion.div>
 			);
 		}
 		return res;

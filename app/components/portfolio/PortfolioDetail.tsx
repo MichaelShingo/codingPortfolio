@@ -89,7 +89,12 @@ const PortfolioDetail: React.FC = () => {
 			</div>
 			<div className="my-7 flex w-full flex-col items-center justify-center space-y-5 lg:flex-row lg:space-x-5 lg:space-y-0">
 				<div className="h-fit min-h-[32vh] w-full border-[3px] border-black p-5 lg:w-[70%]">
-					<p className={`text-lg font-thin normal-case lg:text-2xl` + paragraphStyles}>
+					<p
+						className={
+							`text-lg font-thin normal-case lg:text-2xl dark:font-normal` +
+							paragraphStyles
+						}
+					>
 						{item.description}
 					</p>
 				</div>
@@ -117,7 +122,7 @@ const PortfolioDetail: React.FC = () => {
 					src="/staffLines.svg"
 					className="relative hidden h-[235px] w-[100%] min-w-[6000px] scale-x-[500%] lg:block"
 				/>
-				<div className="relative flex h-fit w-[100vw] flex-col flex-wrap items-center justify-center gap-y-5 lg:absolute lg:translate-y-[3px] lg:flex-row lg:gap-y-[21px] lg:space-x-20 lg:space-y-[0px]">
+				<div className="relative flex h-fit w-[80vw] flex-col flex-wrap items-center justify-center gap-y-5 lg:absolute lg:translate-y-[3px] lg:flex-row lg:gap-y-[21px] lg:space-x-20 lg:space-y-[0px]">
 					{generateTags()}
 				</div>
 				<div
@@ -128,7 +133,7 @@ const PortfolioDetail: React.FC = () => {
 					id="barline-1"
 					className="absolute right-[80px] hidden h-[235px] w-[15px] translate-y-[-56px] bg-black lg:block"
 				></div>
-				{/* <div
+				<div
 					id="link-container"
 					className="mt-16 flex h-[60px] w-[50vw] flex-row items-center justify-center pb-10 lg:absolute lg:mt-0 lg:translate-y-[123px] lg:space-x-[200px] lg:pb-0"
 				>
@@ -157,7 +162,7 @@ const PortfolioDetail: React.FC = () => {
 							className="absolute h-1/2 w-1/2 translate-x-[-20%] translate-y-[20%] bg-[url('/linkIcon.svg')] bg-contain bg-no-repeat group-hover:translate-x-[-23%] group-hover:translate-y-[23%]"
 						></div>
 					</a>
-				</div> */}
+				</div>
 			</div>
 		</section>
 	);
