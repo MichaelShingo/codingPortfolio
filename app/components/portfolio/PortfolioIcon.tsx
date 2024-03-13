@@ -50,7 +50,7 @@ const PortfolioIcon: React.FC<PortfolioIconProps> = ({
 				transform: `translateY(${verticalPosition}%) scale(100%)`,
 			}}
 		>
-			<div className="absolute -z-10 h-[2px] w-[65%] translate-x-[0%] translate-y-[100%] bg-black opacity-0 transition duration-700 group-hover:translate-x-[100%] group-hover:opacity-100"></div>
+			<div className="absolute -z-10 h-[2px] w-[65%] translate-x-[0%] translate-y-[100%] bg-black opacity-0 transition duration-700 group-hover:translate-x-[100%] group-hover:opacity-100 dark:bg-white"></div>
 			<img
 				className="rounded-full border-[3px] border-black bg-paper-white transition dark:invert"
 				src={currentItem.logo}

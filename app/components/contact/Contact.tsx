@@ -31,7 +31,7 @@ interface InputFieldProps {
 	setVal: Dispatch<SetStateAction<string>>;
 	handleBlur: () => void;
 }
-const inputFieldClasses: string = `w-[65vw] max-w-[575px] rounded-md focus:rounded-xs bg-paper-grey dark:bg-gray-700 font-thin text-base p-2 peer transition duration-700 origin-top-right `;
+const inputFieldClasses: string = `w-[65vw] max-w-[575px] rounded-md focus:rounded-xs bg-paper-grey dark:bg-paper-grey-dark font-thin text-base p-2 peer transition duration-700 origin-top-right `;
 const labelClasses: string =
 	'mt-5 text-xl 2xl:text-2xl font-light text-left w-[65%] max-w-[575px]';
 const clefContainerClasses: string =
@@ -215,7 +215,7 @@ const Contact: React.FC = () => {
 		<section
 			ref={contactSectionRef}
 			id="contact"
-			className="flex h-screen w-screen flex-col items-center justify-between bg-paper-white pt-32 2xl:pt-44 dark:bg-black"
+			className="flex h-fit min-h-screen w-screen flex-col items-center justify-between bg-paper-white pt-32 2xl:pt-44 dark:bg-black"
 		>
 			<SelectionRect boundingBox={contactBoundingBox} />
 			<div className="flex h-fit w-[100%] flex-col justify-center">

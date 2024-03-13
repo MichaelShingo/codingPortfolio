@@ -77,7 +77,8 @@ const Gallery: React.FC = () => {
 			} else if (e.key === 'ArrowRight') {
 				toNextImage();
 			} else if (e.key === 'Escape') {
-				dispatch(setIsGalleryOpen(false));
+				// e.preventDefault();
+				// dispatch(setIsGalleryOpen(false));
 			}
 		};
 		window.addEventListener('keydown', handleKeyDown);
@@ -183,9 +184,8 @@ const Images: React.FC<ImagesProps> = ({ imgIndex }) => {
 				>
 					<div
 						className={`absolute z-10 mix-blend-screen h-screen w-screen transition duration-700 ${
-							isDarkMode ? 'opacity-100' : 'opacity-0'
+							isDarkMode ? 'opacity-00' : 'opacity-0'
 						}`}
-						style={{ backgroundColor: 'rgb(3, 90, 90)' }}
 					></div>
 					<div
 						className={`z-0 h-screen w-screen shrink-0 bg-contain bg-center bg-no-repeat ${maxHeight}`}

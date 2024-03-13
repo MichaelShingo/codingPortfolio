@@ -17,7 +17,7 @@ const TypedText = () => {
 		const textList: string[] = [
 			'const data = {',
 			`occupations: [‘Software Developer’, 'Musician'],`,
-			`specializations: [‘frontend web dev', ‘audio apps’],`,
+			`specializations: [‘frontend web development', ‘audio apps’],`,
 			`location: ‘Rotterdam, the Netherlands’,`,
 			`};`,
 		];
