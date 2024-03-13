@@ -4,7 +4,7 @@ import { useAppSelector } from '@/redux/store';
 import { Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { motion, useMotionValue, useMotionValueEvent } from 'framer-motion';
-import { sampleJSON } from '@/app/utils/sampleData';
+import { data } from '@/app/utils/data';
 
 const DRAG_BUFFER = 50;
 const SPRING_OPTIONS = {
@@ -19,7 +19,7 @@ const Gallery: React.FC = () => {
 	const id: number = useAppSelector(
 		(state) => state.locationReducer.value.selectedPortfolioId
 	);
-	const images: string[] = sampleJSON[id].images;
+	const images: string[] = data[id].images;
 
 	const dragX = useMotionValue(0);
 	const dragXProgress = useMotionValue(0);
@@ -162,7 +162,7 @@ const Images: React.FC<ImagesProps> = ({ imgIndex }) => {
 	const isDarkMode: boolean = useAppSelector(
 		(state) => state.locationReducer.value.isDarkMode
 	);
-	const images: string[] = sampleJSON[id].images;
+	const images: string[] = data[id].images;
 	const generateImages = (): ReactNode => {
 		const res: ReactNode[] = [];
 		for (let i = 0; i < images.length; i++) {
@@ -209,7 +209,7 @@ const Dots: React.FC<DotsProps> = ({ imgIndex, setImgIndex }) => {
 	const id: number = useAppSelector(
 		(state) => state.locationReducer.value.selectedPortfolioId
 	);
-	const images: string[] = sampleJSON[id].images;
+	const images: string[] = data[id].images;
 	return (
 		<div className="absolute bottom-0 flex h-[50px] w-full items-center justify-center gap-4">
 			{images.map((img, index) => {

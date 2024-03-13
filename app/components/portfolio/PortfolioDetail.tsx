@@ -1,8 +1,8 @@
 'use client';
-import { PortfolioItem } from '@/app/utils/sampleData';
+import { PortfolioItem } from '@/app/utils/data';
 import { useAppSelector } from '@/redux/store';
 import React, { ReactNode, useEffect, useState } from 'react';
-import { sampleJSON } from '@/app/utils/sampleData';
+import { data } from '@/app/utils/data';
 import { useDispatch } from 'react-redux';
 import {
 	setIsGalleryOpen,
@@ -22,7 +22,7 @@ const PortfolioDetail: React.FC = () => {
 		(state) => state.locationReducer.value.selectedPortfolioId
 	);
 	const [isSunHoverable, setIsSunHoverable] = useState<boolean>(true);
-	const item: PortfolioItem = sampleJSON[id];
+	const item: PortfolioItem = data[id];
 
 	const handleBackClick = () => {
 		dispatch(setIsPortfolioDetailOpen(false));

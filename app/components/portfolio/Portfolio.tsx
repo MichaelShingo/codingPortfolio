@@ -3,7 +3,7 @@ import { motion, useTransform, useScroll } from 'framer-motion';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import ProjectToggleButton from './ProjectToggleButton';
 import { useAppSelector } from '@/redux/store';
-import { PortfolioItem, sampleJSON } from '@/app/utils/sampleData';
+import { PortfolioItem } from '@/app/utils/data';
 import { useDispatch } from 'react-redux';
 import {
 	boundingClientRectToBoundingBox,
@@ -15,6 +15,7 @@ import {
 import { actions, useAppState } from '../../context/AppStateContext';
 import PortfolioIcon from './PortfolioIcon';
 import useIsMobile from '@/app/customHooks/useIsMobile';
+import { data } from '@/app/utils/data';
 
 const Portfolio = () => {
 	const dispatch = useDispatch();
@@ -53,7 +54,7 @@ const Portfolio = () => {
 	const xScroll = useTransform(scrollYProgress, [0, 1], ['80%', '-210%']);
 
 	useEffect(() => {
-		setPortfolioData(sampleJSON);
+		setPortfolioData(data);
 	}, []);
 
 	useEffect(() => {

@@ -7,12 +7,14 @@ type InitialState = {
 type WindowState = {
 	windowHeight: number;
 	windowWidth: number;
+	isCursorInWindow: boolean;
 };
 
 const initialState = {
 	value: {
 		windowHeight: 0,
 		windowWidth: 0,
+		isCursorInWindow: false,
 	} as WindowState,
 } as InitialState;
 
@@ -26,8 +28,11 @@ export const window = createSlice({
 		setWidth: (state, action: PayloadAction<number>) => {
 			state.value.windowWidth = action.payload;
 		},
+		setIsCursorInWindow: (state, action: PayloadAction<boolean>) => {
+			state.value.isCursorInWindow = action.payload;
+		},
 	},
 });
 
-export const { setHeight, setWidth } = window.actions;
+export const { setHeight, setWidth, setIsCursorInWindow } = window.actions;
 export default window.reducer;

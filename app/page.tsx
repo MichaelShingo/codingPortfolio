@@ -13,19 +13,22 @@ import NavbarSelectionContainer from './components/selectionRect/NavbarSelection
 import AppStateProvider from './context/AppStateContext';
 import Inverter from './components/darkMode/Inverter';
 import DarkModeToggle from './components/darkMode/DarkModeToggle';
+import { useDispatch } from 'react-redux';
+import { setIsCursorInWindow } from '@/redux/features/windowSlice';
 
 export default function Home() {
-	const isScrollDisabled: boolean = useAppSelector(
-		(state) =>
-			state.locationReducer.value.isPortfolioDetailOpen ||
-			state.locationReducer.value.isIntroOpen
-	);
 	const isDarkMode: boolean = useAppSelector(
 		(state) => state.locationReducer.value.isDarkMode
 	);
 
+	const dispatch = useDispatch();
+
 	return (
-		<div className={`${isDarkMode ? 'dark' : ''} h-[100vh]`}>
+		<div
+			onMouseEnter={() => dispatch(setIsCursorInWindow(true))}
+			onMouseLeave={() => dispatch(setIsCursorInWindow(false))}
+			className={`${isDarkMode ? 'dark' : ''} h-[100vh]`}
+		>
 			<AppStateProvider>
 				<Inverter />
 				<NavbarSelectionContainer />

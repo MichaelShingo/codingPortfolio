@@ -10,7 +10,7 @@ export type PortfolioItem = {
 	images: string[];
 };
 
-export const sampleJSON: PortfolioItem[] = [
+export const data: PortfolioItem[] = [
 	{
 		title: 'Miitronome',
 		preview: 'A metronome with support for polyrhythms, subdivisions, and more.',

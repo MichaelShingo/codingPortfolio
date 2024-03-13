@@ -1,4 +1,4 @@
-import { PortfolioItem } from '@/app/utils/sampleData';
+import { PortfolioItem } from '@/app/utils/data';
 import {
 	setIsPortfolioDetailOpen,
 	setSelectedPortfolioId,
