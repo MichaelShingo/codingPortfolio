@@ -39,7 +39,7 @@ const DarkModeToggle = () => {
 
 	return (
 		<button
-			className={`fixed sm:right-3 sm:top-3 right-2 top-2 z-50 flex h-[30px] w-[30px] sm:h-[50px] sm:w-[50px] items-center justify-center rounded-full transition duration-700 ${
+			className={`fixed dark:invert sm:right-3 sm:top-3 right-2 top-2 z-50 flex h-[30px] w-[30px] sm:h-[50px] sm:w-[50px] items-center justify-center rounded-full transition duration-700 ${
 				isPortfolioDetailOpen
 					? 'pointer-events-none opacity-0'
 					: 'pointer-events-auto opacity-100'

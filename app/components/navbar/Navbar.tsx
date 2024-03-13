@@ -41,7 +41,7 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ title, scrollFunction }) => {
 		<button
 			ref={ref}
 			onClick={handleClick}
-			className="p-1 text-center text-xl font-normal uppercase transition duration-300 hover:scale-[95%] sm:text-3xl md:text-5xl"
+			className="p-1 text-center text-xl font-normal uppercase text-black transition duration-300 hover:scale-[95%] sm:text-3xl md:text-5xl dark:text-white"
 		>
 			{title}
 		</button>
@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
 	return (
 		<nav
 			ref={ref}
-			className="fixed z-30 flex h-fit w-screen flex-row items-center justify-center space-x-9 bg-paper-white py-4 sm:space-x-11 md:space-x-20"
+			className="fixed z-30 flex h-fit w-screen flex-row items-center justify-center space-x-9 bg-paper-white py-4 transition sm:space-x-11 md:space-x-20 dark:bg-black"
 		>
 			<NavbarItem scrollFunction={scrollToBio} title="Bio" />
 			<NavbarItem scrollFunction={scrollToPortfolio} title="Portfolio" />

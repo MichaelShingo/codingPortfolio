@@ -101,7 +101,7 @@ const Gallery: React.FC = () => {
 					onClick={handleClick}
 				>
 					<img
-						className={`h-full w-full max-w-[100%] max-h-auto duration-1000 rotate-${rotation}`}
+						className={`h-full dark:invert w-full max-w-[100%] max-h-auto duration-1000 rotate-${rotation}`}
 						src="/quarterToneDown.svg"
 					/>
 				</button>
@@ -118,7 +118,7 @@ const Gallery: React.FC = () => {
 			<Arrow rotation="180" position="right-4 lg:right-3" onClick={toNextImage} />
 			<Arrow rotation="0" position="left-4 lg:left-1" onClick={toPrevImage} />
 			<button
-				className="group absolute right-1 z-50 m-1 aspect-square h-[6%] rounded-full bg-paper-white-trans-0 p-2 transition duration-300 sm:right-2 sm:m-3 sm:h-[6%] sm:bg-transparent sm:p-1"
+				className="group absolute right-1 z-50 m-1 aspect-square h-[6%] rounded-full bg-paper-white-trans-0 p-2 transition duration-300 sm:right-2 sm:m-3 sm:h-[6%] sm:bg-transparent sm:p-1 dark:invert"
 				onClick={(e) => handleClose(e)}
 			>
 				<img
@@ -182,9 +182,10 @@ const Images: React.FC<ImagesProps> = ({ imgIndex }) => {
 					transition={SPRING_OPTIONS}
 				>
 					<div
-						className={`absolute z-10 mix-blend-difference h-screen w-screen bg-white transition duration-700 ${
+						className={`absolute z-10 mix-blend-screen h-screen w-screen transition duration-700 ${
 							isDarkMode ? 'opacity-100' : 'opacity-0'
 						}`}
+						style={{ backgroundColor: 'rgb(3, 90, 90)' }}
 					></div>
 					<div
 						className={`z-0 h-screen w-screen shrink-0 bg-contain bg-center bg-no-repeat ${maxHeight}`}
@@ -221,14 +222,12 @@ const Dots: React.FC<DotsProps> = ({ imgIndex, setImgIndex }) => {
 						style={{ transform: isSelected ? '' : 'skew(-10deg, -8deg)' }}
 						className={`flex items-center justify-center h-4 w-4 rounded-full transition duration-300 hover:scale-[120%] ${
 							isSelected
-								? 'bg-none border-black border-[2px] scale-[108%]'
-								: 'bg-black border-none scale-[90%]'
+								? 'bg-none border-black dark:border-white border-[2px] scale-[108%]'
+								: 'bg-black dark:bg-white border-none scale-[90%]'
 						}`}
 					>
 						<div
-							className={`absolute translate-y-[-50%] w-[2px] ${
-								isSelected ? 'bg-black' : 'bg-black'
-							} transition duration-300`}
+							className={`absolute w-[2px] translate-y-[-50%] bg-black transition duration-300 dark:bg-white`}
 							style={{
 								width: isSelected ? '2px' : '1.5px',
 								height: isSelected ? '100%' : '200%',

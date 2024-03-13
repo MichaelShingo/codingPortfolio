@@ -39,7 +39,7 @@ const MainButton: React.FC<MainButtonProps> = ({ onClick, label }) => {
 				<img
 					key={i}
 					src={icons[i].link}
-					className={`pointer-events-none absolute aspect-square h-[50px] opacity-0 ${animationName}`}
+					className={`pointer-events-none absolute aspect-square h-[50px] opacity-0 ${animationName} dark:invert`}
 					style={{
 						transform: `translateX(${icons[i].x})`,
 					}}
@@ -53,18 +53,18 @@ const MainButton: React.FC<MainButtonProps> = ({ onClick, label }) => {
 		<>
 			<button
 				onClick={(e) => handleClick(e)}
-				className="group peer z-10 flex h-[70px] w-[282px] items-center justify-center overflow-hidden bg-black transition duration-1000 ease-in-out hover:translate-x-[4px] hover:translate-y-[6px] hover:bg-transparent"
+				className="group peer z-10 flex h-[70px] w-[282px] items-center justify-center overflow-hidden bg-black transition duration-1000 ease-in-out hover:translate-x-[4px] hover:translate-y-[6px] hover:bg-transparent dark:bg-white"
 			>
 				<img
 					src="/sibeliusViolinConcerto.svg"
-					className="translate-y-36 opacity-0 group-hover:animate-scroll-music"
+					className="translate-y-36 opacity-0 group-hover:animate-scroll-music dark:invert"
 				/>
 			</button>
 			{generateIcons()}
-			<p className="pointer-events-none absolute z-20 flex translate-y-[-6px] justify-center bg-none text-5xl font-thin text-paper-white opacity-100 transition duration-1000 ease-in-out peer-hover:-translate-y-12 peer-hover:scale-50 peer-hover:text-black">
+			<p className="pointer-events-none absolute z-20 flex translate-y-[-6px] justify-center bg-none text-5xl font-thin text-paper-white opacity-100 transition duration-1000 ease-in-out peer-hover:-translate-y-12 peer-hover:scale-50 peer-hover:text-black dark:text-black dark:peer-hover:text-paper-white">
 				{label}
 			</p>
-			<div className="absolute z-0 flex h-[69px] w-[285px] translate-x-[4px] translate-y-[6px] items-center justify-center border-[3px] border-solid border-black bg-transparent transition ease-in-out"></div>
+			<div className="absolute z-0 flex h-[69px] w-[285px] translate-x-[4px] translate-y-[6px] items-center justify-center border-[3px] border-solid border-black bg-transparent transition ease-in-out dark:border-white"></div>
 		</>
 	);
 };

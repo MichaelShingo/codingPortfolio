@@ -36,7 +36,7 @@ const SelectionCorner: React.FC<SelectionCornerProps> = ({
 	return (
 		<img
 			src={svgLink}
-			className={`sm-scale-150 pointer-events-none absolute left-0 top-0 z-50 h-[7px] w-[7px] origin-center transition duration-1000`}
+			className={`sm-scale-150 pointer-events-none absolute left-0 top-0 z-50 h-[7px] w-[7px] origin-center transition duration-1000 dark:invert`}
 			style={{
 				transform: `translateX(${position.x + offset}px) translateY(${
 					position.y

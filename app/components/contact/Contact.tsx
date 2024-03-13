@@ -31,7 +31,7 @@ interface InputFieldProps {
 	setVal: Dispatch<SetStateAction<string>>;
 	handleBlur: () => void;
 }
-const inputFieldClasses: string = `w-[65vw] max-w-[575px] rounded-md focus:rounded-xs bg-paper-grey font-thin text-base p-2 peer transition duration-700 origin-top-right `;
+const inputFieldClasses: string = `w-[65vw] max-w-[575px] rounded-md focus:rounded-xs bg-paper-grey dark:bg-gray-700 font-thin text-base p-2 peer transition duration-700 origin-top-right `;
 const labelClasses: string =
 	'mt-5 text-xl 2xl:text-2xl font-light text-left w-[65%] max-w-[575px]';
 const clefContainerClasses: string =
@@ -57,7 +57,7 @@ const InputField: React.FC<InputFieldProps> = ({
 	};
 
 	return (
-		<div className="group flex w-[100%] flex-col items-center justify-center">
+		<div className="group flex w-[100%] flex-col items-center justify-center dark:text-white">
 			<h3 className={labelClasses}>{label}</h3>
 			<div className="flex flex-row">
 				<input
@@ -215,7 +215,7 @@ const Contact: React.FC = () => {
 		<section
 			ref={contactSectionRef}
 			id="contact"
-			className="flex h-screen w-screen flex-col items-center justify-between pt-32 2xl:pt-44"
+			className="flex h-screen w-screen flex-col items-center justify-between bg-paper-white pt-32 2xl:pt-44 dark:bg-black"
 		>
 			<SelectionRect boundingBox={contactBoundingBox} />
 			<div className="flex h-fit w-[100%] flex-col justify-center">
@@ -235,7 +235,7 @@ const Contact: React.FC = () => {
 					clef={<AltoClef />}
 					handleBlur={() => setIsBlurred((prev) => ({ ...prev, email: true }))}
 				/>
-				<div className="flex w-[100%] flex-col items-center justify-center">
+				<div className="flex w-[100%] flex-col items-center justify-center dark:text-white">
 					<h3 className={labelClasses}>Message*</h3>
 					<div className="flex flex-row">
 						<textarea
@@ -252,17 +252,17 @@ const Contact: React.FC = () => {
 						</div>
 					</div>
 				</div>
-				<p className="mt-3 h-5 min-h-1 w-full text-center">
+				<p className="mt-3 h-5 min-h-1 w-full text-center dark:text-white">
 					{getErrorMessage(name, email, message)}
 				</p>
 				<div className="flex h-[120px] w-[100%] scale-[70%] flex-row items-center justify-center sm:scale-[80%]">
 					<MainButton onClick={(e) => handleSubmit(e)} label={getButtonLabel()} />
 				</div>
 			</div>
-			<div className="pb-3 text-center text-sm font-thin md:text-base dark:font-normal">
+			<div className="pb-3 text-center text-sm font-thin md:text-base dark:text-white">
 				<div className="mb-[2vh] flex h-[5vh] w-screen flex-row justify-center space-x-7">
 					<a
-						className="aspect-square h-[100%]"
+						className="aspect-square h-[100%] dark:invert"
 						href="https://github.com/MichaelShingo"
 						target="_blank"
 						rel="noreferrer"
@@ -270,7 +270,7 @@ const Contact: React.FC = () => {
 						<img src="/github.svg" />
 					</a>
 					<a
-						className="aspect-square h-[100%]"
+						className="aspect-square h-[100%] dark:invert"
 						href="https://www.linkedin.com/in/software-engineer-shingo/"
 						target="_blank"
 						rel="noreferrer"
@@ -278,7 +278,7 @@ const Contact: React.FC = () => {
 						<img src="/linkedin.svg" />
 					</a>
 					<a
-						className="aspect-square h-[100%]"
+						className="aspect-square h-[100%] dark:invert"
 						href="https://www.youtube.com/channel/UCb46nljnneXaQCa5wKYsbWA"
 						target="_blank"
 						rel="noreferrer"
@@ -293,6 +293,7 @@ const Contact: React.FC = () => {
 						href="https://github.com/MichaelShingo/codingPortfolio"
 						target="_blank"
 						rel="noreferrer"
+						className="dark:invert"
 					>
 						<img src="/github.svg" className="mb-1 ml-1 inline h-5 cursor-pointer" />
 					</a>

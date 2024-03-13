@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { actions, useAppState } from '../../context/AppStateContext';
 import { useAppSelector } from '@/redux/store';
 export const paragraphStyles =
-	' 2xl:text-3xl 2xl:leading-[45px] lg:text-2xl lg:leading-[40px] md:text-2xl md:leading-9 sm:text-base text-lg';
+	' 2xl:text-3xl 2xl:leading-[45px] lg:text-2xl lg:leading-[40px] md:text-2xl md:leading-9 sm:text-base text-lg transition text-black dark:text-white';
 
 const Bio: React.FC = () => {
 	const dispatch = useDispatch();
@@ -52,16 +52,16 @@ const Bio: React.FC = () => {
 	return (
 		<section
 			ref={bioSectionRef}
-			className="-z-10 flex h-fit min-h-screen w-screen flex-col items-center pt-[120px]"
+			className="-z-10 flex h-fit min-h-screen w-screen flex-col items-center bg-paper-white pt-[120px] dark:bg-black"
 		>
 			<div
 				id="p-container"
 				className={
-					`top-5 flex h-fit w-[80%] flex-col items-center justify-center space-y-3 border-[3px] border-solid border-black bg-paper-white p-5 text-justify font-light sm:w-[55%] md:w-[70%] lg:p-8 2xl:w-[55%]` +
+					`top-5 flex h-fit w-[80%] flex-col items-center justify-center space-y-3 border-[3px] border-solid border-black dark:border-white bg-paper-white dark:bg-black transition p-5 text-justify font-light sm:w-[55%] md:w-[70%] lg:p-8 2xl:w-[55%]` +
 					paragraphStyles
 				}
 			>
-				<p ref={bioTextboxRef}>
+				<p ref={bioTextboxRef} className="">
 					I am a software developer and musician with a passion for exploring the
 					intersections between tech and the arts, helping creative professionals advance
 					their skills and careers. As a web developer proficient in React, Typescript,
@@ -82,7 +82,7 @@ const Bio: React.FC = () => {
 			<button
 				id="arrow-container"
 				onClick={() => state.scrollToPortfolio()}
-				className="relative h-[15vh] w-[3px] bg-black transition-all duration-700 hover:h-[20vh]"
+				className="relative h-[15vh] w-[3px] bg-black transition-all duration-700 hover:h-[20vh] dark:invert"
 			>
 				<div
 					id="clickable-area"

@@ -18,7 +18,7 @@ export const data: PortfolioItem[] = [
 		logo: '/miitronomeLogo.svg',
 		showcase: true,
 		description:
-			'Miitronome is a progressive web application which can be used online or installed on iOS, Android, and Windows. The Metronome has robust features, including support for polyrhythms, subdivisions, and sound customization.',
+			'Miitronome is a progressive web application which can be used online or installed on iOS, Android, and Windows. The metronome has robust features, including support for polyrhythms, subdivisions, and sound customization.',
 		github: 'https://github.com/MichaelShingo/metronome',
 		link: 'https://metronome.michaelshingo.com',
 		images: [
@@ -38,7 +38,7 @@ export const data: PortfolioItem[] = [
 		logo: '/annalyzeLogo.svg',
 		showcase: true,
 		description:
-			'AnnaLyze is an application that allows the user to upload audio, creates a waveform visualization and analyzes the pitch content of the music. The analysis portions are still under development, but feel free to try to the visualizer and audio player features.',
+			'AnnaLyze is an application that allows the user to upload audio, creates a waveform visualization and analyzes the pitch content of the music. The analysis portions are still under development, but feel free to try the visualizer and audio player features.',
 		github: 'https://github.com/MichaelShingo/audioFeatures',
 		link: 'https://annalyze.vercel.app',
 		images: [

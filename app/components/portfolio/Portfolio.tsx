@@ -118,7 +118,7 @@ const Portfolio = () => {
 				<button
 					key={i}
 					onClick={() => handleClick(i)}
-					className={`z-10 aspect-square w-[45%] animate-fade-in-portfolio rounded-full border-[2px] border-black bg-paper-white p-3 transition duration-700 sm:border-[4px]`}
+					className={`z-10 aspect-square w-[45%] animate-fade-in-portfolio rounded-full border-[2px] border-black bg-paper-white p-3 transition duration-700 sm:border-[4px] dark:invert`}
 				>
 					<img className="" src={filteredPortfolioData[i].logo}></img>
 				</button>
@@ -130,7 +130,7 @@ const Portfolio = () => {
 	return (
 		<section
 			ref={portfolioSectionRef}
-			className={`z-0 pt-10 min-h-screen ${
+			className={`z-0 pt-10 min-h-screen bg-paper-white dark:bg-black ${
 				isMobile || windowWidth < 1024 ? 'h-fit' : 'h-[400vh]'
 			}`}
 		>
@@ -156,7 +156,7 @@ const Portfolio = () => {
 							{filteredPortfolioData && generatePortfolioItems(windowWidth * 2)}
 							<img
 								src="/chaconne.svg"
-								className="pointer-events-none absolute left-[55%] scale-[200%]"
+								className="pointer-events-none absolute left-[55%] scale-[200%] dark:invert"
 							/>
 						</div>
 					</motion.div>

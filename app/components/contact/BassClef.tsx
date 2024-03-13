@@ -1,6 +1,7 @@
 const BassClef: React.FC = () => {
 	return (
 		<svg
+			className="transition dark:invert"
 			version="1.1"
 			id="Layer_1"
 			x="0px"

@@ -6,6 +6,7 @@ module.exports = {
 		extend: {
 			colors: {
 				'paper-white': '#fffdf5',
+				'paper-white-sat': '#fff6b8',
 				'black-trans': 'rgba(0,0,0,0.15)',
 				'black-trans-1': 'rgba(0,0,0,0.75)',
 				'paper-white-trans-0': 'rgba(255,253,245,0.75)',
