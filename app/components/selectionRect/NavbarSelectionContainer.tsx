@@ -1,7 +1,7 @@
 'use client';
 import { useAppSelector } from '@/redux/store';
 import SelectionRect from './SelectionRect';
-import { BoundingBox } from 'framer-motion';
+import { BoundingBox } from '@/redux/features/locationSlice';
 
 const NavbarSelectionContainer = () => {
 	const boundingBox: BoundingBox = useAppSelector(
