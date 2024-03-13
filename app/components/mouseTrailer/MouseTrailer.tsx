@@ -21,10 +21,6 @@ const MouseTrailer = () => {
 	});
 
 	useEffect(() => {
-		console.log(isInteractable);
-	}, [isInteractable]);
-
-	useEffect(() => {
 		let trailerHeight: number = 20;
 		let trailerWidth: number = 20;
 

@@ -6,3 +6,5 @@ const animationClasses: string[] = [
 	'animate-main-button-click-0',
 	'translate-x-[10px]',
 ];
+
+console.log(animationClasses);
