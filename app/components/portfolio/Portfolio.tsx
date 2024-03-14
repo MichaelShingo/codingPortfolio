@@ -130,7 +130,7 @@ const Portfolio = () => {
 	return (
 		<section
 			ref={portfolioSectionRef}
-			className={`z-0 pt-10 min-h-screen bg-paper-white dark:bg-black ${
+			className={`z-0 pt-10 bg-paper-white dark:bg-black ${
 				isMobile || windowWidth < 1024 ? 'h-fit' : 'h-[400vh]'
 			}`}
 		>
@@ -162,7 +162,7 @@ const Portfolio = () => {
 					</motion.div>
 				</div>
 			) : (
-				<section className="flex h-fit min-h-[100vh] flex-col items-center pt-[65px]">
+				<section className="flex h-fit flex-col items-center pt-[65px]">
 					<div className="mb-8 flex h-fit w-screen scale-[65%] flex-col items-center justify-center space-y-10 sm:scale-100">
 						<ProjectToggleButton
 							title="showcase"
