@@ -5,6 +5,7 @@ import { Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { motion, useMotionValue, useMotionValueEvent } from 'framer-motion';
 import { data } from '@/app/utils/data';
+import useIsMobile from '@/app/customHooks/useIsMobile';
 
 const DRAG_BUFFER = 50;
 const SPRING_OPTIONS = {
@@ -16,6 +17,12 @@ const SPRING_OPTIONS = {
 const Gallery: React.FC = () => {
 	const [imgIndex, setImgIndex] = useState<number>(0);
 	const [dragging, setDragging] = useState<boolean>(false);
+	const isMobile: boolean = useIsMobile();
+
+	const windowWidth: number = useAppSelector(
+		(state) => state.windowReducer.value.windowWidth
+	);
+	const isMobileScreen: boolean = isMobile || windowWidth < 1024;
 	const id: number = useAppSelector(
 		(state) => state.locationReducer.value.selectedPortfolioId
 	);
@@ -95,7 +102,9 @@ const Gallery: React.FC = () => {
 	}) => {
 		return (
 			<div
-				className={`absolute z-10 flex h-full w-[4vw] ${position} bottom-2 lg:bottom-0 items-end lg:items-center justify-center`}
+				className={`absolute z-10 flex h-full w-[4vw] ${position} bottom-1 lg:bottom-0 items-end ${
+					isMobileScreen ? 'items-end' : 'items-center'
+				} justify-center`}
 			>
 				<button
 					className="group aspect-square w-[3vw] min-w-[40px] rounded-full border-[2px] border-none transition duration-300 hover:scale-[110%]"
@@ -116,8 +125,16 @@ const Gallery: React.FC = () => {
 			className="fixed z-[50] h-full w-screen overflow-hidden transition duration-700"
 			style={{ opacity: isOpen ? '1' : '0', pointerEvents: isOpen ? 'all' : 'none' }}
 		>
-			<Arrow rotation="180" position="right-4 lg:right-3" onClick={toNextImage} />
-			<Arrow rotation="0" position="left-4 lg:left-1" onClick={toPrevImage} />
+			<Arrow
+				rotation="180"
+				position={`${isMobileScreen ? 'right-7' : 'right-3'}`}
+				onClick={toNextImage}
+			/>
+			<Arrow
+				rotation="0"
+				position={`${isMobileScreen ? 'left-5' : 'left-1'}`}
+				onClick={toPrevImage}
+			/>
 			<button
 				className="group absolute right-1 z-50 m-1 aspect-square h-[6%] rounded-full bg-paper-white-trans-0 p-2 transition duration-300 sm:right-2 sm:m-3 sm:h-[6%] sm:bg-transparent sm:p-1 dark:invert"
 				onClick={(e) => handleClose(e)}
