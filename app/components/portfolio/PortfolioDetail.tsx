@@ -103,11 +103,11 @@ const PortfolioDetail: React.FC = () => {
 					>
 						<div
 							id="sun"
-							className={`relative aspect-square h-[15%] max-h-[35px] translate-x-[-175%] translate-y-[150%] pointer-events-none ${
-								isGalleryOpen ? 'scale-[10000%]' : 'scale-[100%] '
+							className={`relative aspect-square h-[2000%] translate-x-[-1.1%] translate-y-[0.9%] pointer-events-none ${
+								isGalleryOpen ? 'scale-[100%]' : 'scale-[0.7%] '
 							} rounded-full bg-paper-white transition duration-[1500ms] ${
-								isSunHoverable ? 'group-hover:translate-y-[-130%]' : ''
-							} xl:max-h-[50px]`}
+								isSunHoverable ? 'group-hover:translate-y-[-0.6%]' : ''
+							} `}
 						></div>
 					</div>
 				</button>

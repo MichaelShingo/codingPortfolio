@@ -29,7 +29,7 @@ const Intro = () => {
 				Michael Shingo Crawford
 			</h1>
 			<TypedText />
-			<div className="flex h-[300px] w-screen flex-row items-center justify-center overflow-x-hidden">
+			<div className="flex h-[200px] w-screen flex-row items-center justify-center overflow-x-hidden">
 				<MainButton onClick={handleEnterClick} label="enter" />
 			</div>
 		</section>

@@ -29,10 +29,10 @@ module.exports = {
 			},
 			keyframes: {
 				'scroll-music': {
-					'0%': { opacity: '0%', transform: 'translate(260px) scale(210%)' },
+					'0%': { opacity: '0%', transform: 'translate(260px)' },
 					'5%': { opacity: '100%' },
 					'95%': { opacity: '100%' },
-					'100%': { opacity: '0%', transform: 'translate(-250px) scale(210%)' },
+					'100%': { opacity: '0%', transform: 'translate(-250px)' },
 				},
 				'wave-github': {
 					'0%': { rotate: '0deg' },
