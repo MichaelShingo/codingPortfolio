@@ -9,6 +9,7 @@ import { AppDispatch, useAppSelector } from '@/redux/store';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppState } from '../../context/AppStateContext';
+import useIsSafari from './useIsSafari';
 
 interface NavbarItemProps {
 	title: string;
@@ -25,11 +26,13 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ title, scrollFunction }) => {
 	const dispatch = useDispatch<AppDispatch>();
 
 	useEffect(() => {
-		if (currentPage === title && ref.current) {
-			const rect: DOMRect = ref.current?.getBoundingClientRect();
-			const newBoundingBox: BoundingBox = boundingClientRectToBoundingBox(rect);
-			dispatch(setBoundingBox(newBoundingBox));
-		}
+		setTimeout(() => {
+			if (currentPage === title && ref.current) {
+				const rect: DOMRect = ref.current?.getBoundingClientRect();
+				const newBoundingBox: BoundingBox = boundingClientRectToBoundingBox(rect);
+				dispatch(setBoundingBox(newBoundingBox));
+			}
+		}, 500);
 	}, [currentPage, windowWidth, title, dispatch]);
 
 	const handleClick = () => {

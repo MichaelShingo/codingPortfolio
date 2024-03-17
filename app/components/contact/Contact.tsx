@@ -65,8 +65,10 @@ const SocialLink: React.FC<SocialLinkProps> = ({ link, iconPath }) => {
 
 const generateSocialLinks = () => {
 	const res = [];
-	for (const item of socialLinks) {
-		res.push(<SocialLink link={item.link} iconPath={item.iconPath} />);
+	for (let i = 0; i < socialLinks.length; i++) {
+		res.push(
+			<SocialLink link={socialLinks[i].link} iconPath={socialLinks[i].iconPath} key={i} />
+		);
 	}
 	return res;
 };
