@@ -9,7 +9,6 @@ import { AppDispatch, useAppSelector } from '@/redux/store';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppState } from '../../context/AppStateContext';
-import useIsSafari from './useIsSafari';
 
 interface NavbarItemProps {
 	title: string;
