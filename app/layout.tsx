@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 	title: 'Michael Shingo Crawford | Software Developer',
 	description:
 		'Michael Shingo Crawford, web developer and musician based in the Netherlands. Build with Next.js, React, Typescript.',
+	metadataBase: new URL('https://portfolio.michaelshingo.com/'),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
