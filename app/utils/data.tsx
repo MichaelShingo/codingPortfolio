@@ -62,7 +62,6 @@ export const data: PortfolioItem[] = [
 		link: 'https://violintice.michaelshingo.com',
 		images: [
 			'/violintice/violintice01.jpg',
-			'/violintice/violintice02.jpg',
 			'/violintice/violintice03.jpg',
 			'/violintice/violintice04.jpg',
 			'/violintice/violintice05.jpg',
@@ -70,7 +69,6 @@ export const data: PortfolioItem[] = [
 			'/violintice/violintice07.jpg',
 			'/violintice/violinticeMobile01.jpg',
 			'/violintice/violinticeMobile02.jpg',
-			'/violintice/violinticeMobile03.jpg',
 		],
 	},
 	{
