@@ -7,10 +7,11 @@ const oswald = Oswald({
 	subsets: ['latin'],
 	display: 'swap',
 });
+
 export const metadata: Metadata = {
-	title: 'Portfolio | Michael Shingo Crawford',
+	title: 'Michael Shingo Crawford | Software Developer',
 	description:
-		'Web development portfolio for Michael Shingo Crawford. Built with Next.js, Typescript, Tailwind CSS, and Redux.',
+		'Michael Shingo Crawford, web developer and musician based in the Netherlands. Build with Next.js, React, Typescript.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
