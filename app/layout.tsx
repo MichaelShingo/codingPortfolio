@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Oswald } from 'next/font/google';
 import './globals.css';
 import { ReduxProvider } from '@/redux/provider';
+import { Analytics } from '@vercel/analytics/react';
 
 const oswald = Oswald({
 	subsets: ['latin'],
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="en" className="overflow-x-hidden bg-paper-white">
 			<body className={`${oswald.className}`}>
 				<ReduxProvider>{children}</ReduxProvider>
+				<Analytics />
 			</body>
 		</html>
 	);
