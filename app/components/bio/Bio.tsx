@@ -61,7 +61,7 @@ const Bio: React.FC = () => {
 					paragraphStyles
 				}
 			>
-				<p ref={bioTextboxRef} className="">
+				<p ref={bioTextboxRef}>
 					I am a software developer and musician with a passion for exploring the
 					intersections between tech and the arts, helping creative professionals advance
 					their skills and careers. As a web developer proficient in React, Typescript,
