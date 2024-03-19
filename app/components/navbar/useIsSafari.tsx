@@ -1,9 +1,11 @@
+'use client';
+import { useAppSelector } from '@/redux/store';
 import { useEffect, useState } from 'react';
 
 export default function useIsSafari() {
 	const [isSafari, setIsSafari] = useState(false);
 	const [isMobile, setIsMobile] = useState(false);
-	const isSafariMobile = isSafari && isMobile;
+	const windowWidth = useAppSelector((state) => state.windowReducer.value.windowWidth);
 
 	useEffect(() => {
 		const userAgent = navigator.userAgent;
@@ -11,10 +13,10 @@ export default function useIsSafari() {
 		if (/Safari/i.test(userAgent)) {
 			setIsSafari(true);
 		}
-		if (/iPhone|iPad|iPod/i.test(userAgent)) {
+		if (windowWidth <= 1024) {
 			setIsMobile(true);
 		}
-	}, []);
+	}, [windowWidth]);
 
-	return [isSafari, isSafariMobile];
+	return { isSafari, isMobile };
 }

@@ -9,6 +9,8 @@ import { AppDispatch, useAppSelector } from '@/redux/store';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppState } from '../../context/AppStateContext';
+import useIsSafari from './useIsSafari';
+import useIsMobile from '@/app/customHooks/useIsMobile';
 
 interface NavbarItemProps {
 	title: string;
@@ -20,6 +22,8 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ title, scrollFunction }) => {
 	const windowWidth: number = useAppSelector(
 		(state) => state.windowReducer.value.windowWidth
 	);
+	const { isSafari } = useIsSafari();
+	const isMobileDevice = useIsMobile();
 
 	const ref = useRef<HTMLButtonElement>(null);
 	const dispatch = useDispatch<AppDispatch>();
@@ -43,7 +47,9 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ title, scrollFunction }) => {
 		<button
 			ref={ref}
 			onClick={handleClick}
-			className="p-1 text-center text-xl font-normal uppercase text-black transition duration-300 hover:scale-[95%] sm:text-3xl md:text-5xl dark:text-white"
+			className={`p-1 text-center text-xl font-normal uppercase text-black transition duration-300 hover:scale-[95%] sm:text-3xl md:text-5xl dark:text-white ${
+				currentPage !== title && isSafari && isMobileDevice ? 'opacity-50' : 'opacity-100'
+			}`}
 		>
 			{title}
 		</button>

@@ -7,11 +7,9 @@ import MainButton from '../intro/MainButton';
 import { useAppSelector } from '@/redux/store';
 import { useDispatch } from 'react-redux';
 import {
-	BoundingBox,
 	boundingClientRectToBoundingBox,
 	setContactDimensions,
 } from '@/redux/features/locationSlice';
-import SelectionRect from '../selectionRect/SelectionRect';
 import { actions, useAppState } from '../../context/AppStateContext';
 import { sendContactForm } from '@/app/utils/email';
 import InputField, {
@@ -152,10 +150,6 @@ const Contact: React.FC = () => {
 		}
 	}, [windowHeight, windowWidth]);
 
-	const contactBoundingBox: BoundingBox = useAppSelector(
-		(state) => state.locationReducer.value.contactFieldBoundingBox
-	);
-
 	const handleSubmit = async (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	): Promise<void> => {
@@ -203,7 +197,6 @@ const Contact: React.FC = () => {
 			id="contact"
 			className="flex h-fit min-h-screen w-screen flex-col items-center justify-between bg-paper-white pt-32 2xl:pt-44 dark:bg-black"
 		>
-			<SelectionRect boundingBox={contactBoundingBox} />
 			<div className="flex h-fit w-[100%] flex-col justify-center">
 				<InputField
 					val={name}
@@ -230,7 +223,7 @@ const Contact: React.FC = () => {
 							onChange={(e) => setMessage(e.target.value)}
 							cols={50}
 							className={
-								inputFieldClasses + ' h-[100px] sm:h-[140px] 2xl:h-[170px] resize-none'
+								inputFieldClasses + 'h-[100px] sm:h-[140px] 2xl:h-[170px] resize-none'
 							}
 						/>
 						<div className={clefContainerClasses}>

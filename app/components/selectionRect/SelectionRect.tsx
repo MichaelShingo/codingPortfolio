@@ -2,7 +2,6 @@
 import { BoundingBox, Coordinate } from '@/redux/features/locationSlice';
 import { useAppSelector } from '@/redux/store';
 import React from 'react';
-import { isMobile, isSafari } from 'react-device-detect';
 
 interface SelectionCornerProps {
 	position: Coordinate;
@@ -53,12 +52,7 @@ interface SelectionRectProps {
 
 const SelectionRect: React.FC<SelectionRectProps> = ({ boundingBox }) => {
 	return (
-		<div
-			className={`pointer-events-none fixed z-40 h-screen w-screen overflow-hidden`}
-			style={{
-				opacity: isSafari && isMobile ? 0 : 1,
-			}}
-		>
+		<div className={`pointer-events-none fixed z-40 h-screen w-screen overflow-hidden`}>
 			<SelectionCorner
 				position={boundingBox.topRight}
 				xOffset={9}

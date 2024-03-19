@@ -122,7 +122,7 @@ const Gallery: React.FC = () => {
 	return (
 		<section
 			id="gallery"
-			className="fixed z-[50] h-full w-screen overflow-hidden bg-paper-white transition duration-700"
+			className="fixed z-[50] h-full w-screen overflow-hidden bg-paper-white transition duration-700 dark:bg-black"
 			style={{ opacity: isOpen ? '1' : '0', pointerEvents: isOpen ? 'all' : 'none' }}
 		>
 			<Arrow
